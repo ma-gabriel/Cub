@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: geymat <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
+/*   Updated: 2024/06/20 02:05:25 by geymat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdbool.h>
 #include <fcntl.h>
 #include "libft.h"
 
-bool check_arg(int argc, char *map)
+bool	check_arg(int argc, char *map)
 {
 	int	fd;
 
@@ -18,10 +30,12 @@ bool check_arg(int argc, char *map)
 	}
 	if (ft_strlen(map) < 5 || ft_strncmp(map + ft_strlen(map) - 4, ".cub", 4))
 	{
-		write(2, "Error\nThge map doesn't have a valid name (extension must be .cub)\n", 67);
+		write(2, "Error\nThge map doesn't have a"
+			"valid name (extension must be .cub)\n", 67);
 		return (false);
 	}
-	fd = open(map, 00200000);  //is O_DIRECTORY, but vscode doesn't find it
+	fd = open(map, 00200000);
+	// is O_DIRECTORY, but vscode doesn't find it
 	if (fd != -1)
 	{
 		close(fd);
@@ -31,7 +45,7 @@ bool check_arg(int argc, char *map)
 	return (true);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	if (!check_arg(argc, argv[1]))
 		return (1);
