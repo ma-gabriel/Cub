@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   map_checks.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geymat <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 00:54:02 by geymat            #+#    #+#             */
-/*   Updated: 2023/11/16 19:22:57 by geymat           ###   ########.fr       */
+/*   Created: 2024/06/22 00:41:44 by geymat            #+#    #+#             */
+/*   Updated: 2024/06/22 00:41:48 by geymat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef MAP_CHECKS_H
+# define MAP_CHECKS_H
 
-void	ft_bzero(void *s, size_t num)
-{
-	size_t	i;
+# include "struct.h"
 
-	i = 0;
-	while (i < num)
-	{
-		((char *)s)[i] = 0;
-		i++;
-	}
-}
+bool	check_only_map(char **file);
+int		struct_init(t_thegame *game, char *file_name);
+bool	check_arg(int argc, char *map);
+char	**read_file(char *file);
+
+#endif

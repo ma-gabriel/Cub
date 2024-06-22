@@ -28,7 +28,7 @@ int		ft_isascii(int c);
 int		ft_isprint(int c);
 size_t	ft_strlen(const char *str);
 void	*ft_memset(void *str, int c, size_t num);
-void	ft_bzero(char *str, size_t num);
+void	ft_bzero(void *s, size_t num);
 void	*ft_memcpy(void *dest, const void *src, size_t count);
 void	*ft_memmove(void *dest, const void *src, size_t count);
 int		ft_toupper(int c);

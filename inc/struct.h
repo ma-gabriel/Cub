@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geymat <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 00:54:02 by geymat            #+#    #+#             */
-/*   Updated: 2023/11/16 19:22:57 by geymat           ###   ########.fr       */
+/*   Created: 2024/06/22 06:02:24 by geymat            #+#    #+#             */
+/*   Updated: 2024/06/22 06:02:26 by geymat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef STRUCT_H
+# define STRUCT_H
 
-void	ft_bzero(void *s, size_t num)
+typedef struct s_textures
 {
-	size_t	i;
+	void			*no;
+	void			*so;
+	void			*we;
+	void			*ew;
+	unsigned char	f[3];
+	unsigned char	c[3];
+}		t_textures;
 
-	i = 0;
-	while (i < num)
-	{
-		((char *)s)[i] = 0;
-		i++;
-	}
-}
+typedef struct s_game
+{
+	t_textures	textures;
+	char		**map;
+}	t_thegame;
+
+#endif
