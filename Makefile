@@ -20,7 +20,6 @@ $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(HEADER) -Llibft
 
 $(OBJS_DIR)/%.o: srcs/%.c $(DEPS)
-	cd libft && $(MAKE) 
 	mkdir -p $(OBJS_DIR)
 	$(CC) $(FLAGS) $(HEADER) -c $< -o $@
 

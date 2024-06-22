@@ -29,5 +29,6 @@ valid name (extension must be .cub)"
 # define MULTIPLE_START "Multiple starts have been found in the map"
 # define WRONG_CHAR "Wrong chars have been found at the end of the \
 file, it must end with the map"
+# define UNCLOSED_MAP "The map is not closed"
 
 #endif

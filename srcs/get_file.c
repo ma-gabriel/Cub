@@ -139,12 +139,12 @@ int	get_map(char **file, char **cpy, t_thegame *game)
 {
 	size_t	i;
 
-	if (!check_only_map(file)) // add to check if the map is valid;
+	if (!check_only_map(file) || !check_closed_map(file))
 	{
 		strs_free(cpy);
 		return (1);
 	}
-	game->map = malloc((sizeof(char *) + 1) * strs_len(file));
+	game->map = malloc(sizeof(char *) * (strs_len(file) + 1));
 	if (!(game->map))
 	{
 		write(2, ERR MALLOC_FAIL NL, 23);
