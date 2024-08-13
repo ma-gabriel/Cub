@@ -1,40 +1,85 @@
-NAME = Cub3D
+NAME = minishell
+
 CC = cc
-FLAGS = -Wall -Wextra -Werror
-HEADER = -I inc -I libft
-DEPS = #inc/map_checks.h 
+RMF = rm -f
 
-LIBFT = libft/libft.a
+CFLAGS = -g -Wall -Wextra -Werror
+DFLAGS = -MP -MMD
 
-SRCS = main.c \
-	   check_file.c \
-	   get_file.c
+SDIR = srcs
+BDIR = .build
+DDIR = $(BDIR)
+HDIR = includes
 
-SRCS_DIR = $(addprefix srcs/, $(SRCS))
-OBJS_DIR = objs
-OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
+LIB_PATH :=
+LIB_DIR :=
+LIB_INCLUDE :=
+LIB_FLAGS :=
 
-all: $(NAME)
+SRCS :=
 
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(HEADER) -Llibft
+SFILES = $(SRCS:%=$(SDIR)/%)
 
-$(OBJS_DIR)/%.o: srcs/%.c $(DEPS)
-	mkdir -p $(OBJS_DIR)
-	$(CC) $(FLAGS) $(HEADER) -c $< -o $@
+DFILES = $(SRCS:%.c=$(DDIR)/%.d)
 
-$(LIBFT):
-	cd ./libft && $(MAKE) all
+OFILES = $(SRCS:%.c=$(BDIR)/%.o)
 
-clean:
-	rm -rf $(OBJS_DIR)
-	cd ./libft && $(MAKE) clean
+LIB_FLAGS := -l readline
 
-fclean: clean
-	rm -f $(NAME)
-	cd ./libft && $(MAKE) fclean
+all:
+	@echo "compiling $(NAME):"
+	@$(MAKE) -s $(NAME)
 
-re: fclean
-	$(MAKE) all
+bonus:	all
 
-.PHONY: all clean fclean re
+include config/libft.mk
+include config/libmlx.mk
+include config/srcs.mk
+
+$(NAME) : $(OFILES) | $(LIB_PATH)
+	$(CC) $(CFLAGS) -o $@ $(OFILES) $(LIB_FLAGS)
+	@echo "$(NAME) compilation done";
+
+-include $(DFILES)
+
+$(BDIR)/%.o : $(SDIR)/%.c
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@ -I $(HDIR)/ $(LIB_INCLUDE)/
+	@echo "	$@"
+
+clean	::
+	@echo "cleaning $(NAME)";
+	@$(RMF) $(OFILES) $(DFILES)
+
+re		::	fclean
+	@$(MAKE) -s all
+
+fclean	::	clean
+	@$(RMF) $(NAME)
+
+force :
+
+start: all
+	@echo "__Minishell__"
+	@./minishell
+
+run: all
+	@echo "__Minishell__"
+	@./minishell
+
+valgrind: all
+	@echo "__Vinishell__" 
+	@valgrind --track-fds=all --suppressions=config/valgrind_ignore_leaks.conf --leak-check=full --show-leak-kinds=all --track-origins=yes -q -s ./minishell
+
+include config/forbidden.mk
+
+norm:
+	@echo "norminette"
+	-@norminette libft-1.2/ srcs/ | grep Error
+	@echo "comment"
+	-@cat $(SFILES) | grep "//"
+	@$(MAKE) -s check_forbidden_function
+
+-include config/update.mk
+
+.PHONY: clean re fclean force all norm run valgrind bonus
