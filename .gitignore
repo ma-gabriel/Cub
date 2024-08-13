@@ -1,0 +1,7 @@
+*.o
+*.a
+.vscode
+.build
+cub3d
+cub3D
+Cub3D

@@ -1,4 +1,4 @@
-NAME = minishell
+NAME = cub3D
 
 CC = cc
 RMF = rm -f
