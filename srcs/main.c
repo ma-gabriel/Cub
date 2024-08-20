@@ -31,20 +31,20 @@ static void	strs_free(char **strs)
 	free(strs);
 }
 
-//int	main(int argc, char **argv)
-//{
-//	t_thegame	game;
+int	main(int argc, char **argv)
+{
+	t_thegame	game;
 
-//	ft_bzero(&game, sizeof(game));
-//	if (!check_arg(argc, argv[1]))
-//		return (1);
-//	struct_init(&game, argv[1]);
-//	if (game.map)
-//		strs_free(game.map);
-//	return (0);
-//}
+	ft_bzero(&game, sizeof(game));
+	if (!check_arg(argc, argv[1]))
+		return (1);
+	struct_init(&game, argv[1]);
+	if (game.map)
+		strs_free(game.map);
+	return (0);
+}
 
-int	main(void)
+/*int	main(void)
 {
 	t_mlx_p		mlx = mm_mlx_new();
 	t_window_p	win = mm_window_new(mlx, 1000, 600, "test");
@@ -56,4 +56,4 @@ int	main(void)
 	mm_image_delete(img);
 	mm_window_delete(win);
 	mm_mlx_delete(mlx);
-}
+}*/

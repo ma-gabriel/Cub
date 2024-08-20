@@ -13,14 +13,16 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
+# include "mlx_manip.h"
+
 typedef struct s_textures
 {
 	void			*no;
 	void			*so;
 	void			*we;
 	void			*ew;
-	unsigned char	f[3];
-	unsigned char	c[3];
+	t_color			f;
+	t_color			c;
 }		t_textures;
 
 typedef struct s_game
