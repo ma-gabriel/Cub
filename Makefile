@@ -3,7 +3,7 @@ NAME = cub3D
 CC = cc
 RMF = rm -f
 
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g
 DFLAGS = -MP -MMD
 
 SDIR = srcs
@@ -60,16 +60,16 @@ fclean	::	clean
 force :
 
 start: all
-	@echo "__Minishell__"
-	@./minishell
+	@echo "__$(NAME)__"
+	@./$(NAME)
 
 run: all
-	@echo "__Minishell__"
-	@./minishell
+	@echo "__$(NAME)__"
+	@./$(NAME)
 
 valgrind: all
-	@echo "__Vinishell__" 
-	@valgrind --track-fds=all --suppressions=config/valgrind_ignore_leaks.conf --leak-check=full --show-leak-kinds=all --track-origins=yes -q -s ./minishell
+	@echo "__$(NAME)__" 
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME)
 
 include config/forbidden.mk
 
