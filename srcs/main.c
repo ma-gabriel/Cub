@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/08/20 20:06:35 by gcros            ###   ########.fr       */
+/*   Updated: 2024/08/20 22:25:39 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,26 @@ static void	strs_free(char **strs)
 //	return (0);
 //}
 
-int	main(void)
+void	foo(void)
 {
 	t_mlx_p		mlx = mm_mlx_new();
 	t_window_p	win = mm_window_new(mlx, 1000, 600, "test");
-	t_image_p	img = mm_image_new(mlx, 1000, 600);
+	t_image	img;
+	int		i;
 
-	mm_img_set_bg(&img->img, (t_color){.r = rand() & 0xff, .g = rand() & 0xff, .b = rand() & 0xff, .a = 0});
-	mm_img_display(&img->img, win, 0, 0);
-	sleep(5);
-	mm_image_delete(img);
+	mm_image_init(&img, mlx, 1000, 600);
+	i = 0;
+	while (i++ < 100)
+	{
+		mm_img_set_bg(&img.img, (t_color){.r = rand() & 0xff, .g = rand() & 0xff, .b = rand() & 0xff, .a = 0});
+		mm_img_display(&img.img, win, 0, 0);
+	}
+	mm_image_destroy(&img);
 	mm_window_delete(win);
 	mm_mlx_delete(mlx);
+}
+
+int	main(void)
+{
+	foo();
 }
