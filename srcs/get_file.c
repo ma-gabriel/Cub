@@ -163,17 +163,72 @@ int	get_map(char **file, char **cpy, t_thegame *game)
 	return (0);
 }
 
+t_color	fill_rgb(char **temp)
+{
+	t_color	rgb;
+	rgb.r = ft_atoi(temp[0]);
+	rgb.g = ft_atoi(temp[1]);
+	rgb.b = ft_atoi(temp[2]);
+	if (temp[3])
+		rgb.a = ft_atoi(temp[3]);
+	else
+		rgb.a = 0;
+	return (rgb);
+}
+
+//Rajouter que les valeurs soient <= a 256 
+bool check_rgb(char **split)
+{
+	size_t	len;
+
+	len = strs_len(split);
+	if (len != 3 && len != 4)
+		return (false);
+	while (*split)
+	{
+		while (**split == ' ')
+			*split++;
+		if (!ft_strisnumber(*split))
+			return (false);
+		split++;
+	}
+	return (true);
+}
+
+//return 0 for error, 1 for working succesfully
+bool	fill_color(t_thegame *game, short id, char *line)
+{
+	char	**temp;
+
+	temp = ft_split(line + 1, ',');
+	if (temp == NULL)
+		return (!write (2, ERR MALLOC_FAIL NL, 23));
+	if (!check_rgb(temp))
+	{
+		strs_free(temp);
+		return (!write (2, ERR WRONG_RGB_VALUES NL, 45));
+	}
+	if (id == 5)
+		game->textures.f = fill_rgb(temp);
+	else if (id == 6)
+		game->textures.c = fill_rgb(temp);
+	strs_free(temp);
+	return (1);
+}
+
 int	struct_init(t_thegame *game, char *file_name)
 {
 	char		**file;
 	void		*cpy;
 	short		hub;
+	bool		exec;
 
 	file = read_file(file_name);
 	cpy = file;
 	if (!file)
 		return (1);
-	while (*file)
+	exec = 1;
+	while (*file && exec) // if exec go 0, it means that something went wrong, like bad malloc or bad input
 	{
 		hub = redirect(*file);
 		if (hub == -1)
@@ -181,7 +236,7 @@ int	struct_init(t_thegame *game, char *file_name)
 		if (hub >= 1 && hub <= 4)
 			printf("found a path at line : %s\n", *file);
 		if (hub >= 5)
-			printf("rgb color at line: %s\n", *file);
+			exec = fill_color(game, hub, *file);
 		file++;
 	}
 	strs_free(cpy);

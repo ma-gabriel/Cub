@@ -30,5 +30,6 @@ valid name (extension must be .cub)"
 # define WRONG_CHAR "Wrong chars have been found at the end of the \
 file, it must end with the map"
 # define UNCLOSED_MAP "The map is not closed"
+# define WRONG_RGB_VALUES "The rgb values in the map are invalid"
 
 #endif
