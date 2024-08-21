@@ -1,5 +1,5 @@
 NAME = cub3D
-
+ARGS = 
 CC = cc
 RMF = rm -f
 
@@ -24,7 +24,7 @@ DFILES = $(SRCS:%.c=$(DDIR)/%.d)
 
 OFILES = $(SRCS:%.c=$(BDIR)/%.o)
 
-LIB_FLAGS := -l readline
+LIB_FLAGS := -l m
 
 all:
 	@echo "compiling $(NAME):"
@@ -59,17 +59,17 @@ fclean	::	clean
 
 force :
 
-start: all
-	@echo "__$(NAME)__"
-	@./$(NAME)
-
 run: all
-	@echo "__$(NAME)__"
-	@./$(NAME)
+	@echo "run __$(NAME)__"
+	@./$(NAME) $(ARGS)
 
 valgrind: all
-	@echo "__$(NAME)__" 
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME)
+	@echo "valgrind __$(NAME)__" 
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) $(ARGS)
+
+time: all
+	@echo "time __$(NAME)__"
+	@time ./$(NAME) $(ARGS)
 
 include config/forbidden.mk
 
@@ -82,4 +82,4 @@ norm:
 
 -include config/update.mk
 
-.PHONY: clean re fclean force all norm run valgrind bonus
+.PHONY: clean re fclean force all norm run valgrind bonus time

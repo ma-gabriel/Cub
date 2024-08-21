@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mm_img_display.c                                   :+:      :+:    :+:   */
+/*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/20 16:50:33 by gcros             #+#    #+#             */
-/*   Updated: 2024/08/21 13:23:53 by gcros            ###   ########.fr       */
+/*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
+/*   Updated: 2024/08/21 14:54:27 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_manip.h"
-#include "mlx.h"
+#include "math.h"
+#include "put.h"
 
-void	mm_img_display(t_img_p img, t_window_p win, int x, int y)
+int	loop(t_loop_param *param)
 {
-	mlx_put_image_to_window(
-		win->mlx_ptr,
-		win->win_ptr,
-		img->img_ptr,
-		x,
-		y);
+	for(int i = 0; i < param->img->img.width; i++)
+		for(int j = 0; j < param->img->img.height; j++)
+			mm_img_putpixel_s(&param->img->img, i, j, mm_get_color(0, i + j, i * j, i ^ j));
+	mm_img_display(&param->img->img, param->win, 0, 0);
+	return (0);
 }
