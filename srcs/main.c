@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/08/21 14:39:31 by gcros            ###   ########.fr       */
+/*   Updated: 2024/08/21 18:34:51 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	strs_free(char **strs)
 //	return (0);
 //}
 
-void	foo(void)
+int	main(void)
 {
 	t_mlx_p		mlx = mm_mlx_new();
 	t_window_p	win = mm_window_new(mlx, 1000, 600, "test");
@@ -57,9 +57,4 @@ void	foo(void)
 	mm_image_delete(img);
 	mm_window_delete(win);
 	mm_mlx_delete(mlx);
-}
-
-int	main(void)
-{
-	foo();
 }

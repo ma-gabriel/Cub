@@ -1,8 +1,8 @@
 #---auto gen---
-SRCS += /check_file.c
-SRCS += /get_file.c
-SRCS += /main.c
-SRCS += /loop.c
+SRCS += check_file.c
+SRCS += get_file.c
+SRCS += main.c
+SRCS += loop.c
 #---mlx_manip---
 SRCS += mlx_manip/mm_image_new.c
 SRCS += mlx_manip/mm_window_delete.c

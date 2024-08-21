@@ -67,6 +67,10 @@ valgrind: all
 	@echo "valgrind __$(NAME)__" 
 	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) $(ARGS)
 
+cachegrind: all
+	@echo "cachegrind __$(NAME)__" 
+	@valgrind --tool=cachegrind --cachegrind-out-file=out ./$(NAME) $(ARGS)
+
 time: all
 	@echo "time __$(NAME)__"
 	@time ./$(NAME) $(ARGS)
@@ -82,4 +86,4 @@ norm:
 
 -include config/update.mk
 
-.PHONY: clean re fclean force all norm run valgrind bonus time
+.PHONY: clean re fclean force all norm run valgrind bonus time cachegrind
