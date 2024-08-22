@@ -209,11 +209,11 @@ bool	fill_color(t_thegame *game, short id, char *line)
 
 	temp = ft_split(line + 1, ',');
 	if (temp == NULL)
-		return (false);
+		return (0);
 	if (!check_rgb(temp))
 	{
 		strs_free(temp);
-		return (false);
+		return (0);
 	}
 	if (id == 5)
 		game->textures.f = fill_rgb(temp);
