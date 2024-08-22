@@ -176,20 +176,27 @@ t_color	fill_rgb(char **temp)
 	return (rgb);
 }
 
-//Rajouter que les valeurs soient <= a 256 
+// Check que les valeurs soient >= 0 et <= 255. 
+// Enlève les espaces en debut et fin de nombre
+// Verifie que le nombre ne soit bien qu'un nombre
+
 bool check_rgb(char **split)
 {
 	size_t	len;
+	char	*temp;
 
 	len = strs_len(split);
 	if (len != 3 && len != 4)
-		return (false);
+		return (!write (2, ERR WRONG_RGB_VALUES NL, 45));
 	while (*split)
 	{
-		while (**split == ' ')
-			*split++;
-		if (!ft_strisnumber(*split))
-			return (false);
+		temp = ft_strtrim(*split, " \f\r\t\v");
+		if (!temp)
+			return (!write (2, ERR MALLOC_FAIL NL, 23));
+		free(*split);
+		*split = temp;
+		if (!ft_strisnumber(*split) || (unsigned long) ft_atol(*split) > 255)
+			return (!write (2, ERR WRONG_RGB_VALUES NL, 45));
 		split++;
 	}
 	return (true);
@@ -202,11 +209,11 @@ bool	fill_color(t_thegame *game, short id, char *line)
 
 	temp = ft_split(line + 1, ',');
 	if (temp == NULL)
-		return (!write (2, ERR MALLOC_FAIL NL, 23));
+		return (false);
 	if (!check_rgb(temp))
 	{
 		strs_free(temp);
-		return (!write (2, ERR WRONG_RGB_VALUES NL, 45));
+		return (false);
 	}
 	if (id == 5)
 		game->textures.f = fill_rgb(temp);
