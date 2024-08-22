@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:30:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/08/21 15:32:40 by gcros            ###   ########.fr       */
+/*   Updated: 2024/08/22 14:01:51 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ struct s_color
 };
 
 t_color		mm_get_color(int a, int r, int g, int b);
+void		mm_color_phex(t_color color);
 
 /*                                     mlx manip                              */
 
@@ -83,6 +84,7 @@ t_img_p		mm_img_new(t_mlx_p mlx, int width, int height);
 int			mm_img_init(t_img_p img_p, t_mlx_p mlx, int width, int height);
 void		mm_img_putpixel(t_img_p img, int x, int y, t_color color);
 void		mm_img_putpixel_s(t_img_p img, int x, int y, t_color color);
+t_color		mm_img_getpixel(t_img_p img, int x, int y);
 void		mm_img_clear(t_img_p img);
 void		mm_img_set_bg(t_img_p img, t_color color);
 void		mm_img_display(t_img_p img, t_window_p win, int x, int y);

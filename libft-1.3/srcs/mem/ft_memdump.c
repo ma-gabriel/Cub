@@ -6,14 +6,14 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:22:22 by gcros             #+#    #+#             */
-/*   Updated: 2024/08/13 15:50:52 by gcros            ###   ########.fr       */
+/*   Updated: 2024/08/22 15:00:46 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stddef.h"
 #include "unistd.h"
 
-void	print_v(unsigned char byte)
+void	print_byte(unsigned char byte)
 {
 	char	p[2];
 
@@ -29,7 +29,7 @@ void	ft_memdump(void *p, size_t len)
 	i = 0;
 	while (len--)
 	{
-		print_v(((unsigned char *)p)[i]);
+		print_byte(((unsigned char *)p)[i]);
 		if (len)
 			write(1, " ", 1);
 		i++;
