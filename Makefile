@@ -71,6 +71,12 @@ cachegrind: all
 	@echo "cachegrind __$(NAME)__" 
 	@valgrind --tool=cachegrind --cachegrind-out-file=out ./$(NAME) $(ARGS)
 
+out: $(NAME)
+	$(MAKE) cachegrind
+
+annotate: out
+	@cg_annotate ./out
+
 time: all
 	@echo "time __$(NAME)__"
 	@time ./$(NAME) $(ARGS)
@@ -86,4 +92,4 @@ norm:
 
 -include config/update.mk
 
-.PHONY: clean re fclean force all norm run valgrind bonus time cachegrind
+.PHONY: clean re fclean force all norm run valgrind bonus time cachegrind annotate
