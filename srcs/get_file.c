@@ -6,7 +6,7 @@
 /*   By: geymat <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:01:53 by geymat            #+#    #+#             */
-/*   Updated: 2024/06/22 06:01:56 by geymat           ###   ########.fr       */
+/*   Updated: 2024/08/30 20:10:58 by geymat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ donc pour la map, il y aura de la perte dans un cas tel que:
 J'attends ton get_next_line gcros pour ca. Ou du moins ta libft
 
 */
+/*
 int	read_fd(int fd, char ***file)
 {
 	char	*line;
@@ -63,6 +64,35 @@ int	read_fd(int fd, char ***file)
 	free(line);
 	return (bytes == -1);
 }
+*/
+
+int	read_fd(int fd, char ***file)
+{
+	char	**temp;
+	size_t	i;
+
+	i = 0;
+	*file = NULL;
+	while(!i || (*file)[i - 1])
+	{
+		temp = malloc((i + 1) * sizeof(char *));
+		if (!temp)
+		{
+			if (*file)
+				ft_strsfree(*file);
+			return (!!(*file = NULL));
+		}
+		ft_memcpy(temp, *file, i * sizeof(char *));
+		temp[i] = get_next_line(fd);
+		if (temp[i] && temp[i][ft_strlen(temp[i]) - 1] == '\n')
+			temp[i][ft_strlen(temp[i]) - 1] = 0;
+		if (i)
+			free(*file);
+		*file = temp;
+		i++;
+	}
+	return (1);
+}
 
 char	**read_file(char *file)
 {
@@ -76,12 +106,9 @@ char	**read_file(char *file)
 		return (NULL);
 	}
 	res = (void *) 1;
-	if (read_fd(fd, &res) || !res)
+	if (!read_fd(fd, &res))
 	{
-		if (res)
-			write(2, ERR READ_FAIL NL, 33);
-		else
-			write(2, ERR MALLOC_FAIL NL, 23);
+		write(2, ERR MALLOC_FAIL NL, 23);
 		close(fd);
 		return (NULL);
 	}
@@ -166,6 +193,7 @@ int	get_map(char **file, char **cpy, t_thegame *game)
 t_color	fill_rgb(char **temp)
 {
 	t_color	rgb;
+
 	rgb.r = ft_atoi(temp[0]);
 	rgb.g = ft_atoi(temp[1]);
 	rgb.b = ft_atoi(temp[2]);

@@ -39,6 +39,17 @@ int	main(int argc, char **argv)
 	if (!check_arg(argc, argv[1]))
 		return (1);
 	struct_init(&game, argv[1]);
+	
+	size_t i = 0;
+	if (game.map)
+	{
+		printf("\ngame map:\n");
+		while (game.map[i])
+		{
+		printf("%s\n", game.map[i]);
+		i++;
+		}
+	}
 	if (game.map)
 		strs_free(game.map);
 	return (0);
