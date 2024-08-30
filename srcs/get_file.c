@@ -73,7 +73,7 @@ int	read_fd(int fd, char ***file)
 
 	i = 0;
 	*file = NULL;
-	while(!i || (*file)[i - 1])
+	while (!i || (*file)[i - 1])
 	{
 		temp = malloc((i + 1) * sizeof(char *));
 		if (!temp)
@@ -208,7 +208,7 @@ t_color	fill_rgb(char **temp)
 // Enlève les espaces en debut et fin de nombre
 // Verifie que le nombre ne soit bien qu'un nombre
 
-bool check_rgb(char **split)
+bool	check_rgb(char **split)
 {
 	size_t	len;
 	char	*temp;
@@ -263,7 +263,9 @@ int	struct_init(t_thegame *game, char *file_name)
 	if (!file)
 		return (1);
 	exec = 1;
-	while (*file && exec) // if exec go 0, it means that something went wrong, like bad malloc or bad input
+	// if exec go 0, it means that
+	// something went wrong, like bad malloc or bad input
+	while (*file && exec)
 	{
 		hub = redirect(*file);
 		if (hub == -1)

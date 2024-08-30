@@ -24,7 +24,6 @@
 valid name (extension must be .cub)"
 # define ARG_DIRECTORY "Did you really give a directory ???"
 # define OPEN_FAIL "The file didn't open"
-# define READ_FAIL "The file couldn't be read"
 # define MALLOC_FAIL "A malloc failed"
 # define MULTIPLE_START "Multiple starts have been found in the map"
 # define WRONG_CHAR "Wrong chars have been found at the end of the \
