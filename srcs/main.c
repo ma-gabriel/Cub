@@ -34,13 +34,23 @@ static void	strs_free(char **strs)
 int	main(int argc, char **argv)
 {
 	t_thegame	game;
+	t_mlx_p		mlx = mm_mlx_new();
+	t_window_p	win = mm_window_new(mlx, 1000, 600, "test");
 
 	ft_bzero(&game, sizeof(game));
+	game.window.mlx_ptr = mlx;
+	game.window.win_ptr = win;
 	if (!check_arg(argc, argv[1]))
 		return (1);
 	struct_init(&game, argv[1]);
 	if (game.map)
 		strs_free(game.map);
+	mlx_destroy_image(game.window.mlx_ptr, game.textures.no);
+	mlx_destroy_image(game.window.mlx_ptr, game.textures.ea);
+	mlx_destroy_image(game.window.mlx_ptr, game.textures.so);
+	mlx_destroy_image(game.window.mlx_ptr, game.textures.we);
+	mm_window_delete(win);
+	mm_mlx_delete(mlx);
 	return (0);
 }
 

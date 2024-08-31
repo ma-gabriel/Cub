@@ -18,6 +18,7 @@
 #include "libft.h"
 #include "map_checks.h"
 #include <stdio.h>
+#include "mlx.h"
 
 int	read_fd(int fd, char ***file)
 {
@@ -67,29 +68,6 @@ char	**read_file(char *file)
 	}
 	close(fd);
 	return (res);
-}
-
-static short	redirect(char *line)
-{
-	if (!ft_strncmp(line, "NO ", 3))
-		return (1);
-	if (!ft_strncmp(line, "SO ", 3))
-		return (2);
-	if (!ft_strncmp(line, "WE ", 3))
-		return (3);
-	if (!ft_strncmp(line, "EA ", 3))
-		return (4);
-	if (!ft_strncmp(line, "F ", 2))
-		return (5);
-	if (!ft_strncmp(line, "C ", 2))
-		return (6);
-	while (*line)
-	{
-		if (!(*line == ' ' || (*line >= 9 && *line <= 13)))
-			return (-1);
-		line++;
-	}
-	return (0);
 }
 
 static void	strs_free(char **strs)
@@ -203,6 +181,55 @@ bool	fill_color(t_thegame *game, short id, char *line)
 	return (1);
 }
 
+static short	redirect(char *line)
+{
+	if (!ft_strncmp(line, "NO ", 3))
+		return (1);
+	if (!ft_strncmp(line, "SO ", 3))
+		return (2);
+	if (!ft_strncmp(line, "WE ", 3))
+		return (3);
+	if (!ft_strncmp(line, "EA ", 3))
+		return (4);
+	if (!ft_strncmp(line, "F ", 2))
+		return (5);
+	if (!ft_strncmp(line, "C ", 2))
+		return (6);
+	while (*line)
+	{
+		if (!(*line == ' ' || (*line >= 9 && *line <= 13)))
+			return (-1);
+		line++;
+	}
+	return (0);
+}
+
+bool	fill_texture(t_thegame *game, short id, char *line)
+{
+
+	t_image_gab	*aimed;
+
+	line += 2;
+	if (id == 1)
+		aimed = &(game->textures.no);
+	else if (id == 2)
+		aimed = &(game->textures.so);
+	else if (id == 3)
+		aimed = &(game->textures.we);
+	else if (id == 4)
+		aimed = &(game->textures.ea);
+	while (*line == ' ' || *line == '\f' || *line ==  '\r' || *line == '\t' || *line == '\v')
+		line++;
+	aimed->image = mlx_xpm_file_to_image(game->window.mlx_ptr, line, &(aimed->height), &(aimed->width));
+	if (!aimed->image)
+	{
+		write(2, ERR MLX_FAILED NL, 30);
+		return (0);
+	}
+	return (1);
+}
+
+
 // if exec go 0, it means that
 // something went wrong, like bad malloc or bad input
 int	struct_init(t_thegame *game, char *file_name)
@@ -223,7 +250,7 @@ int	struct_init(t_thegame *game, char *file_name)
 		if (hub == -1)
 			return (get_map(file, cpy, game));
 		if (hub >= 1 && hub <= 4)
-			printf("found a path at line : %s\n", *file);
+			exec = fill_texture(game, hub, *file);
 		if (hub >= 5)
 			exec = fill_color(game, hub, *file);
 		file++;

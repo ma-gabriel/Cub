@@ -30,5 +30,6 @@ valid name (extension must be .cub)"
 file, it must end with the map"
 # define UNCLOSED_MAP "The map is not closed"
 # define WRONG_RGB_VALUES "The rgb values in the map are invalid"
+# define MLX_FAILED "An mlx function failed"
 
 #endif
