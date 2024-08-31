@@ -19,53 +19,6 @@
 #include "map_checks.h"
 #include <stdio.h>
 
-/*
-
-read_fd va surement devoir etre a jeter car ne conserve pas les \n 
-donc pour la map, il y aura de la perte dans un cas tel que:
-
-11111
-10001
-11111
-
-11111
-10001
-11111
-
-J'attends ton get_next_line gcros pour ca. Ou du moins ta libft
-
-*/
-/*
-int	read_fd(int fd, char ***file)
-{
-	char	*line;
-	char	*temp;
-	char	buffer[101];
-	ssize_t	bytes;
-
-	bytes = 1;
-	line = ft_calloc(1, sizeof(char));
-	if (!line)
-		return (!!(*file = NULL));
-	while (bytes && line)
-	{
-		bytes = read(fd, buffer, 100);
-		if (bytes == -1)
-			break ;
-		buffer[bytes] = 0;
-		temp = ft_strjoin(line, buffer);
-		free(line);
-		if (!temp)
-			return (!!(*file = NULL));
-		line = temp;
-	}
-	if (!bytes)
-		*file = ft_split(line, '\n');
-	free(line);
-	return (bytes == -1);
-}
-*/
-
 int	read_fd(int fd, char ***file)
 {
 	char	**temp;
@@ -207,7 +160,6 @@ t_color	fill_rgb(char **temp)
 // Check que les valeurs soient >= 0 et <= 255. 
 // Enlève les espaces en debut et fin de nombre
 // Verifie que le nombre ne soit bien qu'un nombre
-
 bool	check_rgb(char **split)
 {
 	size_t	len;
@@ -251,6 +203,8 @@ bool	fill_color(t_thegame *game, short id, char *line)
 	return (1);
 }
 
+// if exec go 0, it means that
+// something went wrong, like bad malloc or bad input
 int	struct_init(t_thegame *game, char *file_name)
 {
 	char		**file;
@@ -263,8 +217,6 @@ int	struct_init(t_thegame *game, char *file_name)
 	if (!file)
 		return (1);
 	exec = 1;
-	// if exec go 0, it means that
-	// something went wrong, like bad malloc or bad input
 	while (*file && exec)
 	{
 		hub = redirect(*file);
