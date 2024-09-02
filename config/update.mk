@@ -1,4 +1,4 @@
-U_DIR := mlx_manip
+U_DIR := mlx_manip cub_manip
 OUT = ./config/srcs.mk
 
 $(touch $(OUT))

@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mm_img_putpixel.c                                  :+:      :+:    :+:   */
+/*   cm_set_sky.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 17:28:03 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/02 15:07:53 by gcros            ###   ########.fr       */
+/*   Created: 2024/09/02 15:39:49 by gcros             #+#    #+#             */
+/*   Updated: 2024/09/02 16:48:53 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "mlx_manip.h"
 
-inline void	mm_img_putpixel(register t_img_p img,
-	register int x,
-	register int y,
-	const t_color color)
+void	cm_set_sky(t_img_p img, const t_color color)
 {
-	img->addr[y * img->width + x] = color;
-}
+	int	i;
+	int	end;
 
-inline void	mm_img_putpixel_s(register t_img_p img,
-	register int x,
-	register int y,
-	const t_color color)
-{
-	if ((x < 0) + (x >= img->width) + (y < 0) + \
-		(y >= img->height))
-		return ;
-	mm_img_putpixel(img, x, y, color);
+	end = (img->width * img->height) >> 1;
+	i = 0;
+	while (i < end)
+		img->addr[i++] = color;
 }
