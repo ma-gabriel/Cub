@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geymat <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:01:53 by geymat            #+#    #+#             */
-/*   Updated: 2024/08/30 20:10:58 by geymat           ###   ########.fr       */
+/*   Updated: 2024/09/02 18:35:57 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	read_fd(int fd, char ***file)
 	return (1);
 }
 
-static void destroy_one_texture(t_mlx_p	mlx, t_image_gab *texture)
+static void	destroy_one_texture(t_mlx_p	mlx, t_image_gab *texture)
 {
 	if (!texture->image)
 		return ;

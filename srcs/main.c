@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/02 14:56:48 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/02 19:19:45 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,35 +34,57 @@ static void	strs_free(char **strs)
 	free(strs);
 }
 
+t_image_p	gen_frac(t_mlx_p mlx, int width, int height)
+{
+	t_image_p	img;
+	int			j;
+	int			i;
+
+	img = mm_image_new(mlx, width, height);
+	if (img == NULL)
+		return (NULL);
+	j = 0;
+	while (j < height)
+	{
+		i = 0;
+		while (i < width)
+		{
+			mm_img_putpixel_s(&img->img, i, j,
+				(t_color){.value = i * j});
+			i++;
+		}
+		j++;
+	}
+	return (img);
+}
+
 int	main(int argc, char **argv)
 {
 	t_thegame	game;
 	t_mlx_p		mlx;
 	t_window_p	win;
 	t_image_p	img;
+	t_image_p	frac;
 
 	if (!check_arg(argc, argv[1]))
 		return (1);
 	mlx = mm_mlx_new();
 	win = mm_window_new(mlx, 1000, 600, "test");
 	img = mm_image_new(mlx, 1000, 600);
+	frac = gen_frac(mlx, 1000, 600);
 	if (struct_init(mlx, win, &game, argv[1]) == 1)
 	{
 		mm_window_delete(win);
 		mm_mlx_delete(mlx);
 		return (1);
 	}
-	int i = 0;
-	while (game.map[i])
-	{
-		printf("%s\n", game.map[i]);
-		i++;
-	}
-	t_loop_param lparam = {.mlx = mlx, .img = img, .win = win};
+	t_loop_param lparam = {.mlx = mlx, .img = img, .win = win, .frac = frac};
 	mlx_loop_hook(mlx, loop, &lparam);
 	mlx_loop(mlx);
 	strs_free(game.map);
 	destroy_all_textures(&game);
+	mm_image_delete(img);
+	mm_image_delete(frac);
 	mm_window_delete(win);
 	mm_mlx_delete(mlx);
 	return (0);

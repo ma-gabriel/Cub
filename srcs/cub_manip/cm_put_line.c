@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mm_img_getpixel.c                                  :+:      :+:    :+:   */
+/*   cm_put_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 13:21:00 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/02 20:33:58 by gcros            ###   ########.fr       */
+/*   Created: 2024/09/02 19:33:49 by gcros             #+#    #+#             */
+/*   Updated: 2024/09/02 20:47:44 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_manip.h"
+#include "cub_manip.h"
+#include "put.h"
 
-inline t_color	mm_img_getpixel(register t_img_p img,
-	register int x,
-	register int y)
+void	cm_put_line(t_img_p img, t_rc_event_p rc, int x)
 {
-	return (img->addr[y * img->width + x]);
+	const int	o = rc->offset * rc->img->width;
+	const int	p = 1;
+	int			i;
+
+	i = 0;
+	while (i < img->height)
+	{
+		mm_img_putpixel(img, x, i, mm_img_getpixel(rc->img, o, i * p));
+		i++;
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geymat <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:24 by geymat            #+#    #+#             */
-/*   Updated: 2024/06/22 06:02:26 by geymat           ###   ########.fr       */
+/*   Updated: 2024/09/02 18:11:17 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ typedef struct s_image_gab
 
 typedef struct s_textures
 {
-	t_image_gab			no;
-	t_image_gab			so;
-	t_image_gab			we;
-	t_image_gab			ea;
+	t_image_gab		no;
+	t_image_gab		so;
+	t_image_gab		we;
+	t_image_gab		ea;
 	t_color			f;
 	t_color			c;
 }		t_textures;

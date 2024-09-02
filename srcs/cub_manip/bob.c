@@ -1,20 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mm_img_getpixel.c                                  :+:      :+:    :+:   */
+/*   bob.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 13:21:00 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/02 20:33:58 by gcros            ###   ########.fr       */
+/*   Created: 2024/09/02 18:09:51 by gcros             #+#    #+#             */
+/*   Updated: 2024/09/02 18:43:01 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub_manip.h"
 #include "mlx_manip.h"
-
-inline t_color	mm_img_getpixel(register t_img_p img,
-	register int x,
-	register int y)
-{
-	return (img->addr[y * img->width + x]);
-}

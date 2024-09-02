@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:30:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/02 15:57:41 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/02 19:02:32 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ struct s_loop_param
 	t_mlx_p		mlx;
 	t_window_p	win;
 	t_image_p	img;
+	t_image_p	frac;
 };
 
 int			loop(t_loop_param *param);

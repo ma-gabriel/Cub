@@ -20,5 +20,7 @@ SRCS += mlx_manip/mm_window_new.c
 SRCS += mlx_manip/mm_img_clear.c
 SRCS += mlx_manip/mm_img_display.c
 #---cub_manip---
+SRCS += cub_manip/bob.c
 SRCS += cub_manip/cm_set_sky.c
+SRCS += cub_manip/cm_put_line.c
 SRCS += cub_manip/cm_set_ground.c
