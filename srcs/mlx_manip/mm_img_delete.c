@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mm_img_display.c                                   :+:      :+:    :+:   */
+/*   mm_img_delete.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/20 16:50:33 by gcros             #+#    #+#             */
-/*   Updated: 2024/08/22 13:32:18 by gcros            ###   ########.fr       */
+/*   Created: 2024/08/20 20:59:01 by gcros             #+#    #+#             */
+/*   Updated: 2024/08/20 21:00:41 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_manip.h"
 #include "mlx.h"
+#include <stdlib.h>
 
-inline void	mm_img_display(t_img_p img, t_window_p win, int x, int y)
+void	mm_img_delete(t_img_p img, t_mlx_p mlx)
 {
-	mlx_put_image_to_window(
-		win->mlx_ptr,
-		win->win_ptr,
-		img->img_ptr,
-		x,
-		y);
+	mm_img_destroy(img, mlx);
+	free(img);
+}
+
+void	mm_img_destroy(t_img_p img, t_mlx_p mlx)
+{
+	mlx_destroy_image(mlx, img->img_ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 01:47:36 by gcros             #+#    #+#             */
-/*   Updated: 2024/07/03 11:36:54 by gcros            ###   ########.fr       */
+/*   Updated: 2024/08/22 15:01:26 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_nfree(void **ptr);
 void	*ft_mempcpy(void *dest, const void *src, size_t n);
 void	ft_memdump(void *ptr, size_t len);
+void	print_byte(unsigned char byte);
+
 
 #endif

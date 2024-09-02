@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:48:18 by gcros             #+#    #+#             */
-/*   Updated: 2024/08/20 20:05:14 by gcros            ###   ########.fr       */
+/*   Updated: 2024/08/20 21:14:54 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 void	mm_image_delete(t_image_p img)
 {
-	mlx_destroy_image(img->mlx_ptr, img->img.img_ptr);
+	mm_image_destroy(img);
 	free(img);
 }
 
-void	mm_img_destroy(t_mlx_p mlx, t_img img)
+void	mm_image_destroy(t_image_p img)
 {
-	mlx_destroy_image(mlx, img.img_ptr);
+	mm_img_destroy(&img->img, img->mlx_ptr);
 }

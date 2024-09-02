@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mm_img_display.c                                   :+:      :+:    :+:   */
+/*   mm_color_phex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/20 16:50:33 by gcros             #+#    #+#             */
-/*   Updated: 2024/08/22 13:32:18 by gcros            ###   ########.fr       */
+/*   Created: 2024/08/22 13:23:51 by gcros             #+#    #+#             */
+/*   Updated: 2024/08/22 15:02:58 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_manip.h"
-#include "mlx.h"
+#include "mem.h"
 
-inline void	mm_img_display(t_img_p img, t_window_p win, int x, int y)
+void	mm_color_phex(t_color color)
 {
-	mlx_put_image_to_window(
-		win->mlx_ptr,
-		win->win_ptr,
-		img->img_ptr,
-		x,
-		y);
+	write(2, "0X", 2);
+	print_byte(color.a);
+	print_byte(color.r);
+	print_byte(color.g);
+	print_byte(color.b);
+
 }
