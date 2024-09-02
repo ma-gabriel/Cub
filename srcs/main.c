@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/02 19:19:45 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/02 21:14:29 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "mlx_manip.h"
 #include "unistd.h"
 #include "mlx.h"
+#include "kb_event.h"
 
 void	destroy_all_textures(t_thegame *game);
 
@@ -50,7 +51,7 @@ t_image_p	gen_frac(t_mlx_p mlx, int width, int height)
 		while (i < width)
 		{
 			mm_img_putpixel_s(&img->img, i, j,
-				(t_color){.value = i * j});
+				(t_color){.r = i ^ j, .b = 75, .g = i * j});
 			i++;
 		}
 		j++;
@@ -72,6 +73,7 @@ int	main(int argc, char **argv)
 	win = mm_window_new(mlx, 1000, 600, "test");
 	img = mm_image_new(mlx, 1000, 600);
 	frac = gen_frac(mlx, 1000, 600);
+	kb_set_event(win);
 	if (struct_init(mlx, win, &game, argv[1]) == 1)
 	{
 		mm_window_delete(win);

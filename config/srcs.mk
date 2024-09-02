@@ -24,3 +24,5 @@ SRCS += cub_manip/bob.c
 SRCS += cub_manip/cm_set_sky.c
 SRCS += cub_manip/cm_put_line.c
 SRCS += cub_manip/cm_set_ground.c
+#---kb_event---
+SRCS += kb_event/kb_set_event.c
