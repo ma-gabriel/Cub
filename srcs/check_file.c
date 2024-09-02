@@ -36,7 +36,7 @@ bool	check_only_map(char **file)
 			else if (c == 'N' || c == 'E' || c == 'W' || c == 'S')
 				return (!write(2, ERR MULTIPLE_START NL, 50));
 			else if (c != ' ' && !(c >= 9 && c <= 13) && c != '1' && c != '0')
-				return (!write(2, ERR WRONG_CHAR NL, 84));
+				return (!write(2, ERR WRONG_CHAR NL, 119));
 			i++;
 		}
 		file++;

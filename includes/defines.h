@@ -26,10 +26,11 @@ valid name (extension must be .cub)"
 # define OPEN_FAIL "The file didn't open"
 # define MALLOC_FAIL "A malloc failed"
 # define MULTIPLE_START "Multiple starts have been found in the map"
-# define WRONG_CHAR "Wrong chars have been found at the end of the \
-file, it must end with the map"
+# define WRONG_CHAR "The file must be textures and colors (at the start of their line), \
+then the map with only authorised characters"
 # define UNCLOSED_MAP "The map is not closed"
-# define WRONG_RGB_VALUES "The rgb values in the map are invalid"
+# define WRONG_RGB_VALUES "The rgb values are invalid"
 # define MLX_FAILED "An mlx function failed"
+# define INFO_MISSING "There are some infos missing in the cub file, put the 4 textures and 2 colors"
 
 #endif

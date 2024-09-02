@@ -16,7 +16,7 @@
 # include "struct.h"
 
 bool	check_only_map(char **file);
-int		struct_init(t_thegame *game, char *file_name);
+int     struct_init(t_mlx_p mlx, t_window_p win, t_thegame *game, char *file_name);
 bool	check_arg(int argc, char *map);
 char	**read_file(char *file);
 bool	check_closed_map(char **file);

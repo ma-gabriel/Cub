@@ -48,6 +48,26 @@ int	read_fd(int fd, char ***file)
 	return (1);
 }
 
+static void destroy_one_texture(t_mlx_p	mlx, t_image_gab *texture)
+{
+	if (!texture->image)
+		return ;
+	mlx_destroy_image(mlx, texture->image);
+	texture->image = NULL;
+	texture->height = 0;
+	texture->width = 0;
+}
+
+void	destroy_all_textures(t_thegame *game)
+{
+	const t_mlx_p	mlx = game->window.mlx_ptr;
+
+	destroy_one_texture(mlx, &(game->textures.no));
+	destroy_one_texture(mlx, &(game->textures.so));
+	destroy_one_texture(mlx, &(game->textures.we));
+	destroy_one_texture(mlx, &(game->textures.ea));
+}
+
 char	**read_file(char *file)
 {
 	int		fd;
@@ -121,6 +141,17 @@ int	get_map(char **file, char **cpy, t_thegame *game)
 	return (0);
 }
 
+int	check_and_get_map(char **file, char **cpy, t_thegame *game, char check)
+{
+	if (check != 0b01111110 && check != 0b01111111)
+	{
+		write(2, ERR INFO_MISSING NL, 85);
+		strs_free(cpy);
+		return (1);
+	}
+	return (get_map(file, cpy, game));
+}
+
 t_color	fill_rgb(char **temp)
 {
 	t_color	rgb;
@@ -145,7 +176,7 @@ bool	check_rgb(char **split)
 
 	len = strs_len(split);
 	if (len != 3 && len != 4)
-		return (!write (2, ERR WRONG_RGB_VALUES NL, 45));
+		return (!write (2, ERR WRONG_RGB_VALUES NL, 34));
 	while (*split)
 	{
 		temp = ft_strtrim(*split, " \f\r\t\v");
@@ -154,7 +185,7 @@ bool	check_rgb(char **split)
 		free(*split);
 		*split = temp;
 		if (!ft_strisnumber(*split) || (unsigned long) ft_atol(*split) > 255)
-			return (!write (2, ERR WRONG_RGB_VALUES NL, 45));
+			return (!write (2, ERR WRONG_RGB_VALUES NL, 34));
 		split++;
 	}
 	return (true);
@@ -163,8 +194,12 @@ bool	check_rgb(char **split)
 //return 0 for error, 1 for working succesfully
 bool	fill_color(t_thegame *game, short id, char *line)
 {
-	char	**temp;
+	char		**temp;
+	static bool	memory[2] = {0,0};
 
+	if (memory[id - 5])
+		return (!write(2, "Error\nFloor and Ceiling colors should be asked once each\n", 58));
+	memory[id - 5] = true;
 	temp = ft_split(line + 1, ',');
 	if (temp == NULL)
 		return (0);
@@ -206,9 +241,11 @@ static short	redirect(char *line)
 
 bool	fill_texture(t_thegame *game, short id, char *line)
 {
-
+	char		error_message[47];
 	t_image_gab	*aimed;
 
+	ft_strcpy(error_message, "Error\nThe texture XX is asked at least twice\n");
+	ft_strncpy(error_message + 18, line, 2);
 	line += 2;
 	if (id == 1)
 		aimed = &(game->textures.no);
@@ -220,25 +257,25 @@ bool	fill_texture(t_thegame *game, short id, char *line)
 		aimed = &(game->textures.ea);
 	while (*line == ' ' || *line == '\f' || *line ==  '\r' || *line == '\t' || *line == '\v')
 		line++;
+	if (aimed->image)
+		return ((!write(2, error_message, 47)));
 	aimed->image = mlx_xpm_file_to_image(game->window.mlx_ptr, line, &(aimed->height), &(aimed->width));
 	if (!aimed->image)
-	{
-		write(2, ERR MLX_FAILED NL, 30);
-		return (0);
-	}
+		return (!write(2, ERR MLX_FAILED NL, 30));
 	return (1);
 }
 
-
 // if exec go 0, it means that
 // something went wrong, like bad malloc or bad input
-int	struct_init(t_thegame *game, char *file_name)
+int	struct_fill(t_thegame *game, char *file_name)
 {
 	char		**file;
 	void		*cpy;
 	short		hub;
 	bool		exec;
+	char		check;
 
+	check = 0;
 	file = read_file(file_name);
 	cpy = file;
 	if (!file)
@@ -248,7 +285,8 @@ int	struct_init(t_thegame *game, char *file_name)
 	{
 		hub = redirect(*file);
 		if (hub == -1)
-			return (get_map(file, cpy, game));
+			return (check_and_get_map(file, cpy, game, check));
+		check |= 1 << hub;
 		if (hub >= 1 && hub <= 4)
 			exec = fill_texture(game, hub, *file);
 		if (hub >= 5)
@@ -257,4 +295,19 @@ int	struct_init(t_thegame *game, char *file_name)
 	}
 	strs_free(cpy);
 	return (1);
+}
+
+int	struct_init(t_mlx_p mlx, t_window_p win, t_thegame *game, char *file_name)
+{
+	int	res;
+
+	ft_bzero(game, sizeof(t_thegame));
+	game->window.mlx_ptr = mlx;
+	game->window.win_ptr = win;
+	res = struct_fill(game, file_name);
+	if (res == 0)
+		return (0);
+	destroy_all_textures(game);
+	ft_bzero(game, sizeof(t_thegame));
+	return (res);
 }
