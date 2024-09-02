@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/02 21:14:29 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/03 00:27:20 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ t_image_p	gen_frac(t_mlx_p mlx, int width, int height)
 		i = 0;
 		while (i < width)
 		{
-			mm_img_putpixel_s(&img->img, i, j,
-				(t_color){.r = i ^ j, .b = 75, .g = i * j});
+			mm_img_putpixel(&img->img, i, j,
+				(t_color){.r = i ^ j, .b = i - j, .g = i + j});
 			i++;
 		}
 		j++;
@@ -70,9 +70,9 @@ int	main(int argc, char **argv)
 	if (!check_arg(argc, argv[1]))
 		return (1);
 	mlx = mm_mlx_new();
-	win = mm_window_new(mlx, 1000, 600, "test");
+	win = mm_window_new(mlx, 1500, 600, "test");
 	img = mm_image_new(mlx, 1000, 600);
-	frac = gen_frac(mlx, 1000, 600);
+	frac = gen_frac(mlx, 500, 300);
 	kb_set_event(win);
 	if (struct_init(mlx, win, &game, argv[1]) == 1)
 	{
@@ -80,7 +80,8 @@ int	main(int argc, char **argv)
 		mm_mlx_delete(mlx);
 		return (1);
 	}
-	t_loop_param lparam = {.mlx = mlx, .img = img, .win = win, .frac = frac};
+	t_loop_param	lparam = {.mlx = mlx, .img = &img->img,
+		.win = win, .frac = &frac->img};
 	mlx_loop_hook(mlx, loop, &lparam);
 	mlx_loop(mlx);
 	strs_free(game.map);

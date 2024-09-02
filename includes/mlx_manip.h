@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:30:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/02 19:02:32 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/03 01:06:59 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ struct s_loop_param
 {
 	t_mlx_p		mlx;
 	t_window_p	win;
-	t_image_p	img;
-	t_image_p	frac;
+	t_img_p	img;
+	t_img_p	frac;
 };
 
 int			loop(t_loop_param *param);
@@ -70,15 +70,16 @@ void		mm_mlx_delete(t_mlx_p mlx);
 
 /*                                     image manip                            */
 
+//int	mm_img_init(t_img_p img_p, t_mlx_p mlx, int width, int height)
 struct s_img
 {
-	void	*img_ptr;
+	void	*img_ptr; // ca c'est l'image de mlx
 	t_color	*addr;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-	int		width;
-	int		height;
+	int		bits_per_pixel; // get_image_address, refere a fonction dessus
+	int		size_line; //auto
+	int		endian; // auto
+	int		width; //de base dans file_to_image
+	int		height; //de base dans file_to_image
 };
 
 t_img_p		mm_img_new(t_mlx_p mlx, int width, int height);
@@ -86,6 +87,7 @@ int			mm_img_init(t_img_p img_p, t_mlx_p mlx, int width, int height);
 void		mm_img_putpixel(t_img_p img, int x, int y, t_color color);
 void		mm_img_putpixel_s(t_img_p img, int x, int y, t_color color);
 t_color		mm_img_getpixel(t_img_p img, int x, int y);
+t_color		mm_img_getpixel_s(t_img_p img, int x, int y);
 void		mm_img_clear(t_img_p img);
 void		mm_img_set_bg(t_img_p img, t_color color);
 void		mm_img_display(t_img_p img, t_window_p win, int x, int y);

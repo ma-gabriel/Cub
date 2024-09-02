@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:24 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/02 18:11:17 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/03 00:51:54 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "mlx_manip.h"
 
-typedef struct s_image_gab
+typedef struct s_image_gab //put t_img
 {
 	void		*image;
 	int			width;
