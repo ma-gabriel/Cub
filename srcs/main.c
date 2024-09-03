@@ -80,7 +80,6 @@ int	main(int argc, char **argv)
 		mm_mlx_delete(mlx);
 		return (1);
 	}
-
 	t_loop_param	lparam = {.mlx = mlx, .img = &img->img,
 		.win = win, .frac = &frac->img};
 	//t_loop_param	lparam = {.mlx = mlx, .img = &img->img,

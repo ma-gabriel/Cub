@@ -194,10 +194,10 @@ bool	check_rgb(char **split)
 bool	fill_color(t_thegame *game, short id, char *line)
 {
 	char		**temp;
-	static bool	memory[2] = {0,0};
+	static bool	memory[2] = {0, 0};
 
 	if (memory[id - 5])
-		return (!write(2, "Error\nFloor and Ceiling colors should be asked once each\n", 58));
+		return (!write(2, ERR DOUBLE_RGB NL, 58));
 	memory[id - 5] = true;
 	temp = ft_split(line + 1, ',');
 	if (temp == NULL)
@@ -254,7 +254,7 @@ bool	fill_texture(t_thegame *game, short id, char *line)
 		aimed = &(game->textures.we);
 	else if (id == 4)
 		aimed = &(game->textures.ea);
-	while (*line == ' ' || *line == '\f' || *line ==  '\r' || *line == '\t' || *line == '\v')
+	while (*line == ' ' || (*line >= 9 && *line <= 13))
 		line++;
 	if (aimed->img_ptr)
 		return ((!write(2, error_message, 47)));
@@ -267,23 +267,22 @@ bool	fill_texture(t_thegame *game, short id, char *line)
 // something went wrong, like bad malloc or bad input
 int	struct_fill(t_thegame *game, char *file_name)
 {
+	void *const	save = read_file(file_name);
 	char		**file;
-	void		*cpy;
 	short		hub;
 	bool		exec;
 	char		check;
 
-	check = 0;
-	file = read_file(file_name);
-	cpy = file;
-	if (!file)
+	if (!save)
 		return (1);
+	file = save;
+	check = 0;
 	exec = 1;
 	while (*file && exec)
 	{
 		hub = redirect(*file);
 		if (hub == -1)
-			return (check_and_get_map(file, cpy, game, check));
+			return (check_and_get_map(file, save, game, check));
 		check |= 1 << hub;
 		if (hub >= 1 && hub <= 4)
 			exec = fill_texture(game, hub, *file);
@@ -291,7 +290,7 @@ int	struct_fill(t_thegame *game, char *file_name)
 			exec = fill_color(game, hub, *file);
 		file++;
 	}
-	strs_free(cpy);
+	strs_free(save);
 	return (1);
 }
 
