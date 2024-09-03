@@ -23,7 +23,7 @@ int	loop(t_loop_param *param)
 	static int		t = 0;
 	int				i;
 
-	if (t++ >= 10000)
+	if (t++ >= 3000)
 		mlx_loop_end(param->mlx);
 	i = 0;
 	while (i < img->width)
