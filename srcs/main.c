@@ -80,8 +80,11 @@ int	main(int argc, char **argv)
 		mm_mlx_delete(mlx);
 		return (1);
 	}
+
 	t_loop_param	lparam = {.mlx = mlx, .img = &img->img,
 		.win = win, .frac = &frac->img};
+	//t_loop_param	lparam = {.mlx = mlx, .img = &img->img,
+	//	.win = win, .frac = &game.textures.no};
 	mlx_loop_hook(mlx, loop, &lparam);
 	mlx_loop(mlx);
 	strs_free(game.map);
@@ -92,17 +95,3 @@ int	main(int argc, char **argv)
 	mm_mlx_delete(mlx);
 	return (0);
 }
-
-/*int	main(void)
-{
-	t_mlx_p		mlx = mm_mlx_new();
-	t_window_p	win = mm_window_new(mlx, 1000, 600, "test");
-	t_image_p	img = mm_image_new(mlx, 1000, 600);
-	t_loop_param lparam = {.mlx = mlx, .img = img, .win = win};
-
-	mlx_loop_hook(mlx, loop, &lparam);
-	mlx_loop(mlx);
-	mm_image_delete(img);
-	mm_window_delete(win);
-	mm_mlx_delete(mlx);
-}*/

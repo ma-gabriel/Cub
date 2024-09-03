@@ -15,21 +15,14 @@
 
 # include "mlx_manip.h"
 
-typedef struct s_image_gab //put t_img
-{
-	void		*image;
-	int			width;
-	int			height;
-}		t_image_gab;
-
 typedef struct s_textures
 {
-	t_image_gab		no;
-	t_image_gab		so;
-	t_image_gab		we;
-	t_image_gab		ea;
-	t_color			f;
-	t_color			c;
+	t_img		no;
+	t_img		so;
+	t_img		we;
+	t_img		ea;
+	t_color		f;
+	t_color		c;
 }		t_textures;
 
 typedef struct s_game

@@ -70,20 +70,20 @@ void		mm_mlx_delete(t_mlx_p mlx);
 
 /*                                     image manip                            */
 
-//int	mm_img_init(t_img_p img_p, t_mlx_p mlx, int width, int height)
 struct s_img
 {
-	void	*img_ptr; // ca c'est l'image de mlx
+	void	*img_ptr;
 	t_color	*addr;
-	int		bits_per_pixel; // get_image_address, refere a fonction dessus
-	int		size_line; //auto
-	int		endian; // auto
-	int		width; //de base dans file_to_image
-	int		height; //de base dans file_to_image
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+	int		width;
+	int		height;
 };
 
 t_img_p		mm_img_new(t_mlx_p mlx, int width, int height);
 int			mm_img_init(t_img_p img_p, t_mlx_p mlx, int width, int height);
+int			mm_file_to_img_init(t_mlx_p mlx, char *file, t_img_p img_p);
 void		mm_img_putpixel(t_img_p img, int x, int y, t_color color);
 void		mm_img_putpixel_s(t_img_p img, int x, int y, t_color color);
 t_color		mm_img_getpixel(t_img_p img, int x, int y);

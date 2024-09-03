@@ -19,6 +19,7 @@
 #include "map_checks.h"
 #include <stdio.h>
 #include "mlx.h"
+#include "mlx_manip.h"
 
 int	read_fd(int fd, char ***file)
 {
@@ -48,14 +49,12 @@ int	read_fd(int fd, char ***file)
 	return (1);
 }
 
-static void	destroy_one_texture(t_mlx_p	mlx, t_image_gab *texture)
+static void	destroy_one_texture(t_mlx_p	mlx, t_img *texture)
 {
-	if (!texture->image)
+	if (!texture->img_ptr)
 		return ;
-	mlx_destroy_image(mlx, texture->image);
-	texture->image = NULL;
-	texture->height = 0;
-	texture->width = 0;
+	mlx_destroy_image(mlx, texture->img_ptr);
+	ft_bzero(texture, sizeof(t_img));
 }
 
 void	destroy_all_textures(t_thegame *game)
@@ -242,7 +241,7 @@ static short	redirect(char *line)
 bool	fill_texture(t_thegame *game, short id, char *line)
 {
 	char		error_message[47];
-	t_image_gab	*aimed;
+	t_img		*aimed;
 
 	ft_strcpy(error_message, "Error\nThe texture XX is asked at least twice\n");
 	ft_strncpy(error_message + 18, line, 2);
@@ -257,11 +256,10 @@ bool	fill_texture(t_thegame *game, short id, char *line)
 		aimed = &(game->textures.ea);
 	while (*line == ' ' || *line == '\f' || *line ==  '\r' || *line == '\t' || *line == '\v')
 		line++;
-	if (aimed->image)
+	if (aimed->img_ptr)
 		return ((!write(2, error_message, 47)));
-	aimed->image = mlx_xpm_file_to_image(game->window.mlx_ptr, line, &(aimed->height), &(aimed->width));
-	if (!aimed->image)
-		return (!write(2, ERR MLX_FAILED NL, 30));
+	if (mm_file_to_img_init(game->window.mlx_ptr, line, aimed))
+		return (!write(2, ERR MLX_FAILED NL, 44));
 	return (1);
 }
 
