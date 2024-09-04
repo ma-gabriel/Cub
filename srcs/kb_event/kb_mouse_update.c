@@ -1,43 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   kb_mouse_update.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/22 06:02:24 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/04 18:01:45 by gcros            ###   ########.fr       */
+/*   Created: 2024/09/04 21:39:03 by gcros             #+#    #+#             */
+/*   Updated: 2024/09/04 21:46:17 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "mlx.h"
+#include "kb_event.h"
 
-# include "mlx_manip.h"
-
-typedef struct s_vec2	t_vec2;
-
-typedef struct s_textures
+void	kb_mouse_update(t_window_p win, t_kb_event_p kbe)
 {
-	t_img		no;
-	t_img		so;
-	t_img		we;
-	t_img		ea;
-	t_color		f;
-	t_color		c;
-}		t_textures;
-
-typedef struct s_game
-{
-	t_textures	textures;
-	char		**map;
-	t_window	window;
-}	t_thegame;
-
-struct s_vec2
-{
-	double	x;
-	double	y;
-};
-
-#endif
+	mlx_mouse_get_pos(win->mlx_ptr, win->win_ptr, &kbe->mouse_x, &kbe->mouse_y);
+}

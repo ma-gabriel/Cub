@@ -1,43 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   map_manip.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/22 06:02:24 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/04 18:01:45 by gcros            ###   ########.fr       */
+/*   Created: 2024/09/04 18:08:01 by gcros             #+#    #+#             */
+/*   Updated: 2024/09/04 19:44:49 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#ifndef MAP_MANIP_H
+# define MAP_MANIP_H
 
-# include "mlx_manip.h"
+# include "draw.h"
 
-typedef struct s_vec2	t_vec2;
-
-typedef struct s_textures
-{
-	t_img		no;
-	t_img		so;
-	t_img		we;
-	t_img		ea;
-	t_color		f;
-	t_color		c;
-}		t_textures;
-
-typedef struct s_game
-{
-	t_textures	textures;
-	char		**map;
-	t_window	window;
-}	t_thegame;
-
-struct s_vec2
-{
-	double	x;
-	double	y;
-};
+void		map_fill(t_img_p img, char **map);
+t_image_p	map_to_image(t_mlx_p mlx, char **map, int width, int height);
 
 #endif

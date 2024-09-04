@@ -6,12 +6,12 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 19:33:49 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/03 01:51:23 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/04 18:43:31 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_manip.h"
-#include "put.h"
+#include "libft.h"
 #include "stdio.h"
 
 /*
@@ -41,13 +41,15 @@ void	cm_put_line(t_img_p img, t_rc_event_p rc, int x)
 	//const double	p = rimg->height / (double)img->height;
 	int				i;
 
-	rc->dist = 0.8;
-	const int	half = img->height / 2; // la valeur ou i est a la moitie
+	const int	half = img->height >> 1; // la valeur ou i est a la moitie
 	const int	high = (int) (half / (double) rc->dist) >> 1;
-	i = high + half;
-	while (i-- > half - high)
+	const int	low = ft_max(half - high, 0);
+	const double	ratio = rimg->height * rc->dist;
+	
+	i = ft_min(high + half, img->height);
+	while (i-- > low)
 	{
-		mm_img_putpixel_s(img, x, i,
-			mm_img_getpixel_s(rimg, o, ((((i + high) / (double)(half))) - 1.) * rimg->height * (double) rc->dist));
+		mm_img_putpixel(img, x, i,
+			mm_img_getpixel(rimg, o, ((((i + high) / (double)(half))) - 1.) * ratio));
 	}
 }

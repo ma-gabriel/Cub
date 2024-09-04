@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/03 00:27:20 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/04 22:15:22 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include "unistd.h"
 #include "mlx.h"
 #include "kb_event.h"
+#include "cub_manip.h"
+#include "map_manip.h"
 
 void	destroy_all_textures(t_thegame *game);
 
@@ -51,7 +53,7 @@ t_image_p	gen_frac(t_mlx_p mlx, int width, int height)
 		while (i < width)
 		{
 			mm_img_putpixel(&img->img, i, j,
-				(t_color){.r = i ^ j, .b = i - j, .g = i + j});
+				(t_color){.r = i * j, .b = i * j, .g = i + j});
 			i++;
 		}
 		j++;
@@ -66,28 +68,39 @@ int	main(int argc, char **argv)
 	t_window_p	win;
 	t_image_p	img;
 	t_image_p	frac;
+	t_image_p	sky;
+	t_image_p	ground;
+	t_kb_event	kbe;
 
 	if (!check_arg(argc, argv[1]))
 		return (1);
 	mlx = mm_mlx_new();
 	win = mm_window_new(mlx, 1500, 600, "test");
-	img = mm_image_new(mlx, 1000, 600);
-	frac = gen_frac(mlx, 500, 300);
-	kb_set_event(win);
+	img = mm_image_new(mlx, 1500, 600);
+	sky = mm_image_new(mlx, 1500, 300);
+	ground = mm_image_new(mlx, 1500, 300);
+	frac = gen_frac(mlx, 256, 256);
+	mm_img_set_bg(&sky->img, (t_color){.value = 0x000000FF});
+	mm_img_set_bg(&ground->img, (t_color){.value = 0x00FF0000});
+	kb_set_event(win, &kbe);
 	if (struct_init(mlx, win, &game, argv[1]) == 1)
 	{
 		mm_window_delete(win);
 		mm_mlx_delete(mlx);
 		return (1);
 	}
+	map_fill(&img->img, game.map);
 	t_loop_param	lparam = {.mlx = mlx, .img = &img->img,
-		.win = win, .frac = &frac->img};
+		.win = win, .frac = &frac->img, .kbe = &kbe,
+		.sky = &sky->img, .ground = &ground->img};
 	//t_loop_param	lparam = {.mlx = mlx, .img = &img->img,
 	//	.win = win, .frac = &game.textures.no};
 	mlx_loop_hook(mlx, loop, &lparam);
 	mlx_loop(mlx);
 	strs_free(game.map);
 	destroy_all_textures(&game);
+	mm_image_delete(ground);
+	mm_image_delete(sky);
 	mm_image_delete(img);
 	mm_image_delete(frac);
 	mm_window_delete(win);

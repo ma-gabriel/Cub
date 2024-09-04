@@ -1,43 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   draw_rect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/22 06:02:24 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/04 18:01:45 by gcros            ###   ########.fr       */
+/*   Created: 2024/09/04 17:59:24 by gcros             #+#    #+#             */
+/*   Updated: 2024/09/04 18:40:33 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "mlx_manip.h"
+#include "struct.h"
+#include "libft.h"
 
-# include "mlx_manip.h"
-
-typedef struct s_vec2	t_vec2;
-
-typedef struct s_textures
+void	draw_rect(t_img_p img, t_vec2 co, t_vec2 size, t_color color)
 {
-	t_img		no;
-	t_img		so;
-	t_img		we;
-	t_img		ea;
-	t_color		f;
-	t_color		c;
-}		t_textures;
+	int			i;
+	int			j;
+	const int	k = ft_min(co.x + size.x, img->width);
+	const int	m = ft_min(co.y + size.y, img->height);
 
-typedef struct s_game
-{
-	t_textures	textures;
-	char		**map;
-	t_window	window;
-}	t_thegame;
-
-struct s_vec2
-{
-	double	x;
-	double	y;
-};
-
-#endif
+	i = ft_max(co.x, 0);
+	while (i < k)
+	{
+		j = ft_max(co.y, 0);
+		while (j < m)
+		{
+			mm_img_putpixel(img, i, j, color);
+			j++;
+		}
+		i++;
+	}
+}
