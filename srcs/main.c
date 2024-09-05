@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/05 11:57:19 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/05 12:18:55 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	main(int argc, char **argv)
 	frac = gen_frac(mlx, 256, 256);
 	mm_img_set_bg(&sky->img, (t_color){.value = 0x000000FF});
 	mm_img_set_bg(&ground->img, (t_color){.value = 0x00FF0000});
+	draw_rect(&img->img, (t_vec2){10, 10}, (t_vec2){1000, 1000}, (t_color){.value = 0x00FF0000});
 	kb_set_event(win, &kbe);
 	if (struct_init(mlx, win, &game, argv[1]) == 1)
 	{
@@ -93,10 +94,6 @@ int	main(int argc, char **argv)
 	t_loop_param	lparam = {.mlx = mlx, .img = &img->img,
 		.win = win, .frac = &frac->img, .kbe = &kbe,
 		.sky = &sky->img, .ground = &ground->img};
-	//t_loop_param	lparam = {.mlx = mlx, .img = &img->img,
-	//	.win = win, .frac = &frac->img};
-	t_loop_param	lparam = {.mlx = mlx, .img = &img->img,
-		.win = win, .frac = &game.textures.no};
 	mlx_loop_hook(mlx, loop, &lparam);
 	mlx_loop(mlx);
 	strs_free(game.map);
