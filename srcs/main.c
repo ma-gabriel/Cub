@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/04 22:15:22 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/05 11:57:19 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,9 @@ int	main(int argc, char **argv)
 		.win = win, .frac = &frac->img, .kbe = &kbe,
 		.sky = &sky->img, .ground = &ground->img};
 	//t_loop_param	lparam = {.mlx = mlx, .img = &img->img,
-	//	.win = win, .frac = &game.textures.no};
+	//	.win = win, .frac = &frac->img};
+	t_loop_param	lparam = {.mlx = mlx, .img = &img->img,
+		.win = win, .frac = &game.textures.no};
 	mlx_loop_hook(mlx, loop, &lparam);
 	mlx_loop(mlx);
 	strs_free(game.map);

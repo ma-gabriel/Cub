@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 19:33:49 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/04 18:43:31 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/05 11:56:45 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,26 @@ void	cm_put_line(t_img_p img, t_rc_event_p rc, int x)
 {
 	const t_img_p	rimg = rc->img;
 	const int		o = rc->offset * rimg->width;
-	//const double	p = rimg->height / (double)img->height;
+
+	rc->dist = 0.1;
+	const int	half = img->height >> 1; // la valeur ou i est a la moitie
+	int	high = (int) (half / (double) rc->dist) >> 1;
+	const double	p = 1 / (double)(half);
 	int				i;
 
-	const int	half = img->height >> 1; // la valeur ou i est a la moitie
-	const int	high = (int) (half / (double) rc->dist) >> 1;
-	const int	low = ft_max(half - high, 0);
-	const double	ratio = rimg->height * rc->dist;
-	
-	i = ft_min(high + half, img->height);
-	while (i-- > low)
+	i = high + half;
+	double	ip = (i * p - 1. + high * p) * rimg->height * (double) rc->dist;
+	double		remove = p * rimg->height * (double) rc->dist;
+	if (high > half)
 	{
-		mm_img_putpixel(img, x, i,
-			mm_img_getpixel(rimg, o, ((((i + high) / (double)(half))) - 1.) * ratio));
+		i = img->height;
+		ip = (i * p - 1. + high * p) * rimg->height * (double) rc->dist;
+		high = half;
+	}
+	while (i-- > half - high)
+	{
+		mm_img_putpixel_s(img, x, i,
+			mm_img_getpixel_s(rimg, o, ip));
+		ip -= remove;
 	}
 }
