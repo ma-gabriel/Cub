@@ -30,7 +30,8 @@ valid name (extension must be .cub)"
 then the map with only authorised characters"
 # define UNCLOSED_MAP "The map is not closed"
 # define WRONG_RGB_VALUES "The rgb values are invalid"
-# define MLX_FAILED "An mlx function failed"
+# define MLX_FAILED "MLX function failed to open XPM file"
 # define INFO_MISSING "There are some infos missing in the cub file, put the 4 textures and 2 colors"
+# define DOUBLE_RGB "Floor and Ceiling colors should be asked once each"
 
 #endif

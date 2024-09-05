@@ -6,38 +6,28 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:30:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/03 01:06:59 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/04 22:08:19 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MLX_MANIP_H
 # define MLX_MANIP_H
 
-/*                                     typdef                                 */
-typedef struct s_window		t_window;
-typedef t_window			*t_window_p;
-
-typedef struct s_image		t_image;
-typedef t_image				*t_image_p;
-
-typedef struct s_img		t_img;
-typedef t_img				*t_img_p;
-
-typedef void*				t_mlx_p;
-typedef void*				t_win_p;
-
-typedef struct s_color		t_color;
-
-typedef struct s_loop_param	t_loop_param;
+# include "typedef.h"
+# include "kb_event.h"
 
 /*                                     global utils                           */
 
 struct s_loop_param
 {
-	t_mlx_p		mlx;
-	t_window_p	win;
-	t_img_p	img;
-	t_img_p	frac;
+	t_mlx_p			mlx;
+	t_window_p		win;
+	t_img_p			img;
+	t_img_p			frac;
+	t_img_p			sky;
+	t_img_p			ground;
+	t_kb_event_p	kbe;
+	char			**map;
 };
 
 int			loop(t_loop_param *param);
@@ -70,20 +60,20 @@ void		mm_mlx_delete(t_mlx_p mlx);
 
 /*                                     image manip                            */
 
-//int	mm_img_init(t_img_p img_p, t_mlx_p mlx, int width, int height)
 struct s_img
 {
-	void	*img_ptr; // ca c'est l'image de mlx
 	t_color	*addr;
-	int		bits_per_pixel; // get_image_address, refere a fonction dessus
-	int		size_line; //auto
-	int		endian; // auto
-	int		width; //de base dans file_to_image
-	int		height; //de base dans file_to_image
+	void	*img_ptr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+	int		width;
+	int		height;
 };
 
 t_img_p		mm_img_new(t_mlx_p mlx, int width, int height);
 int			mm_img_init(t_img_p img_p, t_mlx_p mlx, int width, int height);
+int			mm_file_to_img_init(t_mlx_p mlx, char *file, t_img_p img_p);
 void		mm_img_putpixel(t_img_p img, int x, int y, t_color color);
 void		mm_img_putpixel_s(t_img_p img, int x, int y, t_color color);
 t_color		mm_img_getpixel(t_img_p img, int x, int y);

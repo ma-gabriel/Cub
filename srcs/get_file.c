@@ -19,6 +19,7 @@
 #include "map_checks.h"
 #include <stdio.h>
 #include "mlx.h"
+#include "mlx_manip.h"
 
 int	read_fd(int fd, char ***file)
 {
@@ -48,14 +49,12 @@ int	read_fd(int fd, char ***file)
 	return (1);
 }
 
-static void	destroy_one_texture(t_mlx_p	mlx, t_image_gab *texture)
+static void	destroy_one_texture(t_mlx_p	mlx, t_img *texture)
 {
-	if (!texture->image)
+	if (!texture->img_ptr)
 		return ;
-	mlx_destroy_image(mlx, texture->image);
-	texture->image = NULL;
-	texture->height = 0;
-	texture->width = 0;
+	mlx_destroy_image(mlx, texture->img_ptr);
+	ft_bzero(texture, sizeof(t_img));
 }
 
 void	destroy_all_textures(t_thegame *game)
@@ -195,10 +194,10 @@ bool	check_rgb(char **split)
 bool	fill_color(t_thegame *game, short id, char *line)
 {
 	char		**temp;
-	static bool	memory[2] = {0,0};
+	static bool	memory[2] = {0, 0};
 
 	if (memory[id - 5])
-		return (!write(2, "Error\nFloor and Ceiling colors should be asked once each\n", 58));
+		return (!write(2, ERR DOUBLE_RGB NL, 58));
 	memory[id - 5] = true;
 	temp = ft_split(line + 1, ',');
 	if (temp == NULL)
@@ -242,7 +241,7 @@ static short	redirect(char *line)
 bool	fill_texture(t_thegame *game, short id, char *line)
 {
 	char		error_message[47];
-	t_image_gab	*aimed;
+	t_img		*aimed;
 
 	ft_strcpy(error_message, "Error\nThe texture XX is asked at least twice\n");
 	ft_strncpy(error_message + 18, line, 2);
@@ -255,13 +254,12 @@ bool	fill_texture(t_thegame *game, short id, char *line)
 		aimed = &(game->textures.we);
 	else if (id == 4)
 		aimed = &(game->textures.ea);
-	while (*line == ' ' || *line == '\f' || *line ==  '\r' || *line == '\t' || *line == '\v')
+	while (*line == ' ' || (*line >= 9 && *line <= 13))
 		line++;
-	if (aimed->image)
+	if (aimed->img_ptr)
 		return ((!write(2, error_message, 47)));
-	aimed->image = mlx_xpm_file_to_image(game->window.mlx_ptr, line, &(aimed->height), &(aimed->width));
-	if (!aimed->image)
-		return (!write(2, ERR MLX_FAILED NL, 30));
+	if (mm_file_to_img_init(game->window.mlx_ptr, line, aimed))
+		return (!write(2, ERR MLX_FAILED NL, 44));
 	return (1);
 }
 
@@ -269,23 +267,22 @@ bool	fill_texture(t_thegame *game, short id, char *line)
 // something went wrong, like bad malloc or bad input
 int	struct_fill(t_thegame *game, char *file_name)
 {
+	void *const	save = read_file(file_name);
 	char		**file;
-	void		*cpy;
 	short		hub;
 	bool		exec;
 	char		check;
 
-	check = 0;
-	file = read_file(file_name);
-	cpy = file;
-	if (!file)
+	if (!save)
 		return (1);
+	file = save;
+	check = 0;
 	exec = 1;
 	while (*file && exec)
 	{
 		hub = redirect(*file);
 		if (hub == -1)
-			return (check_and_get_map(file, cpy, game, check));
+			return (check_and_get_map(file, save, game, check));
 		check |= 1 << hub;
 		if (hub >= 1 && hub <= 4)
 			exec = fill_texture(game, hub, *file);
@@ -293,7 +290,7 @@ int	struct_fill(t_thegame *game, char *file_name)
 			exec = fill_color(game, hub, *file);
 		file++;
 	}
-	strs_free(cpy);
+	strs_free(save);
 	return (1);
 }
 

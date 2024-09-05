@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mm_img_putpixel.c                                  :+:      :+:    :+:   */
+/*   draw_rect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 17:28:03 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/05 11:51:40 by gcros            ###   ########.fr       */
+/*   Created: 2024/09/04 17:59:24 by gcros             #+#    #+#             */
+/*   Updated: 2024/09/04 18:40:33 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "mlx_manip.h"
+#include "struct.h"
+#include "libft.h"
 
-inline void	mm_img_putpixel(register t_img_p img,
-	register int x,
-	register int y,
-	register t_color color)
+void	draw_rect(t_img_p img, t_vec2 co, t_vec2 size, t_color color)
 {
-	img->addr[y * img->width + x] = color;
-}
+	int			i;
+	int			j;
+	const int	k = ft_min(co.x + size.x, img->width);
+	const int	m = ft_min(co.y + size.y, img->height);
 
-inline void	mm_img_putpixel_s(register t_img_p img,
-	register int x,
-	register int y,
-	register t_color color)
-{
-	if ((x < 0)
-		+ (x >= img->width)
-		+ (y < 0)
-		+ (y >= img->height))
-		return ;
-	mm_img_putpixel(img, x, y, color);
+	i = ft_max(co.x, 0);
+	while (i < k)
+	{
+		j = ft_max(co.y, 0);
+		while (j < m)
+		{
+			mm_img_putpixel(img, i, j, color);
+			j++;
+		}
+		i++;
+	}
 }

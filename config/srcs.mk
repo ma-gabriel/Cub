@@ -25,4 +25,10 @@ SRCS += cub_manip/cm_set_sky.c
 SRCS += cub_manip/cm_put_line.c
 SRCS += cub_manip/cm_set_ground.c
 #---kb_event---
+SRCS += kb_event/kb_mouse_update.c
 SRCS += kb_event/kb_set_event.c
+#---draw---
+SRCS += draw/draw_line.c
+SRCS += draw/draw_rect.c
+#---map_manip---
+SRCS += map_manip/map_to_img.c

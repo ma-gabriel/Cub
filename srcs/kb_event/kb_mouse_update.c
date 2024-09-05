@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mm_img_putpixel.c                                  :+:      :+:    :+:   */
+/*   kb_mouse_update.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 17:28:03 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/05 11:51:40 by gcros            ###   ########.fr       */
+/*   Created: 2024/09/04 21:39:03 by gcros             #+#    #+#             */
+/*   Updated: 2024/09/04 21:46:17 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
-#include "mlx_manip.h"
+#include "kb_event.h"
 
-inline void	mm_img_putpixel(register t_img_p img,
-	register int x,
-	register int y,
-	register t_color color)
+void	kb_mouse_update(t_window_p win, t_kb_event_p kbe)
 {
-	img->addr[y * img->width + x] = color;
-}
-
-inline void	mm_img_putpixel_s(register t_img_p img,
-	register int x,
-	register int y,
-	register t_color color)
-{
-	if ((x < 0)
-		+ (x >= img->width)
-		+ (y < 0)
-		+ (y >= img->height))
-		return ;
-	mm_img_putpixel(img, x, y, color);
+	mlx_mouse_get_pos(win->mlx_ptr, win->win_ptr, &kbe->mouse_x, &kbe->mouse_y);
 }
