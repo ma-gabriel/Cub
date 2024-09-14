@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   kb_event.h                                         :+:      :+:    :+:   */
+/*   map_cell_settings.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/02 21:12:45 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/10 17:21:09 by gcros            ###   ########.fr       */
+/*   Created: 2024/09/10 17:27:16 by gcros             #+#    #+#             */
+/*   Updated: 2024/09/13 16:43:51 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KB_EVENT_H
-# define KB_EVENT_H
+#include "map_manip.h"
 
-# include "mlx_manip.h"
-
-typedef struct s_kb_event	t_kb_event;
-typedef t_kb_event			*t_kb_event_p;
-
-struct s_kb_event
+t_cell_flag	map_cell_setting(t_cell_type type, int mask)
 {
-	char	esc;
-	char	kb_key[26];
-	char	kb_num[10];
-	char	mouse[3];
-	int		mouse_x;
-	int		mouse_y;
-};
+	static t_cell_flag	tmp[CT_LENGHT] = {
+	[ct_void] = {0},
+	[ct_wall] = {cf_collide},
+	[ct_door_close] = {cf_collide | cf_canopen},
+	[ct_door_open] = {cf_isopen | cf_canclose},
+	[ct_floor] = {0},
+	[ct_unknow] = {0},
+	};
 
-void	kb_set_event(t_window_p win, t_kb_event_p kbe);
-void	kb_mouse_update(t_window_p win, t_kb_event_p kbe);
+	if (type > CT_LENGHT)
+		return ((t_cell_flag){0});
+	return ((t_cell_flag){tmp[type].flags & mask});
+}
 
-#endif

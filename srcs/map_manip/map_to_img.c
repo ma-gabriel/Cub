@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 19:11:30 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/04 21:33:21 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/13 16:52:33 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,55 @@
 #include "draw.h"
 #include "str.h"
 #include "put.h"
+#include "map_manip.h"
 
-void	map_fill(t_img_p img, char **map);
 size_t	strs_len(char **strs);
 
-t_image_p	map_to_image(t_mlx_p mlx, char **map, int width, int height)
+t_image_p	map_to_image(t_mlx_p mlx, t_map_p map, int width, int height)
 {
 	t_image_p	img;
 
 	img = mm_image_new(mlx, width, height);
 	if (img == NULL)
 		return (NULL);
-	map_fill(&img->img, map);
+	map_fill(map, &img->img);
 	return (img);
 }
 
-static t_color	to_c(char c)
+static t_color	cell_get_color(t_cell_type type)
 {
-	if (c == ' ')
-		return ((t_color){.value = 0x0});
-	else if (c == '1')
-		return ((t_color){.value = 0x0});
-	else if (c == '0')
-		return ((t_color){.value = 0x00FFFFFF});
-	return ((t_color){.value = 0x00808080});
+	static t_color	tmp[CT_LENGHT] = {
+	[ct_void] = {.value = 0x00646464},
+	[ct_wall] = {.value = 0x00000000},
+	[ct_door_close] = {.value = 0x00C86464},
+	[ct_door_open] = {.value = 0x00C8C8C8},
+	[ct_floor] = {.value = ~0xFF000000},
+	[ct_unknow] = {.value = 0x00FFC40F},
+	};
+
+	if (type > CT_LENGHT)
+		return ((t_color){.value = 0x00FFC40F});
+	return (tmp[type]);
 }
 
-void	map_fill(t_img_p img, char **map)
+void	map_fill(t_map_p map, t_img_p img)
 {
-	const int	x = ft_strlen(map[0]);
-	const int	y = strs_len(map);
 	int			i;
 	int			j;
 	t_color		c;
 
 	mm_img_set_bg(img, (t_color){.value = 0x00080808});
 	i = 0;
-	while (i < x)
+	while (i < map->height)
 	{
 		j = 0;
-		while (j < y)
+		while (j < map->width)
 		{
-			c = to_c(map[j][i]);
-			draw_rect(img, (t_vec2){i * (img->width / (double)x),
-				j * (img->height / (double)y)},
-				(t_vec2){img->width / (double)x, img->height / (double)y}, c);
+			c = cell_get_color(map->data[i * map->width + j]);
+			draw_rect(img, (t_vec2){j * (img->width / (double)map->width),
+				i * (img->height / (double)map->height)},
+				(t_vec2){img->width / (double)map->width,
+				img->height / (double)map->height}, c);
 			j++;
 		}
 		i++;

@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   kb_event.h                                         :+:      :+:    :+:   */
+/*   player_manip.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/02 21:12:45 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/10 17:21:09 by gcros            ###   ########.fr       */
+/*   Created: 2024/09/10 16:11:19 by gcros             #+#    #+#             */
+/*   Updated: 2024/09/12 00:49:22 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KB_EVENT_H
-# define KB_EVENT_H
+#ifndef PLAYER_MANIP_H
+# define PLAYER_MANIP_H
 
-# include "mlx_manip.h"
+# include "struct.h"
 
-typedef struct s_kb_event	t_kb_event;
-typedef t_kb_event			*t_kb_event_p;
+# define PLAYER_SIZE 0.1
 
-struct s_kb_event
+
+typedef struct s_player	t_player;
+typedef struct s_player	*t_player_p;
+
+struct s_player
 {
-	char	esc;
-	char	kb_key[26];
-	char	kb_num[10];
-	char	mouse[3];
-	int		mouse_x;
-	int		mouse_y;
+	double	angle;
+	t_vec2	pos;
 };
-
-void	kb_set_event(t_window_p win, t_kb_event_p kbe);
-void	kb_mouse_update(t_window_p win, t_kb_event_p kbe);
 
 #endif

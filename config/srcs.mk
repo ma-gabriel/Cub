@@ -1,6 +1,4 @@
 #---auto gen---
-SRCS += check_file.c
-SRCS += get_file.c
 SRCS += main.c
 SRCS += loop.c
 #---mlx_manip---
@@ -31,4 +29,12 @@ SRCS += kb_event/kb_set_event.c
 SRCS += draw/draw_line.c
 SRCS += draw/draw_rect.c
 #---map_manip---
+SRCS += map_manip/map_cell_get_type.c
+SRCS += map_manip/map_isvalide.c
+SRCS += map_manip/map_cell_settings.c
+SRCS += map_manip/map_parse.c
 SRCS += map_manip/map_to_img.c
+#---cub_load---
+SRCS += cub_load/check_file.c
+SRCS += cub_load/get_file.c
+SRCS += cub_load/check_arg.c

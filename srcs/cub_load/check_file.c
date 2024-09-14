@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geymat <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 23:47:00 by geymat            #+#    #+#             */
-/*   Updated: 2024/06/21 23:47:02 by geymat           ###   ########.fr       */
+/*   Updated: 2024/09/13 14:59:06 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,3 @@ bool	check_closed_map(char **file)
 	return (true);
 }
 
-bool	check_arg(int argc, char *map)
-{
-	int	fd;
-
-	if (argc == 1)
-		return (!write(2, ERR NEED_ARG NL, 36));
-	if (argc > 2)
-		return (!write(2, ERR ONLY_ONE_ARG NL, 33));
-	if (ft_strlen(map) < 5 || ft_strncmp(map + ft_strlen(map) - 4, ".cub", 4))
-		return (!write(2, ERR WRONG_EXTENSION NL, 65));
-	fd = open(map, O_DIRECTORY);
-	if (fd != -1)
-	{
-		close(fd);
-		return (!write(2, ERR ARG_DIRECTORY NL, 43));
-	}
-	return (true);
-}

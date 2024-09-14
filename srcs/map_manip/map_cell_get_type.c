@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   kb_event.h                                         :+:      :+:    :+:   */
+/*   map_cell_get_type.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/02 21:12:45 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/10 17:21:09 by gcros            ###   ########.fr       */
+/*   Created: 2024/09/10 22:15:19 by gcros             #+#    #+#             */
+/*   Updated: 2024/09/13 15:12:44 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KB_EVENT_H
-# define KB_EVENT_H
+#include "map_manip.h"
 
-# include "mlx_manip.h"
-
-typedef struct s_kb_event	t_kb_event;
-typedef t_kb_event			*t_kb_event_p;
-
-struct s_kb_event
+t_cell_type	map_cell_get_type(char c)
 {
-	char	esc;
-	char	kb_key[26];
-	char	kb_num[10];
-	char	mouse[3];
-	int		mouse_x;
-	int		mouse_y;
-};
-
-void	kb_set_event(t_window_p win, t_kb_event_p kbe);
-void	kb_mouse_update(t_window_p win, t_kb_event_p kbe);
-
-#endif
+	if (c == ' ')
+		return (ct_void);
+	if (c == 'N')
+		return (ct_floor);
+	if (c == 'W')
+		return (ct_floor);
+	if (c == 'E')
+		return (ct_floor);
+	if (c == 'S')
+		return (ct_floor);
+	if (c == '0')
+		return (ct_floor);
+	if (c == '1')
+		return (ct_wall);
+	if (c == '2')
+		return (ct_door_close);
+	return (ct_unknow);
+}

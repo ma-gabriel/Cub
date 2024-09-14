@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/05 12:20:52 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/13 16:54:21 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ int	benchmark_1(t_loop_param *param, int t)
 	int				i;
 	int				j;
 
+	(void) t;
 	j = 0;
 	(void) j;
-	mm_img_set_bg(img, (t_color){.value = 0x0});
+	//mm_img_set_bg(img, (t_color){.value = 0x0});
 	while (j < frac->height)
 	{
 		i = 0;
@@ -66,7 +67,7 @@ int	benchmark_1(t_loop_param *param, int t)
 		cm_put_line(img,
 			&(t_rc_event){.img = frac,
 			.dist = (double)(i / 100.) + 1.,
-			.offset = (double)(i / 100.)}, i + 100.);
+			.offset = (double)(i / 100.)}, i + 900.);
 		i += 1;
 	}
 	mm_img_display(img, param->win, 0, 0);

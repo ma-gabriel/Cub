@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 19:33:49 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/05 13:24:54 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/10 18:15:05 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	cm_put_line(t_img_p img, t_rc_event_p rc, int x)
 
 	i = high + half;
 	double	ip = (i * p - 1. + high * p) * rimg->height * (double) rc->dist;
-	double		remove = p * rimg->height * (double) rc->dist;
+	double		remove = p * (double) rimg->height * rc->dist;
 	if (high > half)
 	{
 		i = img->height;

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/05 12:18:55 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/13 16:48:50 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	main(int argc, char **argv)
 	t_image_p	sky;
 	t_image_p	ground;
 	t_kb_event	kbe;
+	t_map		map;
 
 	if (!check_arg(argc, argv[1]))
 		return (1);
@@ -90,7 +91,8 @@ int	main(int argc, char **argv)
 		mm_mlx_delete(mlx);
 		return (1);
 	}
-	map_fill(&img->img, game.map);
+	map_parse(&map, game.map);
+	map_fill(&map, &img->img);
 	t_loop_param	lparam = {.mlx = mlx, .img = &img->img,
 		.win = win, .frac = &frac->img, .kbe = &kbe,
 		.sky = &sky->img, .ground = &ground->img};
