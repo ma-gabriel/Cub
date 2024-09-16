@@ -60,11 +60,18 @@ static void	destroy_one_texture(t_mlx_p	mlx, t_img *texture)
 void	destroy_all_textures(t_thegame *game)
 {
 	const t_mlx_p	mlx = game->window.mlx_ptr;
+	int				i;
 
 	destroy_one_texture(mlx, &(game->textures.no));
 	destroy_one_texture(mlx, &(game->textures.so));
 	destroy_one_texture(mlx, &(game->textures.we));
 	destroy_one_texture(mlx, &(game->textures.ea));
+	i = 0;
+	while (i < SPRITE_IMGS)
+	{
+		destroy_one_texture(mlx, &(game->textures.sprite.images[i]));
+		i++;
+	}
 }
 
 char	**read_file(char *file)
@@ -259,7 +266,7 @@ bool	fill_texture(t_thegame *game, short id, char *line)
 	if (aimed->img_ptr)
 		return ((!write(2, error_message, 47)));
 	if (mm_file_to_img_init(game->window.mlx_ptr, line, aimed))
-		return (!write(2, ERR MLX_FAILED NL, 44));
+		return (0);
 	return (1);
 }
 
@@ -294,6 +301,16 @@ int	struct_fill(t_thegame *game, char *file_name)
 	return (1);
 }
 
+bool	add_sprite(t_thegame *game)
+{
+	if (mm_file_to_img_init(game->window.mlx_ptr, "./textures/sprite1.xpm", &(game->textures.sprite.images[0])))
+		return (1);
+	if (mm_file_to_img_init(game->window.mlx_ptr, "./textures/sprite2.xpm", &(game->textures.sprite.images[1])))
+		return (1);
+	return (0);
+	
+}
+
 int	struct_init(t_mlx_p mlx, t_window_p win, t_thegame *game, char *file_name)
 {
 	int	res;
@@ -303,7 +320,11 @@ int	struct_init(t_mlx_p mlx, t_window_p win, t_thegame *game, char *file_name)
 	game->window.win_ptr = win;
 	res = struct_fill(game, file_name);
 	if (res == 0)
+		res = add_sprite(game);
+	if (res == 0)
 		return (0);
+	if (game->map)
+		strs_free(game->map);
 	destroy_all_textures(game);
 	ft_bzero(game, sizeof(t_thegame));
 	return (res);

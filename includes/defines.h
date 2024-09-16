@@ -34,4 +34,6 @@ then the map with only authorised characters"
 # define INFO_MISSING "There are some infos missing in the cub file, put the 4 textures and 2 colors"
 # define DOUBLE_RGB "Floor and Ceiling colors should be asked once each"
 
+# define SPRITE_IMGS 2
+
 #endif

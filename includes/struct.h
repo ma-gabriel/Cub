@@ -15,9 +15,17 @@
 
 # include "mlx_manip.h"
 # include "kb_event.h"
+# include <unistd.h>
+# include "defines.h"
 
 typedef struct s_vec2		t_vec2;
 typedef struct s_loop_param	t_loop_param;
+
+typedef struct s_sprite
+{
+	t_img		images[SPRITE_IMGS];
+	size_t		index;
+}		t_sprite;
 
 typedef struct s_textures
 {
@@ -27,6 +35,7 @@ typedef struct s_textures
 	t_img		ea;
 	t_color		f;
 	t_color		c;
+	t_sprite	sprite;
 }		t_textures;
 
 typedef struct s_game
