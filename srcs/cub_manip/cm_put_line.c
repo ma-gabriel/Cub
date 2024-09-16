@@ -6,11 +6,12 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 19:33:49 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/10 18:15:05 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:23:44 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_manip.h"
+#include "mlx_manip.h"
 #include "libft.h"
 #include "stdio.h"
 

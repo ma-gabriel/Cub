@@ -6,18 +6,15 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:24 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/10 17:23:59 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:21:51 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
+# include "typedef.h"
 # include "mlx_manip.h"
-# include "kb_event.h"
-
-typedef struct s_vec2		t_vec2;
-typedef struct s_loop_param	t_loop_param;
 
 typedef struct s_textures
 {
@@ -51,6 +48,7 @@ struct s_loop_param
 	t_img_p			sky;
 	t_img_p			ground;
 	t_kb_event_p	kbe;
+	t_player_p		player;
 	char			**map;
 };
 

@@ -6,20 +6,19 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:08:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/13 16:48:34 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:24:53 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_MANIP_H
 # define MAP_MANIP_H
 
+# include "typedef.h"
+# include "struct.h"
 # include "draw.h"
 
 typedef enum e_cell_type	t_cell_type;
 typedef enum e_cell_flags	t_cell_flags;
-typedef struct s_cell_flag	t_cell_flag;
-typedef struct s_map		t_map;
-typedef struct s_map		*t_map_p;
 
 enum e_cell_type
 {
@@ -31,6 +30,7 @@ enum e_cell_type
 	ct_floor,
 	ct_terminated,
 };
+
 # define CT_LENGHT ct_terminated
 
 enum e_cell_flags

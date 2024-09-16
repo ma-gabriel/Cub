@@ -23,6 +23,7 @@ SRCS += cub_manip/cm_set_sky.c
 SRCS += cub_manip/cm_put_line.c
 SRCS += cub_manip/cm_set_ground.c
 #---kb_event---
+SRCS += kb_event/kb_get_event.c
 SRCS += kb_event/kb_mouse_update.c
 SRCS += kb_event/kb_set_event.c
 #---draw---
@@ -38,3 +39,10 @@ SRCS += map_manip/map_to_img.c
 SRCS += cub_load/check_file.c
 SRCS += cub_load/get_file.c
 SRCS += cub_load/check_arg.c
+#---player_manip---
+SRCS += player_manip/pl_draw.c
+SRCS += player_manip/pl_init.c
+SRCS += player_manip/pl_print.c
+SRCS += player_manip/pl_collide.c
+SRCS += player_manip/pl_move.c
+SRCS += player_manip/pl_update.c

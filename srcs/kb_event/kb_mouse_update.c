@@ -6,12 +6,13 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 21:39:03 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/04 21:46:17 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:24:03 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "kb_event.h"
+#include "mlx_manip.h"
 
 void	kb_mouse_update(t_window_p win, t_kb_event_p kbe)
 {

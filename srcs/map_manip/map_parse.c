@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:19:59 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/13 16:24:25 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/16 17:13:39 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static int	from_raw(t_map_p map, char **raw_map)
 	int	i;
 	int	j;
 
-	ft_memset(map->data, ct_unknow, map->height * map->width);
 	i = 0;
 	while (raw_map[i])
 	{
@@ -73,6 +72,11 @@ static int	from_raw(t_map_p map, char **raw_map)
 		while (raw_map[i][j])
 		{
 			map->data[i * map->width + j] = map_cell_get_type(raw_map[i][j]);
+			j++;
+		}
+		while (j < map->width)
+		{
+			map->data[i * map->width + j] = ct_unknow;
 			j++;
 		}
 		i++;

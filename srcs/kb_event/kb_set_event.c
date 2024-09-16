@@ -6,15 +6,15 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:08:31 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/04 22:14:42 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:57:18 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "typedef.h"
 #include "mlx_manip.h"
 #include "mlx.h"
 #include "kb_event.h"
 #include "mem.h"
-#include "put.h"
 
 int	key_pressed(int kc, t_kb_event_p kbe);
 int	key_released(int kc, t_kb_event_p kbe);
@@ -33,24 +33,27 @@ void	kb_set_event(t_window_p win, t_kb_event_p kbe)
 
 int	key_pressed(int kc, t_kb_event_p kbe)
 {
-	ft_putnbr_fd(kc, 2);
-	if (kc == 0xFF1b)
+	if (kc == KB_ESC)
 		kbe->esc = 1;
 	else if (kc >= 'a' && kc <= 'z')
 		kbe->kb_key[kc - 'a'] = 1;
 	else if (kc >= '0' && kc <= '9')
-		kbe->kb_num[kc - 'a'] = 1;
+		kbe->kb_num[kc - '0'] = 1;
+	else if (kc >= KB_LEFT && kc <= KB_DOWN)
+		kbe->arrow[kc - KB_LEFT] = 1;
 	return (0);
 }
 
 int	key_released(int kc, t_kb_event_p kbe)
 {
-	if (kc == 0xFF1b)
+	if (kc == KB_ESC)
 		kbe->esc = 0;
 	else if (kc >= 'a' && kc <= 'z')
 		kbe->kb_key[kc - 'a'] = 0;
 	else if (kc >= '0' && kc <= '9')
 		kbe->kb_num[kc - '0'] = 0;
+	else if (kc >= KB_LEFT && kc <= KB_DOWN)
+		kbe->arrow[kc - KB_LEFT] = 0;
 	return (0);
 }
 

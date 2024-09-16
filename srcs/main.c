@@ -6,21 +6,22 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/13 16:48:50 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:09:20 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <fcntl.h>
+#include <unistd.h>
 #include "libft.h"
 #include "map_checks.h"
 #include "struct.h"
 #include "mlx_manip.h"
-#include "unistd.h"
 #include "mlx.h"
 #include "kb_event.h"
 #include "cub_manip.h"
 #include "map_manip.h"
+#include "player_manip.h"
 
 void	destroy_all_textures(t_thegame *game);
 
@@ -72,6 +73,7 @@ int	main(int argc, char **argv)
 	t_image_p	ground;
 	t_kb_event	kbe;
 	t_map		map;
+	t_player	player;
 
 	if (!check_arg(argc, argv[1]))
 		return (1);
@@ -85,6 +87,7 @@ int	main(int argc, char **argv)
 	mm_img_set_bg(&ground->img, (t_color){.value = 0x00FF0000});
 	draw_rect(&img->img, (t_vec2){10, 10}, (t_vec2){1000, 1000}, (t_color){.value = 0x00FF0000});
 	kb_set_event(win, &kbe);
+	pl_init(&player, (t_vec2){0, 0}, 0);
 	if (struct_init(mlx, win, &game, argv[1]) == 1)
 	{
 		mm_window_delete(win);
@@ -95,7 +98,7 @@ int	main(int argc, char **argv)
 	map_fill(&map, &img->img);
 	t_loop_param	lparam = {.mlx = mlx, .img = &img->img,
 		.win = win, .frac = &frac->img, .kbe = &kbe,
-		.sky = &sky->img, .ground = &ground->img};
+		.sky = &sky->img, .ground = &ground->img, .player = &player};
 	mlx_loop_hook(mlx, loop, &lparam);
 	mlx_loop(mlx);
 	strs_free(game.map);

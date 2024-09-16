@@ -6,30 +6,14 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:30:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/10 18:11:03 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:10:29 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MLX_MANIP_H
 # define MLX_MANIP_H
 
-/*                                     global utils                           */
-
-/*                                     typedef                                */
-
-typedef struct s_window		t_window;
-typedef t_window			*t_window_p;
-
-typedef struct s_image		t_image;
-typedef t_image				*t_image_p;
-
-typedef struct s_img		t_img;
-typedef t_img				*t_img_p;
-
-typedef void*				t_mlx_p;
-typedef void*				t_win_p;
-
-typedef struct s_color		t_color;
+# include "typedef.h"
 
 /*                                     color manip                            */
 
