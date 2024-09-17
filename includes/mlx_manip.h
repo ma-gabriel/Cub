@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:30:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/16 16:10:29 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/17 15:25:39 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ struct s_color
 	union
 	{
 		//	0XAARRGGBB
-		int	value;
+		unsigned int	value;
 		struct
 		{
 			unsigned char	b;

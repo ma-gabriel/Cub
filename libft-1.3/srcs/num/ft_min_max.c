@@ -6,18 +6,18 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:22:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/03/07 14:25:26 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/17 12:51:14 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-float	ft_minf(float n1, float n2)
+double	ft_minf(double n1, double n2)
 {
 	if (n1 < n2)
 		return (n1);
 	return (n2);
 }
 
-float	ft_maxf(float n1, float n2)
+double	ft_maxf(double n1, double n2)
 {
 	if (n1 > n2)
 		return (n1);
