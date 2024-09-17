@@ -14,15 +14,18 @@
 #include "struct.h"
 #include "libft.h"
 
+
 static void	high(t_img *img, t_vec2 p1, t_vec2 p2, t_color color)
 {
 	const double	ratio = ((p2.x - p1.x) / (p2.y - p1.y));
-	const double	stop = ft_minf(ft_minf(p2.y, img->height),
-			(img->width - p2.x) / ratio);
 	double			x;
 	double			y;
 (void) color;
-	y = ft_maxf(ft_maxf(p1.y, 0.), (0 - p1.x) / ratio);
+	double a = (p1.y - p2.y) / (p1.x - p2.x);
+	double b = - a * p1.x + p1.y;
+	const double	stop = ft_minf(ft_minf(p2.y, img->height),
+			img->width * a + b);
+	y = ft_maxf(ft_maxf(p1.y, 0.), b);
 	while (y < stop)
 	{
 		x = p1.x + (y - p1.y) * ratio;
@@ -31,15 +34,38 @@ static void	high(t_img *img, t_vec2 p1, t_vec2 p2, t_color color)
 	}
 }
 
-static void	low(t_img *img, t_vec2 p1, t_vec2 p2, t_color color)
+/*
+static void	high(t_img *img, t_vec2 p1, t_vec2 p2, t_color color)
 {
-	const double	ratio = ((p2.y - p1.y) / (p2.x - p1.x));
-	const double	stop = ft_minf(ft_minf(p2.x, img->width),
-				(img->height - p2.y) / ratio);
+	const double	ratio = ((p2.x - p1.x) / (p2.y - p1.y));
 	double			x;
 	double			y;
 (void) color;
-	x = ft_maxf(ft_maxf(p1.x, 0.), (0 - p1.y) / ratio);
+	double a = (p1.y - p2.y) / (p1.x - p2.x);
+	double b = - a * p1.x + p1.y;
+	const double	stop = ft_minf(ft_minf(p2.x, img->width),
+				(img->height - b) / a);
+	y = ft_maxf(ft_maxf(p1.y, 0.), b);
+	while (y < stop)
+	{
+		x = p1.x + (y - p1.y) * ratio;
+		mm_img_putpixel(img, x, y, (t_color){.value = 0x00FF0000});
+		y++;
+	}
+} */
+
+static void	low(t_img *img, t_vec2 p1, t_vec2 p2, t_color color)
+{
+	const double	ratio = ((p2.y - p1.y) / (p2.x - p1.x));
+	double			x;
+	double			y;
+(void) color;
+	double a = (p1.y - p2.y) / (p1.x - p2.x);
+	double b = - a * p1.x + p1.y;
+	const double	stop = ft_minf(ft_minf(p2.x, img->width),
+				(img->height - b) / a);
+	
+	x = ft_maxf(ft_maxf(p1.x, 0.), ((0 - b) / a));
 	while (x < stop)
 	{
 		y = p1.y + (x - p1.x) * ratio;

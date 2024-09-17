@@ -78,8 +78,8 @@ int	main(int argc, char **argv)
 	if (!check_arg(argc, argv[1]))
 		return (1);
 	mlx = mm_mlx_new();
-	win = mm_window_new(mlx, 1500, 600, "test");
-	img = mm_image_new(mlx, 1500, 600);
+	win = mm_window_new(mlx, 700, 400, "test");
+	img = mm_image_new(mlx, 700, 400);
 	sky = mm_image_new(mlx, 1500, 300);
 	ground = mm_image_new(mlx, 1500, 300);
 	frac = gen_frac(mlx, 256, 256);
