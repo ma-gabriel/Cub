@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:24 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/16 16:21:51 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/18 15:19:01 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ struct s_loop_param
 	t_mlx_p			mlx;
 	t_window_p		win;
 	t_img_p			img;
+	t_img_p			img1;
+	t_img_p			img2;
 	t_img_p			frac;
 	t_img_p			sky;
 	t_img_p			ground;

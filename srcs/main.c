@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/17 16:16:57 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/18 17:46:30 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int	main(int argc, char **argv)
 	t_thegame	game;
 	t_mlx_p		mlx;
 	t_window_p	win;
-	t_image_p	img;
+	t_image_p	img1;
+	t_image_p	img2;
 	t_image_p	frac;
 	t_image_p	sky;
 	t_image_p	ground;
@@ -78,14 +79,15 @@ int	main(int argc, char **argv)
 	if (!check_arg(argc, argv[1]))
 		return (1);
 	mlx = mm_mlx_new();
-	win = mm_window_new(mlx, 700, 400, "test");
-	img = mm_image_new(mlx, 700, 400);
+	win = mm_window_new(mlx, 1500, 700, "test");
+	img1 = mm_image_new(mlx, 1500, 700);
+	img2 = mm_image_new(mlx, 1500, 700);
 	sky = mm_image_new(mlx, 1500, 300);
 	ground = mm_image_new(mlx, 1500, 300);
 	frac = gen_frac(mlx, 256, 256);
 	mm_img_set_bg(&sky->img, (t_color){.value = 0x000000FF});
 	mm_img_set_bg(&ground->img, (t_color){.value = 0x00FF0000});
-	draw_rect(&img->img, (t_vec2){10, 10}, (t_vec2){1000, 1000}, (t_color){.value = 0x00FF0000});
+	draw_rect(&img1->img, (t_vec2){10, 10}, (t_vec2){1000, 1000}, (t_color){.value = 0x00FF0000});
 	kb_set_event(win, &kbe);
 	pl_init(&player, (t_vec2){0, 0}, 0);
 	if (struct_init(mlx, win, &game, argv[1]) == 1)
@@ -95,8 +97,8 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	map_parse(&map, game.map);
-	map_fill(&map, &img->img);
-	t_loop_param	lparam = {.mlx = mlx, .img = &img->img,
+	map_fill(&map, &img1->img);
+	t_loop_param	lparam = {.mlx = mlx, .img1 = &img1->img, .img2 = &img2->img,
 		.win = win, .frac = &frac->img, .kbe = &kbe,
 		.sky = &sky->img, .ground = &ground->img, .player = &player};
 	mlx_loop_hook(mlx, loop, &lparam);
@@ -105,7 +107,8 @@ int	main(int argc, char **argv)
 	destroy_all_textures(&game);
 	mm_image_delete(ground);
 	mm_image_delete(sky);
-	mm_image_delete(img);
+	mm_image_delete(img1);
+	mm_image_delete(img2);
 	mm_image_delete(frac);
 	mm_window_delete(win);
 	mm_mlx_delete(mlx);
