@@ -42,7 +42,7 @@ $(NAME) : $(OFILES) | $(LIB_PATH)
 
 -include $(DFILES)
 
-$(BDIR)/%.o : $(SDIR)/%.c
+$(BDIR)/%.o : $(SDIR)/%.c Makefile
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@ -I $(HDIR)/ $(LIB_INCLUDE)/
 	@echo "	$@"

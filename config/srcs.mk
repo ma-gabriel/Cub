@@ -46,3 +46,5 @@ SRCS += player_manip/pl_print.c
 SRCS += player_manip/pl_collide.c
 SRCS += player_manip/pl_move.c
 SRCS += player_manip/pl_update.c
+#---ft_sup---
+SRCS += ft_sup/ft_memswap.c
