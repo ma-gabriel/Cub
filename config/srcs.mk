@@ -42,9 +42,11 @@ SRCS += cub_load/check_arg.c
 #---player_manip---
 SRCS += player_manip/pl_draw.c
 SRCS += player_manip/pl_init.c
+SRCS += player_manip/pl_turn.c
 SRCS += player_manip/pl_print.c
 SRCS += player_manip/pl_collide.c
 SRCS += player_manip/pl_move.c
+SRCS += player_manip/pl_setpos.c
 SRCS += player_manip/pl_update.c
 #---ft_sup---
 SRCS += ft_sup/ft_memswap.c

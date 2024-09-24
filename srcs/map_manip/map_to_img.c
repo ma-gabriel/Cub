@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 19:11:30 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/13 16:52:33 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/24 22:03:13 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_image_p	map_to_image(t_mlx_p mlx, t_map_p map, int width, int height)
 	img = mm_image_new(mlx, width, height);
 	if (img == NULL)
 		return (NULL);
-	map_fill(map, &img->img);
+	map_draw(map, &img->img);
 	return (img);
 }
 
@@ -45,26 +45,25 @@ static t_color	cell_get_color(t_cell_type type)
 	return (tmp[type]);
 }
 
-void	map_fill(t_map_p map, t_img_p img)
+void	map_draw(t_map_p map, t_img_p img)
 {
-	int			i;
-	int			j;
-	t_color		c;
+	int				i;
+	int				j;
+	t_color			c;
+	const t_vec2	ratio = (t_vec2){img->width / (double)map->width,
+		img->height / (double)map->height};
 
-	mm_img_set_bg(img, (t_color){.value = 0x00080808});
-	i = 0;
-	while (i < map->height)
+	mm_img_set_bg(img, (t_color){.value = 0xFF080808});
+	i = map->height;
+	while (i--)
 	{
-		j = 0;
-		while (j < map->width)
+		j = map->width;
+		while (j--)
 		{
 			c = cell_get_color(map->data[i * map->width + j]);
-			draw_rect(img, (t_vec2){j * (img->width / (double)map->width),
-				i * (img->height / (double)map->height)},
-				(t_vec2){img->width / (double)map->width,
-				img->height / (double)map->height}, c);
-			j++;
+			draw_rect(img, (t_vec2){(j * ratio.x),
+				(i * ratio.y)},
+				(t_vec2){ratio.x + 1., ratio.y + 1.}, c);
 		}
-		i++;
 	}
 }

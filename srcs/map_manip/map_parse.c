@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:19:59 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/16 17:13:39 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/24 22:06:09 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	get_start(t_map_p map, char **raw_map)
 			c = raw_map[j][i];
 			if (c == 'N' || c == 'W' || c == 'S' || c == 'E')
 			{
-				map->start_pos = (t_vec2){.x = i, .y = j};
+				map->start_pos = (t_vec2){.x = i + 0.5, .y = j + 0.5};
 				map->start_orient = 0;											//todo
 			}
 			i++;

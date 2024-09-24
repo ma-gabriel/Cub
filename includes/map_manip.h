@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:08:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/16 16:24:53 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/24 16:22:49 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ struct s_cell_flag
 
 int			map_isvalide(t_map_p map);
 int			map_parse(t_map_p map, char **raw_map);
-void		map_fill(t_map_p map, t_img_p img);
+void		map_draw(t_map_p map, t_img_p img);
 t_image_p	map_to_image(t_mlx_p mlx, t_map_p map, int width, int height);
 t_cell_type	map_cell_get_type(char c);
 
