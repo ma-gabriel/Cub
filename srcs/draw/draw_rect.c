@@ -6,13 +6,14 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 17:59:24 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/04 18:40:33 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/26 23:24:15 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_manip.h"
 #include "struct.h"
 #include "libft.h"
+#include "math.h"
 
 void	draw_rect(t_img_p img, t_vec2 co, t_vec2 size, t_color color)
 {

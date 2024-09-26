@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_cell_settings.c                                :+:      :+:    :+:   */
+/*   minimap_update.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/10 17:27:16 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/25 15:25:13 by gcros            ###   ########.fr       */
+/*   Created: 2024/09/26 22:52:11 by gcros             #+#    #+#             */
+/*   Updated: 2024/09/26 22:56:38 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_manip.h"
+#include "kb_event.h"
 
-int	map_cell_setting(t_cell_type type, int mask)
+void	minimap_update(t_minimap_p minimap, t_kb_event_p kbe)
 {
-	static t_cell_flag	tmp[CT_LENGHT] = {
-	[ct_void] = {0},
-	[ct_wall] = {cf_collide},
-	[ct_door_close] = {cf_collide | cf_canopen},
-	[ct_door_open] = {cf_isopen | cf_canclose},
-	[ct_floor] = {0},
-	[ct_unknow] = {0},
-	};
+	static int	last_key[2];
 
-	if (type > CT_LENGHT)
-		return (0);
-	return (tmp[type].flags & mask);
+	if (kb_get_event(kbe, KB_UP))
+	{
+		if (last_key[0] == 0)
+		{
+			last_key[0] = 1;
+			minimap->width++;
+			minimap->height++;
+		}
+	}
+	else
+		last_key[0] = 0;
+	if (kb_get_event(kbe, KB_DOWN))
+	{
+		if (last_key[1] == 0)
+		{
+			last_key[1] = 1;
+			minimap->width--;
+			minimap->height--;
+		}
+	}
+	else
+		last_key[1] = 0;
 }
-

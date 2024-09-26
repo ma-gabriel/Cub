@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/24 21:45:00 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/26 22:57:22 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,21 @@ int	loop(t_loop_param *param)
 	struct timeval	end;
 
 	gettimeofday(&start, NULL);
-	if (t++ >= 10000 || param->kbe->esc)
+	if (param->kbe->esc)
 		mlx_loop_end(param->mlx);
 	kb_mouse_update(param->win, param->kbe);
 	pl_update(param->player, param->kbe, param->map);
+	minimap_update(param->minimap, param->kbe);
 	benchmark_1(param, t);
+	minimap_draw(param->minimap, param->map, param->player, param->minimapimg);
 	gettimeofday(&end, NULL);
 	if (t % 100 == 0)
-		printf("frame time: %ld\n", (end.tv_sec * 100000 + end.tv_usec) - (start.tv_sec * 100000 + start.tv_usec));
+		printf("frame time: %ld\n", (end.tv_sec * 1000000 + end.tv_usec) - (start.tv_sec * 1000000 + start.tv_usec));
 	mm_img_display(param->img_dr, param->win, 0, 0);
+	mm_img_display(param->minimapimg, param->win, 1000, 400);
 	ft_memswap(&param->img_di, &param->img_dr, sizeof(param->img_dr));
 	//usleep(100000);
+	t++;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 19:11:30 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/24 22:03:13 by gcros            ###   ########.fr       */
+/*   Updated: 2024/09/26 14:21:41 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_image_p	map_to_image(t_mlx_p mlx, t_map_p map, int width, int height)
 	return (img);
 }
 
-static t_color	cell_get_color(t_cell_type type)
+t_color	cell_get_color(t_cell_type type)
 {
 	static t_color	tmp[CT_LENGHT] = {
 	[ct_void] = {.value = 0x00646464},

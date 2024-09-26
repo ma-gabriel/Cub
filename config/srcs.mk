@@ -31,10 +31,14 @@ SRCS += draw/draw_line.c
 SRCS += draw/draw_rect.c
 #---map_manip---
 SRCS += map_manip/map_cell_get_type.c
+SRCS += map_manip/minimap_init.c
+SRCS += map_manip/minimap_update.c
 SRCS += map_manip/map_isvalide.c
 SRCS += map_manip/map_cell_settings.c
 SRCS += map_manip/map_parse.c
 SRCS += map_manip/map_to_img.c
+SRCS += map_manip/map_get_cell.c
+SRCS += map_manip/minimap_draw.c
 #---cub_load---
 SRCS += cub_load/check_file.c
 SRCS += cub_load/get_file.c
@@ -50,3 +54,4 @@ SRCS += player_manip/pl_setpos.c
 SRCS += player_manip/pl_update.c
 #---ft_sup---
 SRCS += ft_sup/ft_memswap.c
+SRCS += ft_sup/ft_num_real.c
