@@ -98,12 +98,15 @@ int	main(int argc, char **argv)
 		.player = &player};
 	mlx_loop_hook(mlx, loop, &lparam);
 	mlx_loop(mlx);
-	strs_free(game.map);
 
+	strs_free(game.map);
 	destroy_all_textures(&game);
+
 	mm_image_delete(img1);
 	mm_image_delete(img2);
+
 	mm_window_delete(win);
 	mm_mlx_delete(mlx);
+	free(map.data);
 	return (0);
 }

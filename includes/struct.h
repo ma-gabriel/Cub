@@ -15,6 +15,14 @@
 
 # include "typedef.h"
 # include "mlx_manip.h"
+# include "defines.h"
+# include <stdlib.h>
+
+typedef struct s_sprite
+{
+	t_img		images[SPRITE_IMGS];
+	size_t		index;
+}		t_sprite;
 
 typedef struct s_textures
 {
@@ -24,6 +32,7 @@ typedef struct s_textures
 	t_img		ea;
 	t_color		f;
 	t_color		c;
+	t_sprite	sprite;
 }		t_textures;
 
 typedef struct s_game

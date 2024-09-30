@@ -60,11 +60,18 @@ static void	destroy_one_texture(t_mlx_p	mlx, t_img *texture)
 void	destroy_all_textures(t_thegame *game)
 {
 	const t_mlx_p	mlx = game->window.mlx_ptr;
+	int				i;
 
 	destroy_one_texture(mlx, &(game->textures.no));
 	destroy_one_texture(mlx, &(game->textures.so));
 	destroy_one_texture(mlx, &(game->textures.we));
 	destroy_one_texture(mlx, &(game->textures.ea));
+	i = 0;
+	while (i < SPRITE_IMGS)
+	{
+		destroy_one_texture(mlx, &(game->textures.sprite.images[i]));
+		i++;
+	}
 }
 
 char	**read_file(char *file)
@@ -158,10 +165,7 @@ t_color	fill_rgb(char **temp)
 	rgb.r = ft_atoi(temp[0]);
 	rgb.g = ft_atoi(temp[1]);
 	rgb.b = ft_atoi(temp[2]);
-	if (temp[3])
-		rgb.a = ft_atoi(temp[3]);
-	else
-		rgb.a = 0;
+	rgb.a = 0;
 	return (rgb);
 }
 
@@ -174,7 +178,7 @@ bool	check_rgb(char **split)
 	char	*temp;
 
 	len = strs_len(split);
-	if (len != 3 && len != 4)
+	if (len != 3)
 		return (!write (2, ERR WRONG_RGB_VALUES NL, 34));
 	while (*split)
 	{
@@ -191,6 +195,7 @@ bool	check_rgb(char **split)
 }
 
 //return 0 for error, 1 for working succesfully
+//memory[2] is to check if we already have the colors
 bool	fill_color(t_thegame *game, short id, char *line)
 {
 	char		**temp;
@@ -198,6 +203,8 @@ bool	fill_color(t_thegame *game, short id, char *line)
 
 	if (memory[id - 5])
 		return (!write(2, ERR DOUBLE_RGB NL, 58));
+	if (ft_strnstr(line, ",,", ft_strlen(line)))
+		return (!write (2, ERR WRONG_RGB_VALUES NL, 34));
 	memory[id - 5] = true;
 	temp = ft_split(line + 1, ',');
 	if (temp == NULL)
@@ -294,6 +301,16 @@ int	struct_fill(t_thegame *game, char *file_name)
 	return (1);
 }
 
+bool	add_sprite(t_thegame *game)
+{
+	if (mm_file_to_img_init(game->window.mlx_ptr, "./textures/sprite1.xpm", &(game->textures.sprite.images[0])))
+		return (1);
+	if (mm_file_to_img_init(game->window.mlx_ptr, "./textures/sprite2.xpm", &(game->textures.sprite.images[1])))
+		return (1);
+	return (0);
+	
+}
+
 int	struct_init(t_mlx_p mlx, t_window_p win, t_thegame *game, char *file_name)
 {
 	int	res;
@@ -302,6 +319,8 @@ int	struct_init(t_mlx_p mlx, t_window_p win, t_thegame *game, char *file_name)
 	game->window.mlx_ptr = mlx;
 	game->window.win_ptr = win;
 	res = struct_fill(game, file_name);
+	if (res == 0)
+		res = add_sprite(game);
 	if (res == 0)
 		return (0);
 	destroy_all_textures(game);
