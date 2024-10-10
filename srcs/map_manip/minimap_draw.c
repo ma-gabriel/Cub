@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:52:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/03 12:33:07 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/10 19:24:21 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "math.h"
 #include "num.h"
 #include "libft.h"
+#include "draw.h"
 
 void	dr_pl(t_minimap_p minimap, t_player_p player, const t_vec2 ratio);
 void	dr_mp(t_minimap_p minimap, t_map_p map,
@@ -62,15 +63,15 @@ void	dr_pl(t_minimap_p minimap, t_player_p player, const t_vec2 ratio)
 	const t_vec2	size = (t_vec2){ratio.x * PLAYER_SIZE,
 		ratio.y * PLAYER_SIZE};
 
-	draw_rect(minimap->img, (t_vec2){
+	draw_rect_a(minimap->img, (t_vec2){
 		.x = ((minimap->width * .5) - (PLAYER_SIZE * .5)) * ratio.x,
 		.y = ((minimap->height * .5) - (PLAYER_SIZE * .5)) * ratio.y},
-		size, (t_color){.value = 0x00FF00FF});
-	draw_line(minimap->img, (t_vec2){
-		.x = minimap->width * .5 * ratio.x,
-		.y = minimap->height * .5 * ratio.y},
+		size, (t_color){.value = 0x7FFF00FF});
+	draw_line_a(minimap->img, (t_vec2){
+		.x = minimap->width * .5 * ratio.x - .5,
+		.y = minimap->height * .5 * ratio.y - .5},
 		(t_vec2){
 		.x = cos(player->angle) * ratio.x + minimap->width * .5 * ratio.x,
 		.y = sin(player->angle) * ratio.y + minimap->height * .5 * ratio.y},
-		(t_color){0x0000FF00});
+		(t_color){0x7F00FF00});
 }

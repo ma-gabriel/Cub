@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mm_img_getpixel.c                                  :+:      :+:    :+:   */
+/*   draw_pixel_a.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 13:21:00 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/10 19:34:45 by gcros            ###   ########.fr       */
+/*   Created: 2024/10/10 17:52:49 by gcros             #+#    #+#             */
+/*   Updated: 2024/10/10 19:05:22 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "draw.h"
 #include "mlx_manip.h"
 
-inline t_color	mm_img_getpixel(register t_img_p img,
+void	draw_pixel_a(register t_img_p img,
 	register int x,
-	register int y)
+	register int y,
+	register t_color color)
 {
-	return (img->addr[y * img->width + x]);
+	const t_color	old = mm_img_getpixel(img, x, y);
+	const t_color	n = color_blend(color, old);
+
+	mm_img_putpixel(img, x, y, n);
 }
 
-inline t_color	mm_img_getpixel_s(register t_img_p img,
+void	draw_pixel_as(register t_img_p img,
 	register int x,
-	register int y)
+	register int y,
+	register t_color color)
 {
-	if ((x < 0) + (x >= img->width) + (y < 0) + \
-		(y >= img->height))
-		return ((t_color){0});
-	return (mm_img_getpixel(img, x, y));
+	if ((x < 0)
+		+ (x >= img->width)
+		+ (y < 0)
+		+ (y >= img->height))
+		return ;
+	draw_pixel_a(img, x, y, color);
 }

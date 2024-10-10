@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 19:33:49 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/24 16:21:44 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/10 19:37:28 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "mlx_manip.h"
 #include "libft.h"
 #include "stdio.h"
-
+#include "draw.h"
 /*
 void	cm_put_line(t_img_p img, t_rc_event_p rc, int x)
 {
