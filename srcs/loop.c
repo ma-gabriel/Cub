@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/26 22:57:22 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/03 12:32:57 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ int	loop(t_loop_param *param)
 	pl_update(param->player, param->kbe, param->map);
 	minimap_update(param->minimap, param->kbe);
 	benchmark_1(param, t);
-	minimap_draw(param->minimap, param->map, param->player, param->minimapimg);
+	minimap_draw(param->minimap, param->map, param->player);
 	gettimeofday(&end, NULL);
 	if (t % 100 == 0)
 		printf("frame time: %ld\n", (end.tv_sec * 1000000 + end.tv_usec) - (start.tv_sec * 1000000 + start.tv_usec));
 	mm_img_display(param->img_dr, param->win, 0, 0);
-	mm_img_display(param->minimapimg, param->win, 1000, 400);
+	mm_img_display(param->minimap->img, param->win, 1000, 400);
 	ft_memswap(&param->img_di, &param->img_dr, sizeof(param->img_dr));
 	//usleep(100000);
 	t++;
@@ -69,7 +69,7 @@ int	benchmark_1(t_loop_param *param, int t)
 		cm_put_line(img_dr,
 			&(t_rc_event){.img = img_di,
 			.dist = .75,
-			.offset = (double)(i / 750.)}, i + param->kbe->mouse_x - 750. / 2.);
+			.offset = (double)(i / 750.)}, i + param->kbe->mouse_x - 750. * .5);
 		i += 1;
 	}
 	//pl_print(param->player);

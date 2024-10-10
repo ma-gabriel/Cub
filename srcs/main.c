@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/26 22:49:50 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/03 12:23:20 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	main(int argc, char **argv)
 	img1 = mm_image_new(mlx, 1500, 700);
 	img2 = mm_image_new(mlx, 1500, 700);
 	minimapimg = mm_img_new(mlx, 400, 400);
-	minimap_init(&minimap, 40, 40);
+	minimap_init(&minimap, minimapimg, 40, 40);
 	kb_set_event(win, &kbe);
 	if (struct_init(mlx, win, &game, argv[1]) == 1)
 	{
@@ -94,7 +94,7 @@ int	main(int argc, char **argv)
 	pl_init(&player, map.start_pos, map.start_orient);
 	t_loop_param	lparam = {.mlx = mlx, .img_di = &img1->img,
 		.img_dr = &img2->img, .map = &map,
-		.win = win, .kbe = &kbe, .minimap = &minimap, .minimapimg = minimapimg,
+		.win = win, .kbe = &kbe, .minimap = &minimap,
 		.player = &player};
 	mlx_loop_hook(mlx, loop, &lparam);
 	mlx_loop(mlx);

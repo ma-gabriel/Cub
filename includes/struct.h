@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:24 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/26 15:12:26 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/03 12:29:02 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ struct s_loop_param
 	t_player_p		player;
 	t_map_p			map;
 	t_minimap_p		minimap;
-	t_img_p			minimapimg;
 };
 
 int			loop(t_loop_param *param);

@@ -6,14 +6,13 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:20:31 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/24 15:51:21 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/10 17:22:35 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_manip.h"
 #include "struct.h"
 #include "libft.h"
-
 
 static void	high(t_img *img, t_vec2 p1, t_vec2 p2, t_color color)
 {
