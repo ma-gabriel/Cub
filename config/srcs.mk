@@ -1,5 +1,6 @@
 #---auto gen---
 SRCS += loop.c
+SRCS += ft_sound.c
 SRCS += main.c
 #---mlx_manip---
 SRCS += mlx_manip/mm_img_display.c

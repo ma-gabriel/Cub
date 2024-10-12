@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_sound.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 16:14:33 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/11 14:09:43 by gcros            ###   ########.fr       */
+/*   Created: 2024/10/11 14:08:36 by gcros             #+#    #+#             */
+/*   Updated: 2024/10/11 16:45:32 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef FT_SOUND_H
+# define FT_SOUND_H
 
-# include "arr.h"
-# include "char.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
-# include "list.h"
-# include "mem.h"
-# include "num.h"
-# include "put.h"
-# include "arr.h"
-# include "vector.h"
+# include <sys/types.h>
 
-void	ft_memswap(void *p1, void *p2, size_t len);
-void	ft_memswapbyte(void *p1, void *p2, size_t len);
-double	ft_get_real(double n);
+# define K_SOUND 1
+
+typedef struct s_snd
+{
+	u_int64_t	_1;
+	u_int64_t	_2;
+	u_int16_t	code;
+	u_int16_t	type;
+	int32_t		value;
+}	t_snd;
+
+void	ft_sound(int tone);
 
 #endif

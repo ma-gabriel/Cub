@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:52:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/10 19:24:21 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/11 19:31:22 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	dr_mp(t_minimap_p minimap, t_map_p map,
 				(t_vec2){((i - ft_get_real(center.x)) * ratio.x),
 				((j - ft_get_real(center.y)) * ratio.y)},
 				(t_vec2){ratio.x + 1., ratio.y + 1.},
-				cell_get_color(map_get_cell(map,
+				cell_get_color(map_get_cell_s(map,
 						floor(i + center.x - (double)minimap->width * .5),
 						floor(j + center.y - (double)minimap->height * .5))));
 			i++;

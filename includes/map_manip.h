@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:08:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/03 12:20:41 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/11 22:51:08 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ enum e_cell_type
 	ct_door_close,
 	ct_door_open,
 	ct_floor,
+	ct_oob,
 	ct_terminated,
 };
 
@@ -40,6 +41,7 @@ enum e_cell_flags
 	cf_canopen = 0x1 << 1,
 	cf_isopen = 0x1 << 2,
 	cf_canclose = 0x1 << 3,
+	cf_oob = 0x1 << 4,
 };
 
 struct s_map
@@ -61,7 +63,7 @@ struct s_minimap
 
 struct s_cell_flag
 {
-	int	flags:sizeof(t_cell_flags) + 1;
+	int	flags;
 };
 
 int			map_isvalide(t_map_p map);
@@ -70,6 +72,7 @@ void		map_draw(t_map_p map, t_img_p img);
 t_image_p	map_to_image(t_mlx_p mlx, t_map_p map, int width, int height);
 t_cell_type	map_cell_get_type(char c);
 t_cell_type	map_get_cell(t_map_p map, int x, int y);
+t_cell_type	map_get_cell_s(t_map_p map, int x, int y);
 int			map_cell_setting(t_cell_type type, int mask);
 t_color		cell_get_color(t_cell_type type);
 
