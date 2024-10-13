@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:19:59 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/24 22:06:09 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/13 19:03:53 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 
 static size_t	get_map_size(char **raw_map, int *width, int *height);
 static int		from_raw(t_map_p map, char **raw_map);
-static int	get_start(t_map_p map, char **raw_map);
+static int		get_start(t_map_p map, char **raw_map);
+static double	get_orient(char c);
 
 int	map_parse(t_map_p map, char **raw_map)
 {
@@ -51,12 +52,25 @@ static int	get_start(t_map_p map, char **raw_map)
 			if (c == 'N' || c == 'W' || c == 'S' || c == 'E')
 			{
 				map->start_pos = (t_vec2){.x = i + 0.5, .y = j + 0.5};
-				map->start_orient = 0;											//todo
+				map->start_orient = get_orient(c);
 			}
 			i++;
 		}
 		j++;
 	}
+	return (0);
+}
+
+static double	get_orient(char c)
+{
+	if (c == 'N')
+		return (3.14159 / 2);
+	if (c == 'W')
+		return (3.14159);
+	if (c == 'S')
+		return (-3.14159 / 2);
+	if (c == 'E')
+		return (0);
 	return (0);
 }
 
