@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:52:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/15 17:14:49 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/15 20:46:51 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	dr_mp(t_minimap_p minimap, t_map_p map,
 				(t_vec2){((i - ft_get_real(center.x)) * ratio.x),
 				((j - ft_get_real(center.y)) * ratio.y)},
 				(t_vec2){ratio.x + 1., ratio.y + 1.},
-				cell_get_color(map_get_cell(map,
+				cell_get_color(map_get_cell_s(map,
 						floor(i + center.x - (double)w * .5),
 						floor(j + center.y - (double)h * .5))));
 			i++;
@@ -75,5 +75,5 @@ void	dr_pl(t_minimap_p minimap, t_player_p player, const t_vec2 ratio)
 		(t_vec2){
 		.x = cos(player->angle) * ratio.x + minimap->width * .5 * ratio.x,
 		.y = sin(player->angle) * ratio.y + minimap->height * .5 * ratio.y},
-		(t_color){0x7F00FF00});
+		(t_color){.value = 0x7F00FF00});
 }

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/15 18:37:55 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/15 20:44:55 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int	benchmark_1(t_loop_param *param, int t)
 	}
 	else
 	{
-		cm_set_ground(img_dr, (t_color){0x00FF7F00});
-		cm_set_sky(img_dr, (t_color){0x00005FFF});
+		cm_set_ground(img_dr, (t_color){.value = 0x00FF7F00});
+		cm_set_sky(img_dr, (t_color){.value = 0x00005FFF});
 		i = 0;
 		while (i < 750)
 		{

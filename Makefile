@@ -3,7 +3,7 @@ ARGS =
 CC = cc
 RMF = rm -f
 
-CFLAGS = -g
+CFLAGS = -g -Wall -Wextra -Werror
 DFLAGS = -MP -MMD
 
 SDIR = srcs

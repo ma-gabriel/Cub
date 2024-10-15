@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 00:47:53 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/03 12:33:08 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/15 20:46:59 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	pl_draw(t_player_p player, t_img_p img, t_map_p map)
 	draw_line(img, (t_vec2){player->pos.x * ratio.x, player->pos.y * ratio.y},
 		(t_vec2){.x = cos(player->angle) * ratio.x + player->pos.x * ratio.x,
 		.y = sin(player->angle) * ratio.y + player->pos.y * ratio.y},
-		(t_color){0x0000FF00});
+		(t_color){.value = 0x0000FF00});
 }
