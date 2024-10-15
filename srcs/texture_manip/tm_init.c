@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   kb_get_event.c                                     :+:      :+:    :+:   */
+/*   tm_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 16:31:17 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/15 14:49:34 by gcros            ###   ########.fr       */
+/*   Created: 2024/10/15 17:49:35 by gcros             #+#    #+#             */
+/*   Updated: 2024/10/15 17:53:08 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "kb_event.h"
+#include "texture_manip.h"
+#include "mem.h"
 
-char	kb_get_event(t_kb_event_p kbe, int kc)
+int	tm_init(t_img_descriptor_p id)
 {
-	if (kc == KB_ESC)
-		return (kbe->esc);
-	else if (kc == KB_TAB)
-		return (kbe->tab);
-	else if (kc >= 'a' && kc <= 'z')
-		return (kbe->kb_key[kc - 'a']);
-	else if (kc >= '0' && kc <= '9')
-		return (kbe->kb_num[kc - '0']);
-	else if (kc >= KB_LEFT && kc <= KB_DOWN)
-		return (kbe->arrow[kc - KB_LEFT]);
+	ft_bzero(id, sizeof(*id));
 	return (0);
 }

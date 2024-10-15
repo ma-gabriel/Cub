@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   kb_get_event.c                                     :+:      :+:    :+:   */
+/*   tm_set_texture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 16:31:17 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/15 14:49:34 by gcros            ###   ########.fr       */
+/*   Created: 2024/10/15 17:54:28 by gcros             #+#    #+#             */
+/*   Updated: 2024/10/15 17:56:55 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "kb_event.h"
+#include "texture_manip.h"
 
-char	kb_get_event(t_kb_event_p kbe, int kc)
+void	tm_set_texture(t_img_descriptor_p id, t_img_p img, int index)
 {
-	if (kc == KB_ESC)
-		return (kbe->esc);
-	else if (kc == KB_TAB)
-		return (kbe->tab);
-	else if (kc >= 'a' && kc <= 'z')
-		return (kbe->kb_key[kc - 'a']);
-	else if (kc >= '0' && kc <= '9')
-		return (kbe->kb_num[kc - '0']);
-	else if (kc >= KB_LEFT && kc <= KB_DOWN)
-		return (kbe->arrow[kc - KB_LEFT]);
-	return (0);
+	if (index < 0 || index > ID_LENGHT)
+		return ;
+	id->imgs[index] = img;
 }

@@ -60,3 +60,7 @@ SRCS += player_manip/pl_turn.c
 #---ft_sup---
 SRCS += ft_sup/ft_num_real.c
 SRCS += ft_sup/ft_memswap.c
+#---texture_manip---
+SRCS += texture_manip/tm_get_texture.c
+SRCS += texture_manip/tm_set_texture.c
+SRCS += texture_manip/tm_init.c

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:12:45 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/16 16:57:06 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/15 14:50:51 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define KB_RIGHT 65363
 # define KB_DOWN 65364
 # define KB_ESC 0xFF1b
+# define KB_TAB 65289
 
 struct s_kb_event
 {
@@ -30,6 +31,7 @@ struct s_kb_event
 	char	mouse[3];
 	int		mouse_x;
 	int		mouse_y;
+	int		tab;
 };
 
 void	kb_set_event(t_window_p win, t_kb_event_p kbe);

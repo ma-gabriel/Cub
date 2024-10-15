@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:52:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/14 20:01:44 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/15 17:14:49 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,24 @@ void	minimap_draw(t_minimap_p minimap, t_map_p map,
 void	dr_mp(t_minimap_p minimap, t_map_p map,
 			const t_vec2 center, const t_vec2 ratio)
 {
-	double	i;
-	double	j;
+	double		i;
+	double		j;
+	const int	h = minimap->height;
+	const int	w = minimap->width;
 
-	j = -.5 * (minimap->height & 1);
-	while (j < minimap->height + 1.)
+	j = -.5 * (h & 1);
+	while (j < h + 1.)
 	{
-		i =  -.5 * (minimap->width & 1);
-		while (i < minimap->width + 1.)
+		i =  -.5 * (w & 1);
+		while (i < w + 1.)
 		{
 			draw_rect(minimap->img,
 				(t_vec2){((i - ft_get_real(center.x)) * ratio.x),
 				((j - ft_get_real(center.y)) * ratio.y)},
 				(t_vec2){ratio.x + 1., ratio.y + 1.},
-				cell_get_color(map_get_cell_s(map,
-						floor(i + center.x - (double)minimap->width * .5),
-						floor(j + center.y - (double)minimap->height * .5))));
+				cell_get_color(map_get_cell(map,
+						floor(i + center.x - (double)w * .5),
+						floor(j + center.y - (double)h * .5))));
 			i++;
 		}
 		j++;

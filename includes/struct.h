@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:24 by geymat            #+#    #+#             */
-/*   Updated: 2024/10/03 12:29:02 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/15 18:05:28 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_sprite
 
 typedef struct s_textures
 {
+	t_img		images[4 + 2 + SPRITE_IMGS];
 	t_img		no;
 	t_img		so;
 	t_img		we;
@@ -50,14 +51,13 @@ struct s_vec2
 
 struct s_loop_param
 {
-	t_mlx_p			mlx;
-	t_window_p		win;
-	t_img_p			img_di;
-	t_img_p			img_dr;
-	t_kb_event_p	kbe;
-	t_player_p		player;
-	t_map_p			map;
-	t_minimap_p		minimap;
+	t_mlx_p				mlx;
+	t_window_p			win;
+	t_kb_event_p		kbe;
+	t_player_p			player;
+	t_map_p				map;
+	t_minimap_p			minimap;
+	t_img_descriptor_p	id;
 };
 
 int			loop(t_loop_param *param);

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 19:33:49 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/10 19:37:28 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/15 14:30:07 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	cm_put_line(t_img_p img, t_rc_event_p rc, int x)
 
 	const int	half = img->height >> 1; // la valeur ou i est a la moitie
 	int	high = ((int) (half / (double) rc->dist) >> 1) - 1.;
-	const double	p = 1 / (double)(half);
+	const double	p = 1. / (double)(half);
 	int				i;
 
 	i = high + half;

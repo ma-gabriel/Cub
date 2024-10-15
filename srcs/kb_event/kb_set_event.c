@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:08:31 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/16 16:57:18 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/15 14:50:47 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	key_pressed(int kc, t_kb_event_p kbe)
 {
 	if (kc == KB_ESC)
 		kbe->esc = 1;
+	else if (kc == KB_TAB)
+		kbe->tab = 1;
 	else if (kc >= 'a' && kc <= 'z')
 		kbe->kb_key[kc - 'a'] = 1;
 	else if (kc >= '0' && kc <= '9')
@@ -48,6 +50,8 @@ int	key_released(int kc, t_kb_event_p kbe)
 {
 	if (kc == KB_ESC)
 		kbe->esc = 0;
+	else if (kc == KB_TAB)
+		kbe->tab = 0;
 	else if (kc >= 'a' && kc <= 'z')
 		kbe->kb_key[kc - 'a'] = 0;
 	else if (kc >= '0' && kc <= '9')
