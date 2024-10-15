@@ -20,9 +20,13 @@ SRCS += mlx_manip/mm_image_delete.c
 SRCS += mlx_manip/mm_mlx_delete.c
 #---cub_manip---
 SRCS += cub_manip/bob.c
+SRCS += cub_manip/rcb_draw.c
 SRCS += cub_manip/cm_set_ground.c
+SRCS += cub_manip/rc_throw.c
 SRCS += cub_manip/cm_put_line.c
 SRCS += cub_manip/cm_set_sky.c
+SRCS += cub_manip/rcb_init.c
+SRCS += cub_manip/rcb_destroy.c
 #---kb_event---
 SRCS += kb_event/kb_get_event.c
 SRCS += kb_event/kb_set_event.c

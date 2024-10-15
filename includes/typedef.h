@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:00:43 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/15 17:47:19 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/15 20:04:45 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct s_loop_param		t_loop_param;
 
 typedef struct s_rc_event		t_rc_event;
 typedef struct s_rc_event		*t_rc_event_p;
+typedef struct s_rc_buf			t_rc_buf;
+typedef struct s_rc_buf			*t_rc_buf_p;
 
 typedef struct s_cell_flag		t_cell_flag;
 
