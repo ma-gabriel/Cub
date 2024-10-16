@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 20:58:59 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/13 16:35:53 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/16 21:53:49 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,31 @@ int	mm_img_init(t_img_p img_p, t_mlx_p mlx, int width, int height)
 	return (0);
 }
 
+t_img_p	mm_file_to_img_new(t_mlx_p mlx, char *file)
+{
+	t_img_p	img;
+
+	img = malloc(sizeof(*img));
+	if (img == NULL)
+	{
+		ft_putendl_fd("mm_file_to_img_new: malloc: NULL pointer returned", 2);
+		return (NULL);
+	}
+	if (mm_file_to_img_init(img, mlx, file))
+	{
+		free(img);
+		return (NULL);
+	}
+	return (img);
+}
+
 //note pour plus tard, faudrait pas mettre des bool ?
 //vu que tu veux faire le moins de tranpost d'info possible
 //apres ces fonctions sont utilisees assez rarement
-int	mm_file_to_img_init(t_mlx_p mlx, char *file, t_img_p img_p)
+int	mm_file_to_img_init(t_img_p img_p, t_mlx_p mlx, char *file)
 {
-	img_p->img_ptr = mlx_xpm_file_to_image(mlx, file, &(img_p->height), &(img_p->width));
+	img_p->img_ptr = mlx_xpm_file_to_image(mlx, file,
+			&(img_p->height), &(img_p->width));
 	if (img_p->img_ptr == NULL)
 	{
 		ft_putendl_fd("mm_file_to_img_init:"

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:19:59 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/13 19:03:53 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/17 01:32:15 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "num.h"
 #include "mem.h"
 #include <math.h>
+#include <stdio.h>
+#include "put.h"
 
 static size_t	get_map_size(char **raw_map, int *width, int *height);
 static int		from_raw(t_map_p map, char **raw_map);
@@ -27,13 +29,14 @@ int	map_parse(t_map_p map, char **raw_map)
 	map->data = (t_cell_type *)malloc(sizeof(t_cell_type)
 			* get_map_size(raw_map, &map->width, &map->height) + 1);
 	if (map->data == NULL)
-		return (0);
-	if (from_raw(map, raw_map) || get_start(map, raw_map))
+		return (1);
+	if (from_raw(map, raw_map) || get_start(map, raw_map) || !map_isvalide(map))
 	{
 		free(map->data);
-		return (0);
+		map->data = NULL;
+		return (1);
 	}
-	return (1);
+	return (0);
 }
 
 static int	get_start(t_map_p map, char **raw_map)
@@ -53,12 +56,14 @@ static int	get_start(t_map_p map, char **raw_map)
 			{
 				map->start_pos = (t_vec2){.x = i + 0.5, .y = j + 0.5};
 				map->start_orient = get_orient(c);
+				return (0);
 			}
 			i++;
 		}
 		j++;
 	}
-	return (0);
+	ft_putstr_fd(ERR NO_START NL, 2);
+	return (1);
 }
 
 static double	get_orient(char c)

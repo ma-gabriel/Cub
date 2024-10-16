@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:19:44 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/15 18:13:09 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/16 22:37:04 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define TEXTURE_MANIP_H
 
 # include "mlx_manip.h"
+
+# define SPRITE_NUM 2
 
 enum e_img_descriptor
 {
@@ -23,8 +25,8 @@ enum e_img_descriptor
 	id_texture_s,
 	id_texture_w,
 	id_texture_e,
-	id_sprite_1,
-	id_sprite_2,
+	id_sprite_start,
+	id_sprite_end = id_sprite_start + SPRITE_NUM,
 	id_minimap,
 	id_lenght,
 };

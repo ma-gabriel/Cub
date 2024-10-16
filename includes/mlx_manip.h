@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:30:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/17 15:25:39 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/16 21:52:58 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ struct s_img
 
 t_img_p		mm_img_new(t_mlx_p mlx, int width, int height);
 int			mm_img_init(t_img_p img_p, t_mlx_p mlx, int width, int height);
-int			mm_file_to_img_init(t_mlx_p mlx, char *file, t_img_p img_p);
+int			mm_file_to_img_init(t_img_p img_p, t_mlx_p mlx, char *file);
+t_img_p		mm_file_to_img_new(t_mlx_p mlx, char *file);
 void		mm_img_putpixel(t_img_p img, int x, int y, t_color color);
 void		mm_img_putpixel_s(t_img_p img, int x, int y, t_color color);
 t_color		mm_img_getpixel(t_img_p img, int x, int y);

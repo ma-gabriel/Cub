@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:01:53 by geymat            #+#    #+#             */
-/*   Updated: 2024/09/02 18:35:57 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/17 01:20:59 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,30 @@ int	read_fd(int fd, char ***file)
 	return (1);
 }
 
-static void	destroy_one_texture(t_mlx_p	mlx, t_img *texture)
-{
-	if (!texture->img_ptr)
-		return ;
-	mlx_destroy_image(mlx, texture->img_ptr);
-	ft_bzero(texture, sizeof(t_img));
-}
+// static void	destroy_one_texture(t_mlx_p	mlx, t_img *texture)
+// {
+// 	if (!texture->img_ptr)
+// 		return ;
+// 	mlx_destroy_image(mlx, texture->img_ptr);
+// 	ft_bzero(texture, sizeof(t_img));
+// }
 
-void	destroy_all_textures(t_thegame *game)
-{
-	const t_mlx_p	mlx = game->window.mlx_ptr;
-	int				i;
+// void	destroy_all_textures(t_parse *parse)
+// {
+// 	const t_mlx_p	mlx = parse->window.mlx_ptr;
+// 	int				i;
 
-	destroy_one_texture(mlx, &(game->textures.no));
-	destroy_one_texture(mlx, &(game->textures.so));
-	destroy_one_texture(mlx, &(game->textures.we));
-	destroy_one_texture(mlx, &(game->textures.ea));
-	i = 0;
-	while (i < SPRITE_IMGS)
-	{
-		destroy_one_texture(mlx, &(game->textures.sprite.images[i]));
-		i++;
-	}
-}
+// 	destroy_one_texture(mlx, &(parse->textures.no));
+// 	destroy_one_texture(mlx, &(parse->textures.so));
+// 	destroy_one_texture(mlx, &(parse->textures.we));
+// 	destroy_one_texture(mlx, &(parse->textures.ea));
+// 	i = 0;
+// 	while (i < SPRITE_IMGS)
+// 	{
+// 		destroy_one_texture(mlx, &(parse->textures.sprite.images[i]));
+// 		i++;
+// 	}
+// }
 
 char	**read_file(char *file)
 {
@@ -96,7 +96,7 @@ char	**read_file(char *file)
 	return (res);
 }
 
-static void	strs_free(char **strs)
+void	strs_free(char **strs)
 {
 	size_t	i;
 
@@ -119,17 +119,17 @@ size_t	strs_len(char **strs)
 	return (i);
 }
 
-int	get_map(char **file, char **cpy, t_thegame *game)
+int	get_map(char **file, char **cpy, t_parse *parse)
 {
 	size_t	i;
 
-	if (!check_only_map(file) || !check_closed_map(file))
-	{
-		strs_free(cpy);
-		return (1);
-	}
-	game->map = malloc(sizeof(char *) * (strs_len(file) + 1));
-	if (!(game->map))
+	// if (!check_only_map(file) || !check_closed_map(file))
+	// {
+	// 	strs_free(cpy);
+	// 	return (1);
+	// }
+	parse->map = malloc(sizeof(char *) * (strs_len(file) + 1));
+	if (!(parse->map))
 	{
 		write(2, ERR MALLOC_FAIL NL, 23);
 		strs_free(cpy);
@@ -138,16 +138,16 @@ int	get_map(char **file, char **cpy, t_thegame *game)
 	i = 0;
 	while (file[i])
 	{
-		game->map[i] = file[i];
+		parse->map[i] = file[i];
 		file[i] = NULL;
 		i++;
 	}
-	game->map[i] = NULL;
+	parse->map[i] = NULL;
 	strs_free(cpy);
 	return (0);
 }
 
-int	check_and_get_map(char **file, char **cpy, t_thegame *game, char check)
+int	check_and_get_map(char **file, char **cpy, t_parse *parse, char check)
 {
 	if (check != 0b01111110 && check != 0b01111111)
 	{
@@ -155,7 +155,7 @@ int	check_and_get_map(char **file, char **cpy, t_thegame *game, char check)
 		strs_free(cpy);
 		return (1);
 	}
-	return (get_map(file, cpy, game));
+	return (get_map(file, cpy, parse));
 }
 
 t_color	fill_rgb(char **temp)
@@ -196,7 +196,7 @@ bool	check_rgb(char **split)
 
 //return 0 for error, 1 for working succesfully
 //memory[2] is to check if we already have the colors
-bool	fill_color(t_thegame *game, short id, char *line)
+bool	fill_color(t_parse *parse, short id, char *line)
 {
 	char		**temp;
 	static bool	memory[2] = {0, 0};
@@ -215,9 +215,9 @@ bool	fill_color(t_thegame *game, short id, char *line)
 		return (0);
 	}
 	if (id == 5)
-		game->textures.f = fill_rgb(temp);
+		parse->textures.f = fill_rgb(temp);
 	else if (id == 6)
-		game->textures.c = fill_rgb(temp);
+		parse->textures.c = fill_rgb(temp);
 	strs_free(temp);
 	return (1);
 }
@@ -245,34 +245,36 @@ static short	redirect(char *line)
 	return (0);
 }
 
-bool	fill_texture(t_thegame *game, short id, char *line)
+bool	fill_texture(t_parse *parse, short id, char *line)
 {
 	char		error_message[47];
-	t_img		*aimed;
+	t_img_p		*aimed;
 
+	ft_bzero(error_message, sizeof(char) * 47);
 	ft_strcpy(error_message, "Error\nThe texture XX is asked at least twice\n");
 	ft_strncpy(error_message + 18, line, 2);
 	line += 2;
 	if (id == 1)
-		aimed = &(game->textures.no);
+		aimed = &(parse->textures.no);
 	else if (id == 2)
-		aimed = &(game->textures.so);
+		aimed = &(parse->textures.so);
 	else if (id == 3)
-		aimed = &(game->textures.we);
+		aimed = &(parse->textures.we);
 	else if (id == 4)
-		aimed = &(game->textures.ea);
+		aimed = &(parse->textures.ea);
 	while (*line == ' ' || (*line >= 9 && *line <= 13))
 		line++;
-	if (aimed->img_ptr)
+	if (*aimed)
 		return ((!write(2, error_message, 47)));
-	if (mm_file_to_img_init(game->window.mlx_ptr, line, aimed))
+	*aimed = mm_file_to_img_new(parse->window.mlx_ptr, line);
+	if (*aimed == NULL)
 		return (!write(2, ERR MLX_FAILED NL, 44));
 	return (1);
 }
 
 // if exec go 0, it means that
 // something went wrong, like bad malloc or bad input
-int	struct_fill(t_thegame *game, char *file_name)
+int	struct_fill(t_parse *parse, char *file_name)
 {
 	void *const	save = read_file(file_name);
 	char		**file;
@@ -289,41 +291,38 @@ int	struct_fill(t_thegame *game, char *file_name)
 	{
 		hub = redirect(*file);
 		if (hub == -1)
-			return (check_and_get_map(file, save, game, check));
+			return (check_and_get_map(file, save, parse, check));
 		check |= 1 << hub;
 		if (hub >= 1 && hub <= 4)
-			exec = fill_texture(game, hub, *file);
+			exec = fill_texture(parse, hub, *file);
 		if (hub >= 5)
-			exec = fill_color(game, hub, *file);
+			exec = fill_color(parse, hub, *file);
 		file++;
 	}
 	strs_free(save);
 	return (1);
 }
 
-bool	add_sprite(t_thegame *game)
+bool	add_sprite(t_parse *parse)
 {
-	if (mm_file_to_img_init(game->window.mlx_ptr, "./textures/sprite1.xpm", &(game->textures.sprite.images[0])))
+	if (mm_file_to_img_init( &(parse->textures.sprite.images[0]), parse->window.mlx_ptr, "./textures/sprite1.xpm"))
 		return (1);
-	if (mm_file_to_img_init(game->window.mlx_ptr, "./textures/sprite2.xpm", &(game->textures.sprite.images[1])))
+	if (mm_file_to_img_init(&(parse->textures.sprite.images[1]), parse->window.mlx_ptr, "./textures/sprite2.xpm"))
 		return (1);
 	return (0);
 	
 }
 
-int	struct_init(t_mlx_p mlx, t_window_p win, t_thegame *game, char *file_name)
+int	struct_init(t_mlx_p mlx, t_window_p win, t_parse *parse, char *file_name)
 {
 	int	res;
 
-	ft_bzero(game, sizeof(t_thegame));
-	game->window.mlx_ptr = mlx;
-	game->window.win_ptr = win;
-	res = struct_fill(game, file_name);
-	if (res == 0)
-		res = add_sprite(game);
+	parse->window.mlx_ptr = mlx;
+	parse->window.win_ptr = win;
+	res = struct_fill(parse, file_name);
+	// if (res == 0)
+	// 	res = add_sprite(parse);
 	if (res == 0)
 		return (0);
-	destroy_all_textures(game);
-	ft_bzero(game, sizeof(t_thegame));
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:08:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/15 17:43:45 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/17 00:22:42 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ t_color		cell_get_color(t_cell_type type);
 
 void		minimap_draw(t_minimap_p minimap,
 				t_map_p map, t_player_p player);
-int			minimap_init(t_minimap_p minimap, t_img_p img, int width, int height);
+int			minimap_init(t_minimap_p minimap, t_img_p img,
+				int width, int height);
 void		minimap_update(t_minimap_p minimap, t_kb_event_p kbe);
 
 #endif

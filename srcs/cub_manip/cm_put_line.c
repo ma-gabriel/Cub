@@ -6,11 +6,11 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 19:33:49 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/15 14:30:07 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/16 18:49:26 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub_manip.h"
+#include "raycast_manip.h"
 #include "mlx_manip.h"
 #include "libft.h"
 #include "stdio.h"

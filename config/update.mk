@@ -1,4 +1,4 @@
-U_DIR := mlx_manip cub_manip kb_event draw map_manip cub_load player_manip ft_sup texture_manip
+U_DIR := mlx_manip cub_manip kb_event draw map_manip cub_load player_manip ft_sup texture_manip raycast_manip
 OUT = ./config/srcs.mk
 
 $(touch $(OUT))

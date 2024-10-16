@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geymat <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:14 by geymat            #+#    #+#             */
-/*   Updated: 2024/06/22 06:02:15 by geymat           ###   ########.fr       */
+/*   Updated: 2024/10/17 01:29:13 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ valid name (extension must be .cub)"
 # define OPEN_FAIL "The file didn't open"
 # define MALLOC_FAIL "A malloc failed"
 # define MULTIPLE_START "Multiple starts have been found in the map"
+# define NO_START "You forgot the start in the map"
 # define WRONG_CHAR "The file must be textures and colors (at the start of their line), \
 then the map with only authorised characters"
 # define UNCLOSED_MAP "The map is not closed"
@@ -35,5 +36,11 @@ then the map with only authorised characters"
 # define DOUBLE_RGB "Floor and Ceiling colors should be asked once each"
 
 # define SPRITE_IMGS 2
+
+# define WIN_WIDTH 1500
+# define WIN_HEIGHT 700
+# define WIN_NAME "cub3D"
+# define MINIMAP_WIDTH 400
+# define MINIMAP_HEIGHT 400
 
 #endif

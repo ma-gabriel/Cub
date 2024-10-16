@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rc_throw.c                                         :+:      :+:    :+:   */
+/*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 20:37:55 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/15 20:46:40 by gcros            ###   ########.fr       */
+/*   Created: 2024/10/16 18:53:01 by gcros             #+#    #+#             */
+/*   Updated: 2024/10/16 22:49:57 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub_manip.h"
-#include "mlx_manip.h"
-#include "struct.h"
+#ifndef CUB_H
+# define CUB_H
 
-t_rc_event	rc_throw(t_map_p map, t_vec2 pos,
-				double angle, t_img_descriptor_p id)
+# include "typedef.h"
+# include "texture_manip.h"
+# include "kb_event.h"
+#include "player_manip.h"
+#include "map_manip.h"
+
+struct s_cub
 {
-	(void) map, (void) pos, (void) angle, (void) id;
-	return ((t_rc_event){0});
-}
+	t_mlx_p				mlx;
+	t_win_p				win;
+	t_kb_event			kbe;
+	t_player			player;
+	t_map				map;
+	t_minimap			minimap;
+	t_img_descriptor	id;
+};
+
+int		cub_init(t_cub_p cub, char *file);
+void	cub_destroy(t_cub_p cub);
+
+#endif

@@ -1,7 +1,9 @@
 #---auto gen---
 SRCS += loop.c
 SRCS += ft_sound.c
+SRCS += cub_init.c
 SRCS += main.c
+SRCS += cub_destroy.c
 #---mlx_manip---
 SRCS += mlx_manip/mm_img_display.c
 SRCS += mlx_manip/mm_img_set_bg.c
@@ -20,13 +22,9 @@ SRCS += mlx_manip/mm_image_delete.c
 SRCS += mlx_manip/mm_mlx_delete.c
 #---cub_manip---
 SRCS += cub_manip/bob.c
-SRCS += cub_manip/rcb_draw.c
 SRCS += cub_manip/cm_set_ground.c
-SRCS += cub_manip/rc_throw.c
 SRCS += cub_manip/cm_put_line.c
 SRCS += cub_manip/cm_set_sky.c
-SRCS += cub_manip/rcb_init.c
-SRCS += cub_manip/rcb_destroy.c
 #---kb_event---
 SRCS += kb_event/kb_get_event.c
 SRCS += kb_event/kb_set_event.c
@@ -68,3 +66,9 @@ SRCS += ft_sup/ft_memswap.c
 SRCS += texture_manip/tm_get_texture.c
 SRCS += texture_manip/tm_set_texture.c
 SRCS += texture_manip/tm_init.c
+#---raycast_manip---
+SRCS += raycast_manip/rcb_draw.c
+SRCS += raycast_manip/rc_throw.c
+SRCS += raycast_manip/rcb_init.c
+SRCS += raycast_manip/rcb_wizard.c
+SRCS += raycast_manip/rcb_destroy.c
