@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:28:03 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/05 11:51:40 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/17 17:08:58 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ inline void	mm_img_putpixel_s(register t_img_p img,
 		+ (y < 0)
 		+ (y >= img->height))
 		return ;
-	mm_img_putpixel(img, x, y, color);
+	img->addr[y * img->width + x] = color;
 }

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 17:59:24 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/26 23:24:15 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/17 17:04:19 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	draw_rect(t_img_p img, t_vec2 co, t_vec2 size, t_color color)
 	const int	k = ft_min(co.x + size.x, img->width);
 	const int	m = ft_min(co.y + size.y, img->height);
 
-	i = ft_max(co.x, 0);
-	while (i < k)
+	j = ft_max(co.y, 0);
+	while (j < m)
 	{
-		j = ft_max(co.y, 0);
-		while (j < m)
+		i = ft_max(co.x, 0);
+		while (i < k)
 		{
-			mm_img_putpixel(img, i, j, color);
-			j++;
+			img->addr[j * img->width + i] = color;
+			i++;
 		}
-		i++;
+		j++;
 	}
 }

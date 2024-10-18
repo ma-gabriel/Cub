@@ -6,10 +6,11 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:19:59 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/17 01:32:15 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/18 18:22:53 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define M_PI 3.14159
 #include "map_manip.h"
 #include <stdlib.h>
 #include "str.h"
@@ -69,11 +70,11 @@ static int	get_start(t_map_p map, char **raw_map)
 static double	get_orient(char c)
 {
 	if (c == 'N')
-		return (3.14159 / 2);
+		return (M_PI / 2);
 	if (c == 'W')
-		return (3.14159);
+		return (M_PI);
 	if (c == 'S')
-		return (-3.14159 / 2);
+		return (-M_PI / 2);
 	if (c == 'E')
 		return (0);
 	return (0);

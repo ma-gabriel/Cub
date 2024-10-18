@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/17 01:42:12 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/18 17:33:13 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	loop(t_cub_p cub)
 	struct timeval	end;
 
 	gettimeofday(&start, NULL);
-	if (kb_get_event(&cub->kbe, KB_ESC) || t == 1000000)
+	if (kb_get_event(&cub->kbe, KB_ESC) || t == 100000)
 		mlx_loop_end(cub->mlx);
 	kb_mouse_update(cub->win, &cub->kbe);
 	pl_update(&cub->player, &cub->kbe, &cub->map);
@@ -58,12 +58,8 @@ int	benchmark_1(t_cub_p cub, int t)
 {
 	const t_img_p	img_dr = tm_get_texture(&cub->id, id_buffer);
 	const t_img_p	img_di = tm_get_texture(&cub->id, id_display);
-	int				i;
-	int				j;
 
-	(void) t;
-	j = 0;
-	(void) j;
+	(void) t, (void) img_di;
 	if (kb_get_event(&cub->kbe, KB_TAB))
 	{
 		map_draw(&cub->map, img_dr);
@@ -71,17 +67,10 @@ int	benchmark_1(t_cub_p cub, int t)
 	}
 	else
 	{
+		rcb_wizard(&cub->rcb, &cub->map, &cub->player, &cub->id);
 		cm_set_ground(img_dr, (t_color){.value = 0x00FF7F00});
 		cm_set_sky(img_dr, (t_color){.value = 0x00005FFF});
-		i = 0;
-		while (i < 750)
-		{
-			cm_put_line(img_dr,
-				&(t_rc_event){.img = img_di,
-				.dist = .75,
-				.offset = (double)(i / 750.)}, i + cub->kbe.mouse_x - 750. * .5);
-			i += 1;
-		}
+		rcb_draw(&cub->rcb, img_dr);
 	}
 	return (0);
 }

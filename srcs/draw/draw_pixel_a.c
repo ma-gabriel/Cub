@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:52:49 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/10 19:05:22 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/17 17:04:48 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_pixel_a(register t_img_p img,
 	const t_color	old = mm_img_getpixel(img, x, y);
 	const t_color	n = color_blend(color, old);
 
-	mm_img_putpixel(img, x, y, n);
+	img->addr[y * img->width + x] = n;
 }
 
 void	draw_pixel_as(register t_img_p img,
