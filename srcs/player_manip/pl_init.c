@@ -6,14 +6,15 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:07:39 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/16 14:10:32 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/18 19:41:44 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "player_manip.h"
+#include "math.h"
 
 int	pl_init(t_player_p player, t_vec2 pos, double a)
 {
-	*player = (t_player){.pos = pos, .angle = a};
+	*player = (t_player){.pos = pos, .angle = a, .fov = M_PI / 2};
 	return (0);
 }

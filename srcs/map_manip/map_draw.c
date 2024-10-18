@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_to_img.c                                       :+:      :+:    :+:   */
+/*   map_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 19:11:30 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/11 22:43:21 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/18 21:14:09 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,6 @@
 #include "map_manip.h"
 
 size_t	strs_len(char **strs);
-
-t_image_p	map_to_image(t_mlx_p mlx, t_map_p map, int width, int height)
-{
-	t_image_p	img;
-
-	img = mm_image_new(mlx, width, height);
-	if (img == NULL)
-		return (NULL);
-	map_draw(map, &img->img);
-	return (img);
-}
 
 t_color	cell_get_color(t_cell_type type)
 {
@@ -68,3 +57,4 @@ void	map_draw(t_map_p map, t_img_p img)
 		}
 	}
 }
+

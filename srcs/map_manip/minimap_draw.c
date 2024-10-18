@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:52:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/15 20:46:51 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/18 22:27:25 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 #include "num.h"
 #include "libft.h"
 #include "draw.h"
+#include "raycast_manip.h"
 
 void	dr_pl(t_minimap_p minimap, t_player_p player, const t_vec2 ratio);
 void	dr_mp(t_minimap_p minimap, t_map_p map,
 			t_vec2 center, const t_vec2 ratio);
+void	dr_rc(t_minimap_p minimap, t_rc_buf_p rcb, t_vec2 ratio, t_vec2 p);
 
 void	minimap_draw(t_minimap_p minimap, t_map_p map,
-		t_player_p player)
+		t_player_p player, t_rc_buf_p rcb)
 {
 	const t_vec2	ratio
 		= (t_vec2){(double)minimap->img->width / (double)(minimap->width),
@@ -30,7 +32,30 @@ void	minimap_draw(t_minimap_p minimap, t_map_p map,
 
 	mm_img_set_bg(minimap->img, cell_get_color(ct_unknow));
 	dr_mp(minimap, map, player->pos, ratio);
+	dr_rc(minimap, rcb, ratio, player->pos);
 	dr_pl(minimap, player, ratio);
+}
+
+void	dr_rc(t_minimap_p minimap, t_rc_buf_p rcb, t_vec2 ratio, t_vec2 center)
+{
+	const t_vec2	c = {.x = -center.x + minimap->width * .5,
+		.y = -center.y + minimap->height * .5};
+	size_t			i;
+	t_vec2			e;
+	t_vec2			s;
+
+	i = 0;
+	while (i < rcb->size)
+	{
+		e = (t_vec2){
+			.x = (rcb->buf[i].collision.x + c.x) * ratio.x,
+			.y = (rcb->buf[i].collision.y + c.y) * ratio.y};
+		s = (t_vec2){
+			.x = (rcb->buf[i].start.x + c.x) * ratio.x,
+			.y = (rcb->buf[i].start.y + c.y) * ratio.y};
+		draw_line(minimap->img, s, e, (t_color){.value = 0x0000FF00});
+		i++;
+	}
 }
 
 void	dr_mp(t_minimap_p minimap, t_map_p map,
@@ -75,5 +100,5 @@ void	dr_pl(t_minimap_p minimap, t_player_p player, const t_vec2 ratio)
 		(t_vec2){
 		.x = cos(player->angle) * ratio.x + minimap->width * .5 * ratio.x,
 		.y = sin(player->angle) * ratio.y + minimap->height * .5 * ratio.y},
-		(t_color){.value = 0x7F00FF00});
+		(t_color){.value = 0x7F0000FF});
 }

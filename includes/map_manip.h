@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:08:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/17 00:22:42 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/18 21:13:54 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ enum e_cell_flags
 	cf_isopen = 0x1 << 2,
 	cf_canclose = 0x1 << 3,
 	cf_oob = 0x1 << 4,
+	cf_cast = 0x1 << 5,
 };
 
 struct s_map
@@ -69,15 +70,14 @@ struct s_cell_flag
 int			map_isvalide(t_map_p map);
 int			map_parse(t_map_p map, char **raw_map);
 void		map_draw(t_map_p map, t_img_p img);
-t_image_p	map_to_image(t_mlx_p mlx, t_map_p map, int width, int height);
 t_cell_type	map_cell_get_type(char c);
 t_cell_type	map_get_cell(t_map_p map, int x, int y);
 t_cell_type	map_get_cell_s(t_map_p map, int x, int y);
 int			map_cell_setting(t_cell_type type, int mask);
 t_color		cell_get_color(t_cell_type type);
 
-void		minimap_draw(t_minimap_p minimap,
-				t_map_p map, t_player_p player);
+void		minimap_draw(t_minimap_p minimap, t_map_p map,
+				t_player_p player, t_rc_buf_p rcb);
 int			minimap_init(t_minimap_p minimap, t_img_p img,
 				int width, int height);
 void		minimap_update(t_minimap_p minimap, t_kb_event_p kbe);
