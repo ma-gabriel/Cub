@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/19 13:46:18 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/20 15:03:13 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,10 @@ int	benchmark_1(t_cub_p cub, int t)
 	}
 	else
 	{
-		cm_set_ground(img_dr, (t_color){.value = 0x00FF7F00});
-		cm_set_sky(img_dr, (t_color){.value = 0x00005FFF});
+		cm_set_ground(img_dr, cub->floor);
+		cm_set_sky(img_dr, cub->ceiling);
 		rcb_applie(&cub->rcb, img_dr);
 	}
 	return (0);
 }
 
-/*	test fisheye
-		cm_put_line(img,
-			&(t_rc_event){.img = frac,
-			.dist = (i / 100.) + 1,
-			.offset = (i / 100.)}, i + 100);
-*/

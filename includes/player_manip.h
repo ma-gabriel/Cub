@@ -19,6 +19,9 @@
 # define PLAYER_SIZE 0.5
 # define PLAYER_MOVE 0.05
 # define PLAYER_TURN 0.05
+# ifndef M_PI
+#  define M_PI		3.14159265358979323846	/* for vs_code that don't find math.h*/
+# endif
 
 struct s_player
 {

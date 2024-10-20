@@ -30,6 +30,8 @@ struct s_cub
 	t_minimap			minimap;
 	t_img_descriptor	id;
 	t_rc_buf			rcb;
+	t_color				floor;
+	t_color				ceiling;
 };
 
 int		cub_init(t_cub_p cub, char *file);
