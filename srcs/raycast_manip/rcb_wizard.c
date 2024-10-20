@@ -35,7 +35,6 @@ void	rcb_wizard(t_rc_buf_p rcb, t_map_p map,
 	while (i < rcb->size)
 	{
 		rcb->buf[i] = explode(map, player, a, id);
-		rcb->buf[i].dist *= cos(player->angle - a);
 		a += pa;
 		if (a >= 2. * M_PI)
 			a -= 2. * M_PI;
@@ -52,9 +51,8 @@ static t_rc_event	explode(t_map_p map,
 	rc = rc_throw(map, player->pos, angle, (t_cell_flag){cf_cast});
 	rce.collision = rc.pos;
 	rce.start = player->pos;
-	rce.dist = rc.dist;
+	rce.dist = rc.dist * cos(player->angle - angle);
 	rce.img = tm_get_texture(id, id_texture_n + rc.face);
-	rce.offset = .5;
-	//printf("[%lf, %lf], %lf\n", rce.collision.x, rce.collision.y, rce.dist);
+	rce.offset = rc.offset;
 	return (rce);
 }

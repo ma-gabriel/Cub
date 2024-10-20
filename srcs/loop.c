@@ -76,9 +76,3 @@ int	benchmark_1(t_cub_p cub, int t)
 	return (0);
 }
 
-/*	test fisheye
-		cm_put_line(img,
-			&(t_rc_event){.img = frac,
-			.dist = (i / 100.) + 1,
-			.offset = (i / 100.)}, i + 100);
-*/
