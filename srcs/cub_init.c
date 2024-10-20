@@ -102,6 +102,8 @@ static int	load_file(t_cub_p cub, char *file)
 	tm_set_texture(&cub->id, parse.textures.we, id_texture_w);
 	tm_set_texture(&cub->id, parse.textures.ea, id_texture_e);
 	tm_set_texture(&cub->id, parse.textures.so, id_texture_s);
+	cub->floor = parse.textures.f;
+	cub->ceiling = parse.textures.c;
 	e |= map_parse(&cub->map, parse.map);
 	strs_free(parse.map);
 	return (e);

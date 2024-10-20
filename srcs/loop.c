@@ -69,8 +69,8 @@ int	benchmark_1(t_cub_p cub, int t)
 	}
 	else
 	{
-		cm_set_ground(img_dr, (t_color){.value = 0x00FF7F00});
-		cm_set_sky(img_dr, (t_color){.value = 0x00005FFF});
+		cm_set_ground(img_dr, cub->floor);
+		cm_set_sky(img_dr, cub->ceiling);
 		rcb_display(&cub->rcb, img_dr);
 	}
 	return (0);

@@ -52,7 +52,7 @@ static t_rc_event	explode(t_map_p map,
 	rce.collision = rc.pos;
 	rce.start = player->pos;
 	rce.dist = rc.dist * cos(player->angle - angle);
-	rce.img = tm_get_texture(id, id_texture_n + rc.face);
 	rce.offset = rc.offset;
+	rce.img = tm_get_texture(id, id_texture_n + rc.face);
 	return (rce);
 }
