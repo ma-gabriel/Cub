@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 17:27:16 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/18 20:15:59 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/19 17:01:13 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	map_cell_setting(t_cell_type type, int mask)
 	[ct_door_open] = {cf_isopen | cf_canclose},
 	[ct_floor] = {0},
 	[ct_unknow] = {0},
-	[ct_oob] = {cf_oob | cf_collide},
+	[ct_oob] = {cf_oob | cf_collide | cf_cast},
 	};
 
 	if (type > CT_LENGHT)

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:14:33 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/11 14:09:43 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/19 14:18:04 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 # include "vector.h"
 
 void	ft_memswap(void *p1, void *p2, size_t len);
-void	ft_memswapbyte(void *p1, void *p2, size_t len);
+void	ft_memswapbyte(void *p1, void *p2);
 double	ft_get_real(double n);
+double	ft_norm_angle(double a);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:45:46 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/18 21:18:21 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/19 13:46:17 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ struct s_rc_buf
 
 int			rcb_init(t_rc_buf_p rcb, size_t size);
 void		rcb_destroy(t_rc_buf_p rcb);
-void		rcb_display(t_rc_buf_p rcb, t_img_p img);
+void		rcb_applie(t_rc_buf_p rcb, t_img_p img);
 void		rcb_wizard(t_rc_buf_p rcb, t_map_p map,
 				t_player_p player, t_img_descriptor_p id);
 t_raycast	rc_throw(t_map_p map, t_vec2 start, double angle, t_cell_flag flag);

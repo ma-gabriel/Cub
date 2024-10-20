@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/18 21:54:12 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/19 13:46:18 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	benchmark_1(t_cub_p cub, int t)
 	{
 		cm_set_ground(img_dr, (t_color){.value = 0x00FF7F00});
 		cm_set_sky(img_dr, (t_color){.value = 0x00005FFF});
-		rcb_display(&cub->rcb, img_dr);
+		rcb_applie(&cub->rcb, img_dr);
 	}
 	return (0);
 }

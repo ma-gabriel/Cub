@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_turn.c                                          :+:      :+:    :+:   */
+/*   ft_norm_angle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 15:45:17 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/19 14:18:38 by gcros            ###   ########.fr       */
+/*   Created: 2024/10/19 14:15:33 by gcros             #+#    #+#             */
+/*   Updated: 2024/10/19 14:17:21 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define M_PI 3.14159
 
-#include "player_manip.h"
 #include "math.h"
-#include "libft.h"
 
-void	pl_turnl(t_player_p player)
+double	ft_norm_angle(double a)
 {
-	player->angle += PLAYER_TURN;
-	player->angle = ft_norm_angle(player->angle);
-}
-
-void	pl_turnr(t_player_p player)
-{
-	player->angle -= PLAYER_TURN;
-	player->angle = ft_norm_angle(player->angle);
+	while (a > 2. * M_PI)
+		a -= 2. * M_PI;
+	while (a < 0.)
+		a += 2. * M_PI;
+	return (a);
 }
