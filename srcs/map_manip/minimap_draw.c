@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:52:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/18 22:27:25 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/20 17:59:04 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	dr_mp(t_minimap_p minimap, t_map_p map,
 	j = -.5 * (h & 1);
 	while (j < h + 1.)
 	{
-		i =  -.5 * (w & 1);
+		i = -.5 * (w & 1);
 		while (i < w + 1.)
 		{
 			draw_rect(minimap->img,

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:20:31 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/10 19:11:38 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/20 17:58:36 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	low(t_img *img, t_vec2 p1, t_vec2 p2, t_color color)
 	}
 }
 
-void	draw_line(t_img *img, t_vec2 p1, t_vec2 p2, t_color color)
+void	draw_line(t_img_p img, t_vec2 p1, t_vec2 p2, t_color color)
 {
 	if (ft_absf(p2.y - p1.y) < ft_absf(p2.x - p1.x))
 	{
@@ -85,7 +85,6 @@ void	draw_line(t_img *img, t_vec2 p1, t_vec2 p2, t_color color)
 			high(img, p1, p2, color);
 	}
 }
-
 
 // don't work
 //void	draw_line(t_img_p img, t_vec2 p1, t_vec2 p2, t_color color)

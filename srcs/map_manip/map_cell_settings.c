@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 17:27:16 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/19 17:01:13 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/20 17:58:51 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ int	map_cell_setting(t_cell_type type, int mask)
 		return (0);
 	return (tmp[type].flags & mask);
 }
-

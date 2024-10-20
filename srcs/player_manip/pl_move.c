@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 16:15:48 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/11 23:01:09 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/20 18:00:34 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	pl_walk_left(t_player_p player, t_map_p map)
 {
 	t_vec2	next_pos;
 
-	next_pos = (t_vec2){cos(player->angle + M_PI_2) * -PLAYER_MOVE + player->pos.x,
+	next_pos = (t_vec2){
+		cos(player->angle + M_PI_2) * -PLAYER_MOVE + player->pos.x,
 		sin(player->angle + M_PI_2) * -PLAYER_MOVE + player->pos.y};
 	move_to(player, next_pos, map);
 }
@@ -52,7 +53,8 @@ void	pl_walk_right(t_player_p player, t_map_p map)
 {
 	t_vec2	next_pos;
 
-	next_pos = (t_vec2){cos(player->angle - M_PI_2) * -PLAYER_MOVE + player->pos.x,
+	next_pos = (t_vec2){
+		cos(player->angle - M_PI_2) * -PLAYER_MOVE + player->pos.x,
 		sin(player->angle - M_PI_2) * -PLAYER_MOVE + player->pos.y};
 	move_to(player, next_pos, map);
 }
@@ -60,7 +62,7 @@ void	pl_walk_right(t_player_p player, t_map_p map)
 void	move_to(t_player_p player, t_vec2 next_pos, t_map_p map)
 {
 	t_cell_type	cell;
-	
+
 	cell = map_get_cell_s(map, floor(next_pos.x), floor(next_pos.y));
 	if (cf_none != map_cell_setting(cell, cf_oob))
 	{

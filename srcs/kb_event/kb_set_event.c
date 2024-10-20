@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:08:31 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/15 14:50:47 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/20 17:58:44 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,3 @@ int	mouse_released(int mc, int x, int y, t_kb_event_p kbe)
 	kbe->mouse[mc] = 0;
 	return (0);
 }
-

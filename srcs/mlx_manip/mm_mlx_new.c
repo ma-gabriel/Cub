@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:47:25 by gcros             #+#    #+#             */
-/*   Updated: 2024/08/20 17:45:06 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/20 17:59:58 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "put.h"
 #include "mlx_manip.h"
 
-t_mlx_p		mm_mlx_new(void)
+t_mlx_p	mm_mlx_new(void)
 {
 	t_mlx_p	mlx;
 
