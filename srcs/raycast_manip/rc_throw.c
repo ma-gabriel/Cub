@@ -36,18 +36,16 @@ t_raycast	rc_throw(t_map_p map, t_vec2 start, double angle, t_cell_flag flag)
         > hypot(tmp.x - start.x, tmp.y - start.y))
     {
         pos = tmp;
-        rc.dist = sin(angle);
         rc.face =  2 + (angle > M_PI);
         rc.offset = ft_get_real(pos.x);
     }
     else
     {
-        rc.dist = cos(angle);
         rc.face = (angle > M_PI_2 && angle < M_PI_2 * 3.);
         rc.offset = ft_get_real(pos.y);
     }
     rc.angle = angle;
-    rc.dist *= hypot(pos.x - start.x, pos.y - start.y);
+    rc.dist = hypot(pos.x - start.x, pos.y - start.y);
     rc.pos = pos;
     return (rc);
 }

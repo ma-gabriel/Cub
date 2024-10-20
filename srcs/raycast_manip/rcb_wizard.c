@@ -35,6 +35,7 @@ void	rcb_wizard(t_rc_buf_p rcb, t_map_p map,
 	while (i < rcb->size)
 	{
 		rcb->buf[i] = explode(map, player, a, id);
+		rcb->buf[i].dist *= cos(player->angle - a);
 		a += pa;
 		if (a >= 2. * M_PI)
 			a -= 2. * M_PI;
