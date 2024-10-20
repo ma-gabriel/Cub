@@ -15,7 +15,7 @@
 #include "player_manip.h"
 #include "raycast_manip.h"
 #include <stdio.h>
-#include "math.h"
+#include <math.h>
 #include "texture_manip.h"
 
 static t_rc_event	explode(t_map_p map,
@@ -30,10 +30,14 @@ void	rcb_wizard(t_rc_buf_p rcb, t_map_p map,
 
 	i = 0;
 	a = player->angle - player->fov / 2.;
+	if (a < 0)
+		a += 2. * M_PI;
 	while (i < rcb->size)
 	{
 		rcb->buf[i] = explode(map, player, a, id);
 		a += pa;
+		if (a >= 2. * M_PI)
+			a -= 2. * M_PI;
 		i++;
 	}
 }
