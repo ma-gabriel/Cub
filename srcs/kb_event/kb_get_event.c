@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:31:17 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/15 14:49:34 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/21 22:50:37 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ char	kb_get_event(t_kb_event_p kbe, int kc)
 		return (kbe->kb_num[kc - '0']);
 	else if (kc >= KB_LEFT && kc <= KB_DOWN)
 		return (kbe->arrow[kc - KB_LEFT]);
+	else if (kc == KB_SPACE)
+		return (kbe->space);
 	return (0);
 }

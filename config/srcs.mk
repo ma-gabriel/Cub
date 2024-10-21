@@ -38,6 +38,7 @@ SRCS += draw/draw_rect.c
 SRCS += draw/draw_line_a.c
 #---map_manip---
 SRCS += map_manip/map_cell_settings.c
+SRCS += map_manip/map_update.c
 SRCS += map_manip/map_isvalide.c
 SRCS += map_manip/minimap_init.c
 SRCS += map_manip/map_draw.c

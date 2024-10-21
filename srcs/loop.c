@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/21 17:52:44 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/21 22:41:06 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	loop(t_cub_p cub)
 		mlx_loop_end(cub->mlx);
 	kb_mouse_update(cub->win, &cub->kbe);
 	pl_update(&cub->player, &cub->kbe, &cub->map);
+	map_update(&cub->map, &cub->kbe, cub);
 	minimap_update(&cub->minimap, &cub->kbe);
 	benchmark_1(cub, t);
 	minimap_draw(&cub->minimap, &cub->map, &cub->player, &cub->rcb);

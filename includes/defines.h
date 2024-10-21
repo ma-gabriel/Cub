@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:14 by geymat            #+#    #+#             */
-/*   Updated: 2024/10/17 01:29:13 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/21 20:03:19 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ then the map with only authorised characters"
 
 # define SPRITE_IMGS 2
 
-# define THICKNESS_RAYS 750
+# define THICKNESS_RAYS 3
 //  WIN_WIDTH must be divisble with THICKNESS_RAYS
 # define WIN_WIDTH 1500
 # define WIN_HEIGHT 700

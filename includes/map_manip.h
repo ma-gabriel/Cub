@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:08:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/21 16:07:45 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/21 22:40:29 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void		minimap_draw(t_minimap_p minimap, t_map_p map,
 int			minimap_init(t_minimap_p minimap, t_img_p img,
 				int width, int height);
 void		minimap_update(t_minimap_p minimap, t_kb_event_p kbe);
+void		map_update(t_map_p map, t_kb_event_p kbe, t_cub_p cub);
 
 #endif

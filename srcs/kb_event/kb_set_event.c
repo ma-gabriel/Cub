@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:08:31 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/20 17:58:44 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/21 22:43:41 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	key_pressed(int kc, t_kb_event_p kbe)
 		kbe->kb_num[kc - '0'] = 1;
 	else if (kc >= KB_LEFT && kc <= KB_DOWN)
 		kbe->arrow[kc - KB_LEFT] = 1;
+	else if (kc == KB_SPACE)
+		kbe->space = 1;
 	return (0);
 }
 
@@ -58,6 +60,8 @@ int	key_released(int kc, t_kb_event_p kbe)
 		kbe->kb_num[kc - '0'] = 0;
 	else if (kc >= KB_LEFT && kc <= KB_DOWN)
 		kbe->arrow[kc - KB_LEFT] = 0;
+	else if (kc == KB_SPACE)
+		kbe->space = 0;
 	return (0);
 }
 
