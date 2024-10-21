@@ -74,7 +74,7 @@ static t_vec2	v(t_map_p map, t_vec2 start, double angle, t_cell_flag flag)
 	else
 	{
 		pos = start;
-		dp = (t_vec2){.x = 1, .y = 0};
+		dp = (t_vec2){.x = 0, .y = (angle == M_PI_2) * 2 - 1};
 	}
 	return (a(map, flag, dp, pos));
 }
@@ -91,7 +91,7 @@ static t_vec2	h(t_map_p map, t_vec2 start, double angle, t_cell_flag flag)
 		pos.x = (ft_get_real(start.y) + 0.0001) * atan + start.x;
 		dp = (t_vec2){.y = -1., .x = atan};
 	}
-	else if (angle < M_PI && angle > 0)
+	else if (angle < M_PI && angle > 0.)
 	{
 		pos.y = floor(start.y) + 1.;
 		pos.x = (ft_get_real(start.y) - 1.) * atan + start.x;
@@ -100,7 +100,7 @@ static t_vec2	h(t_map_p map, t_vec2 start, double angle, t_cell_flag flag)
 	else
 	{
 		pos = start;
-		dp = (t_vec2){.x = 0, .y = 1};
+		dp = (t_vec2){.x = (angle == 0.) * 2 - 1, .y = 0};
 	}
 	return (a(map, flag, dp, pos));
 }
