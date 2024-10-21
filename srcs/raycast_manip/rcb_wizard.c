@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:01:26 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/20 18:01:38 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/21 17:54:11 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@ void	rcb_wizard(t_rc_buf_p rcb, t_map_p map,
 {
 	size_t			i;
 	double			a;
+	const double	r = (1. / (double) WIN_WIDTH) * player->fov;
 
 	i = 0;
 	while (i < rcb->size)
 	{
-		a = atan(((double)((ssize_t)(i - rcb->size / 2))) / (double) WIN_WIDTH * player->fov) + player->angle;
-		if (a >= 2. * M_PI)
-			a -= 2. * M_PI;
+		a = atan(((double)((ssize_t)(i - rcb->size / 2))) * r) + player->angle;
 		rcb->buf[i] = explode(map, player, a, id);
 		i++;
 	}
@@ -49,6 +48,8 @@ static t_rc_event	explode(t_map_p map,
 	rce.start = player->pos;
 	rce.dist = rc.dist * cos(player->angle - angle);
 	rce.offset = rc.offset;
-	rce.img = tm_get_texture(id, id_texture_n + rc.face);
+	rce.img = tm_get_texture(id, id_texture_e + rc.face);
+	// rce.img = tm_get_texture(id, 0 + rc.face);
+	// rce.img = tm_get_texture(id, id_minimap);
 	return (rce);
 }

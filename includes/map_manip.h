@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:08:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/18 21:13:54 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/21 16:07:45 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ enum e_cell_type
 	ct_unknow,
 	ct_void,
 	ct_wall,
-	ct_door_close,
 	ct_door_open,
+	ct_door_close,
 	ct_floor,
 	ct_oob,
 	ct_terminated,

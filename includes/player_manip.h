@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 16:11:19 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/17 17:12:47 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/20 22:28:19 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "struct.h"
 
 # define PLAYER_SIZE 0.5
-# define PLAYER_MOVE 0.05
-# define PLAYER_TURN 0.05
+# define PLAYER_MOVE 0.02
+# define PLAYER_TURN 0.02
 # ifndef M_PI
 #  define M_PI		3.14159265358979323846	/* for vs_code that don't find math.h*/
 # endif

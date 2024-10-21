@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/10/17 01:39:26 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/21 16:06:14 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,23 @@
 #include "texture_manip.h"
 #include "cub.h"
 
-t_image_p	gen_frac(t_mlx_p mlx, int width, int height)
+void	gen_frac(t_img_p img, size_t off)
 {
-	t_image_p	img;
 	int			j;
 	int			i;
 
-	img = mm_image_new(mlx, width, height);
-	if (img == NULL)
-		return (NULL);
 	j = 0;
-	while (j < height)
+	while (j < img->height)
 	{
 		i = 0;
-		while (i < width)
+		while (i < img->width)
 		{
-			mm_img_putpixel(&img->img, i, j,
-				(t_color){.r = i * j, .b = i * j, .g = i + j});
+			mm_img_putpixel(img, i, j,
+				(t_color){.r = (i + j) ^ off, .b = (i * j) - (off + 1), .g = (i + j) ^ off});
 			i++;
 		}
 		j++;
 	}
-	return (img);
 }
 
 int	main(int argc, char **argv)

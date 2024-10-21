@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/20 18:00:59 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/21 17:52:44 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 #include <sys/time.h>
 #include "cub.h"
 
-int	benchmark_1(t_cub_p cub, int t);
+int		benchmark_1(t_cub_p cub, int t);
+void	gen_frac(t_img_p img, size_t off);
 
 int	loop(t_cub_p cub)
 {
@@ -69,6 +70,10 @@ int	benchmark_1(t_cub_p cub, int t)
 	}
 	else
 	{
+		// gen_frac(tm_get_texture(&cub->id, id_texture_e), t);
+		// gen_frac(tm_get_texture(&cub->id, id_texture_n), t);
+		// gen_frac(tm_get_texture(&cub->id, id_texture_s), t);
+		// gen_frac(tm_get_texture(&cub->id, id_texture_w), t);
 		cm_set_ground(img_dr, cub->floor);
 		cm_set_sky(img_dr, cub->ceiling);
 		rcb_applie(&cub->rcb, img_dr);

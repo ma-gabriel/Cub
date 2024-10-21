@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:19:59 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/18 18:22:53 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/21 15:10:50 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ static int	get_start(t_map_p map, char **raw_map)
 static double	get_orient(char c)
 {
 	if (c == 'N')
-		return (M_PI / 2);
+		return (3 * M_PI / 2);
 	if (c == 'W')
-		return (M_PI);
-	if (c == 'S')
-		return (-M_PI / 2);
-	if (c == 'E')
 		return (0);
+	if (c == 'S')
+		return (M_PI / 2);
+	if (c == 'E')
+		return (M_PI);
 	return (0);
 }
 

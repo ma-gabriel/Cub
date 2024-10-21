@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:19:44 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/16 22:37:04 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/21 15:06:21 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ enum e_img_descriptor
 {
 	id_display,
 	id_buffer,
-	id_texture_n,
-	id_texture_s,
-	id_texture_w,
+	id_minimap,
 	id_texture_e,
+	id_texture_s,
+	id_texture_n,
+	id_texture_w,
 	id_sprite_start,
 	id_sprite_end = id_sprite_start + SPRITE_NUM,
-	id_minimap,
 	id_lenght,
 };
 

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:37:55 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/20 18:00:51 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/21 17:57:53 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,17 @@ t_raycast	rc_throw(t_map_p map, t_vec2 start, double angle, t_cell_flag flag)
 	if (hypot(pos.x - start.x, pos.y - start.y) \
 		> hypot(tmp.x - start.x, tmp.y - start.y))
 	{
-		rc.angle = 1;
 		pos = tmp;
 		rc.face = 2 + (angle > M_PI);
 		rc.offset = ft_get_real(pos.x);
 	}
 	else
 	{
-		rc.angle = 1;
 		rc.face = (angle > M_PI_2 && angle < M_PI_2 * 3.);
 		rc.offset = ft_get_real(pos.y);
 	}
-	rc.angle *= angle;
+	(void)((rc.face == 1 || rc.face == 2) && (rc.offset = (1. - rc.offset)));
+	rc.angle = angle;
 	rc.dist = hypot(pos.x - start.x, pos.y - start.y);
 	rc.pos = pos;
 	return (rc);
@@ -113,7 +112,7 @@ static t_vec2	a(t_map_p map, t_cell_flag flag, t_vec2 dp, t_vec2 pos)
 	count = 100;
 	while (count--)
 	{
-		ct = map_get_cell_s(map, floorl(pos.x), floorl(pos.y));
+		ct = map_get_cell_s(map, floor(pos.x), floor(pos.y));
 		if (map_cell_setting(ct, flag.flags) != 0)
 			break ;
 		pos.x += dp.x;
