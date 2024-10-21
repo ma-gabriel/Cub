@@ -37,6 +37,8 @@ then the map with only authorised characters"
 
 # define SPRITE_IMGS 2
 
+# define THICKNESS_RAYS 750
+//  WIN_WIDTH must be divisble with THICKNESS_RAYS
 # define WIN_WIDTH 1500
 # define WIN_HEIGHT 700
 # define WIN_NAME "cub3D"

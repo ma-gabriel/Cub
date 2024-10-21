@@ -20,14 +20,17 @@ void	rcb_applie(t_rc_buf_p rcb, t_img_p img)
 {
 	const double	ratio = ((double)img->width / (double)rcb->size);
 	double			i;
+	size_t				j;
 	t_rc_event_p	rc;
 
 	i = 0;
-	while ((size_t)floor(i) < rcb->size)
+	j = 0;
+	while (j < rcb->size)
 	{
-		rc = &rcb->buf[(int)floor(i)];
+		rc = &rcb->buf[j];
 		cm_put_line(img, rc, i);
 		i += ratio;
+		j++;
 	}
 }
 

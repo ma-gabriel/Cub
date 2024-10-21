@@ -16,6 +16,9 @@
 #include "stdio.h"
 #include "draw.h"
 
+
+static void	cm_put_pixels(t_img_p canvas, t_color pixel, int canvas_x, int canvas_y);
+
 void	cm_put_line(t_img_p canvas, t_rc_event_p rc, int canvas_x)
 {
 	const int		layer_x = rc->offset * rc->img->width;
@@ -27,8 +30,21 @@ void	cm_put_line(t_img_p canvas, t_rc_event_p rc, int canvas_x)
 	i = canvas->height - limit;
 	while (i < limit)
 	{
-		mm_img_putpixel(canvas, canvas_x, i,
-			mm_img_getpixel(rc->img, layer_x, (i + beginning - canvas->height) * ratio));
+		cm_put_pixels(canvas, 
+			mm_img_getpixel(rc->img, layer_x, (i + beginning - canvas->height) * ratio),
+			canvas_x, i);
+		i++;
+	}
+}
+
+static void	cm_put_pixels(t_img_p canvas, t_color pixel, int canvas_x, int canvas_y)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < THICKNESS_RAYS)
+	{
+		mm_img_putpixel(canvas, canvas_x + i, canvas_y, pixel);
 		i++;
 	}
 }

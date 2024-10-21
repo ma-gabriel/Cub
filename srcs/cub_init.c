@@ -44,7 +44,7 @@ int	cub_init(t_cub_p cub, char *file)
 		return (1);
 	kb_set_event(cub->win, &cub->kbe);
 	pl_init(&cub->player, cub->map.start_pos, cub->map.start_orient);
-	if (rcb_init(&cub->rcb, WIN_WIDTH))
+	if (rcb_init(&cub->rcb, WIN_WIDTH / THICKNESS_RAYS))
 		return (1);
 	if (minimap_init(&cub->minimap,
 			tm_get_texture(&cub->id, id_minimap), 40, 40))

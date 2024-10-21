@@ -26,12 +26,12 @@ void	rcb_wizard(t_rc_buf_p rcb, t_map_p map,
 {
 	size_t			i;
 	double			a;
-	const double	r = (1. / (double) WIN_WIDTH) * player->fov;
+	const double	r = (1. / (double) WIN_WIDTH * THICKNESS_RAYS) * player->fov;
 
 	i = 0;
 	while (i < rcb->size)
 	{
-		a = atan(((double)((ssize_t)(i - rcb->size / 2))) * r) + player->angle;
+		a = atan(((double)((ssize_t)(i - (rcb->size >> 1)))) * r) + player->angle;
 		rcb->buf[i] = explode(map, player, a, id);
 		i++;
 	}
