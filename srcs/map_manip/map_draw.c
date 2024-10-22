@@ -21,12 +21,12 @@ size_t	strs_len(char **strs);
 t_color	cell_get_color(t_cell_type type)
 {
 	static t_color	tmp[CT_LENGHT] = {
-	[ct_void] = {.value = 0x7F646464},
+	[ct_void] = {.value = 0xFF646464},
 	[ct_wall] = {.value = 0x7F000000},
 	[ct_door_close] = {.value = 0x7FC86464},
 	[ct_door_open] = {.value = 0x7FC8C8C8},
 	[ct_floor] = {.value = ~0xFF000000},
-	[ct_unknow] = {.value = 0xFFC8C8C8},
+	[ct_unknow] = {.value = 0xFF646464},
 	[ct_oob] = {.value = 0xFF0000FF},
 	};
 

@@ -37,7 +37,7 @@ then the map with only authorised characters"
 
 # define SPRITE_IMGS 2
 
-# define THICKNESS_RAYS 3
+# define THICKNESS_RAYS 1
 //  WIN_WIDTH must be divisble with THICKNESS_RAYS
 # define WIN_WIDTH 1500
 # define WIN_HEIGHT 700
