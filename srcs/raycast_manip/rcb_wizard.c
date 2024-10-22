@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:01:26 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/21 17:54:11 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/22 14:44:58 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ static t_rc_event	explode(t_map_p map,
 	rce.offset = rc.offset;
 	rce.img = tm_get_texture(id, id_texture_e + rc.face);
 	// rce.img = tm_get_texture(id, 0 + rc.face);
-	// rce.img = tm_get_texture(id, id_minimap);
+	// rce.img = tm_get_texture(id, id_display);
 	return (rce);
 }

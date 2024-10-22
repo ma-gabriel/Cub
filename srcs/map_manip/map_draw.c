@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 19:11:30 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/20 17:58:54 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/22 15:20:38 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ size_t	strs_len(char **strs);
 t_color	cell_get_color(t_cell_type type)
 {
 	static t_color	tmp[CT_LENGHT] = {
-	[ct_void] = {.value = 0x00646464},
-	[ct_wall] = {.value = 0x00000000},
-	[ct_door_close] = {.value = 0x00C86464},
-	[ct_door_open] = {.value = 0x00C8C8C8},
+	[ct_void] = {.value = 0x7F646464},
+	[ct_wall] = {.value = 0x7F000000},
+	[ct_door_close] = {.value = 0x7FC86464},
+	[ct_door_open] = {.value = 0x7FC8C8C8},
 	[ct_floor] = {.value = ~0xFF000000},
-	[ct_unknow] = {.value = 0x00FFC40F},
-	[ct_oob] = {.value = 0x000000FF},
+	[ct_unknow] = {.value = 0xFFC8C8C8},
+	[ct_oob] = {.value = 0xFF0000FF},
 	};
 
 	if (type > CT_LENGHT)
@@ -43,7 +43,6 @@ void	map_draw(t_map_p map, t_img_p img)
 	const t_vec2	ratio = (t_vec2){img->width / (double)map->width,
 		img->height / (double)map->height};
 
-	mm_img_set_bg(img, (t_color){.value = 0xFF080808});
 	i = map->height;
 	while (i--)
 	{

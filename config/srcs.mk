@@ -17,6 +17,7 @@ SRCS += mlx_manip/mm_get_color.c
 SRCS += mlx_manip/mm_img_delete.c
 SRCS += mlx_manip/mm_window_new.c
 SRCS += mlx_manip/mm_window_delete.c
+SRCS += mlx_manip/mm_img_to_img.c
 SRCS += mlx_manip/mm_img_getpixel.c
 SRCS += mlx_manip/mm_image_delete.c
 SRCS += mlx_manip/mm_mlx_delete.c
@@ -35,6 +36,7 @@ SRCS += draw/draw_line.c
 SRCS += draw/color_blend.c
 SRCS += draw/draw_pixel_a.c
 SRCS += draw/draw_rect.c
+SRCS += draw/draw_cross.c
 SRCS += draw/draw_line_a.c
 #---map_manip---
 SRCS += map_manip/map_cell_settings.c
