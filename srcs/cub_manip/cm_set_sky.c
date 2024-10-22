@@ -14,10 +14,9 @@
 
 void	cm_set_sky(t_img_p img, const t_color color)
 {
-	int	i;
-	int	end;
+	const int	end = (img->width * img->height) >> 1;
+	int			i;
 
-	end = (img->width * img->height) >> 1;
 	i = 0;
 	while (i < end)
 		img->addr[i++] = color;

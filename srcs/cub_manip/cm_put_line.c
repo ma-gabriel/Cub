@@ -44,7 +44,7 @@ static void	cm_put_pixels(t_img_p canvas, t_color pixel, int canvas_x, int canva
 	i = 0;
 	while (i < THICKNESS_RAYS)
 	{
-		mm_img_putpixel(canvas, canvas_x + i, canvas_y, pixel);
+		canvas->addr[canvas_y * canvas->width + canvas_x + i] = pixel;
 		i++;
 	}
 }

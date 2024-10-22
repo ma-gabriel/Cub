@@ -14,10 +14,9 @@
 
 void	cm_set_ground(t_img_p img, const t_color color)
 {
-	int	i;
-	int	end;
+	const int	end = img->width * img->height;
+	int			i;
 
-	end = img->width * img->height;
 	i = (end) >> 1;
 	while (i < end)
 		img->addr[i++] = color;
