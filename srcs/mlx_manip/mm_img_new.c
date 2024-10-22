@@ -79,7 +79,7 @@ t_img_p	mm_file_to_img_new(t_mlx_p mlx, char *file)
 int	mm_file_to_img_init(t_img_p img_p, t_mlx_p mlx, char *file)
 {
 	img_p->img_ptr = mlx_xpm_file_to_image(mlx, file,
-			&(img_p->height), &(img_p->width));
+			&(img_p->width), &(img_p->height));
 	if (img_p->img_ptr == NULL)
 	{
 		ft_putendl_fd("mm_file_to_img_init:"
