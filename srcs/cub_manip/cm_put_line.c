@@ -24,14 +24,14 @@ void	cm_put_line(t_img_p canvas, t_rc_event_p rc, int canvas_x)
 	const int		layer_x = rc->offset * rc->img->width;
 	const int		beginning = (canvas->height + canvas->height / rc->dist) / 2;
 	const int		limit = ft_min(canvas->height, beginning);
-	const double	ratio = (double) (rc->img->height) * rc->dist / (double) canvas->height;
+	const double	ratio = rc->img->height * rc->dist / canvas->height;
 	int				i;
 
 	i = canvas->height - limit;
 	while (i < limit)
 	{
-		cm_put_pixels(canvas, 
-			mm_img_getpixel(rc->img, layer_x, (i + beginning - canvas->height) * ratio),
+		cm_put_pixels(canvas,
+			rc->img->addr[(int)((i + beginning - canvas->height) * ratio) * rc->img->width + layer_x],
 			canvas_x, i);
 		i++;
 	}
