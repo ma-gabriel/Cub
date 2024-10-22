@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 22:23:12 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/21 22:56:14 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/22 18:56:23 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	update_door(t_map_p map, t_cub_p cub)
 	t_raycast		rc;
 
 	rc = rc_throw(map, cub->player.pos, cub->player.angle,
-		(t_cell_flag){cf_canclose | cf_canopen});
+		(t_cell_flag){cf_canclose | cf_canopen | cf_cast});
 	if (rc.dist > 1.)
 		return ;
 	cf = map_cell_setting(map_get_cell(map, floor(rc.pos.x), floor(rc.pos.y)),
