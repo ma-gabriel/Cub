@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:01:26 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/22 14:44:58 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/24 16:43:50 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,18 @@ static t_rc_event	explode(t_map_p map,
 	t_player_p player, double angle, t_img_descriptor_p id)
 {
 	t_raycast	rc;
+	t_rc_sett	rcs;
 	t_rc_event	rce;
 
-	rc = rc_throw(map, player->pos, angle, (t_cell_flag){cf_cast});
+	rcs = (t_rc_sett){.angle = angle, .flag = {cf_cast}, .start = player->pos,
+		.max = 10};
+	rc = rc_throw(map, rcs);
 	rce.collision = rc.pos;
 	rce.start = player->pos;
 	rce.dist = rc.dist * cos(player->angle - angle);
 	rce.offset = rc.offset;
-	rce.img = tm_get_texture(id, id_texture_e + rc.face);
-	// rce.img = tm_get_texture(id, 0 + rc.face);
+	// rce.img = tm_get_texture(id, id_texture_e + rc.face);
+	rce.img = tm_get_texture(id, 0 + rc.face);
 	// rce.img = tm_get_texture(id, id_display);
 	return (rce);
 }

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 18:12:12 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/22 15:57:36 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/24 16:43:38 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 t_color	color_blend(t_color c1, t_color c2)
 {
 	const double	a1 = 1. - ((double)c1.a / 255.);
-	const double	a2 = 1. - ((double)c2.a / 255.);
-	// const double	ao = 1. - (1. - a1) * (1. - a2);
+	const double	a2 = 1;
 	const double	ao = a1 + a2 * (1. - a1);
 	const double	rev = 1. / ao;
 	t_color			o;

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 17:27:16 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/21 22:44:54 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/24 16:35:02 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	map_cell_setting(t_cell_type type, int mask)
 	[ct_oob] = {cf_oob | cf_collide | cf_cast},
 	};
 
-	if (type > CT_LENGHT)
+	if (type > CT_LENGHT || type < 0)
 		return (0);
 	return (tmp[type].flags & mask);
 }

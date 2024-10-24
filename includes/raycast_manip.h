@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:45:46 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/19 13:46:17 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/24 15:41:22 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,21 @@ struct s_rc_buf
 	size_t		size;
 };
 
+struct s_rc_sett
+{
+	double		angle;
+	double		max;
+	t_vec2		start;
+	t_vec2		delta;
+	t_cell_flag	flag;
+};
+
 int			rcb_init(t_rc_buf_p rcb, size_t size);
 void		rcb_destroy(t_rc_buf_p rcb);
 void		rcb_applie(t_rc_buf_p rcb, t_img_p img);
 void		rcb_wizard(t_rc_buf_p rcb, t_map_p map,
 				t_player_p player, t_img_descriptor_p id);
-t_raycast	rc_throw(t_map_p map, t_vec2 start, double angle, t_cell_flag flag);
+t_raycast	rc_throw(t_map_p map, t_rc_sett rcs);
 void		rcb_draw(t_rc_buf_p rcb, t_img_p img, t_map_p map);
 
 #endif

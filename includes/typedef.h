@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:00:43 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/18 17:57:19 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/24 15:24:58 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_rc_buf			t_rc_buf;
 typedef struct s_rc_buf			*t_rc_buf_p;
 typedef struct s_raycast		t_raycast;
 typedef struct s_raycast		*t_raycast_p;
+typedef struct s_rc_sett		t_rc_sett;
+typedef struct s_rc_sett		*t_rc_sett_p;
 
 typedef struct s_cell_flag		t_cell_flag;
 
