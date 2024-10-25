@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:51:34 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/22 15:44:32 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/25 17:38:40 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	cub_init(t_cub_p cub, char *file)
 			tm_get_texture(&cub->id, id_minimap), 40, 40))
 		return (1);
 	check_id(&cub->id);
-	cub->time = 1;
+	cub->delay = 1;
 	return (0);
 }
 

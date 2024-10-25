@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:53:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/22 16:05:13 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/25 17:39:42 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ struct s_cub
 	t_rc_buf			rcb;
 	t_color				floor;
 	t_color				ceiling;
-	int					time;
+	int					delay;
+	size_t				count;
 };
 
 int		cub_init(t_cub_p cub, char *file);

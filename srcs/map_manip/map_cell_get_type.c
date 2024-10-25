@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 22:15:19 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/21 22:48:05 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/25 16:23:13 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ t_cell_type	map_cell_get_type(char c)
 		return (ct_door_close);
 	if (c == 'O')
 		return (ct_door_open);
+	if (c == 'B')
+		return (ct_bwall_start);
 	return (ct_unknow);
 }

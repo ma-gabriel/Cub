@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:08:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/21 22:40:29 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/25 17:43:26 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "typedef.h"
 # include "struct.h"
 # include "draw.h"
+# include "defines.h"
 
 typedef enum e_cell_type	t_cell_type;
 typedef enum e_cell_flags	t_cell_flags;
@@ -29,6 +30,8 @@ enum e_cell_type
 	ct_door_close,
 	ct_floor,
 	ct_oob,
+	ct_bwall_start,
+	ct_bwall_end = ct_bwall_start + SPRITE_IMGS,
 	ct_terminated,
 };
 
@@ -43,6 +46,7 @@ enum e_cell_flags
 	cf_canclose = 0x1 << 3,
 	cf_oob = 0x1 << 4,
 	cf_cast = 0x1 << 5,
+	cf_breakable = 0x1 << 6,
 };
 
 struct s_map
@@ -66,6 +70,8 @@ struct s_cell_flag
 {
 	int	flags;
 };
+
+#define UPDATE_MAP_DELAY 100
 
 int			map_isvalide(t_map_p map);
 int			map_parse(t_map_p map, char **raw_map);

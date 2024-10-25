@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:14 by geymat            #+#    #+#             */
-/*   Updated: 2024/10/21 20:03:19 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/25 17:42:41 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ then the map with only authorised characters"
 # define INFO_MISSING "There are some infos missing in the cub file, put the 4 textures and 2 colors"
 # define DOUBLE_RGB "Floor and Ceiling colors should be asked once each"
 
-# define SPRITE_IMGS 2
+# define SPRITE_IMGS 3
 
 # define THICKNESS_RAYS 1
 //  WIN_WIDTH must be divisble with THICKNESS_RAYS

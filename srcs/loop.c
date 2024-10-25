@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/22 18:41:36 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/25 17:41:09 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,30 @@
 #include <sys/time.h>
 #include "cub.h"
 
-int		benchmark_1(t_cub_p cub, int t);
+int		benchmark_1(t_cub_p cub);
 void	gen_frac(t_img_p img, size_t off);
 void	update(t_cub_p cub);
 
 int	loop(t_cub_p cub)
 {
-	static int		t = 0;
 	struct timeval	start;
 	struct timeval	end;
 
 	gettimeofday(&start, NULL);
-	if (kb_get_event(&cub->kbe, KB_ESC) || t == 1000000)
+	if (kb_get_event(&cub->kbe, KB_ESC))
 		mlx_loop_end(cub->mlx);
 	update(cub);
-	benchmark_1(cub, t);
+	benchmark_1(cub);
 	gettimeofday(&end, NULL);
-	if (t % 100 == 0)
+	if (cub->count % 100 == 0)
 		printf("frame time: %ld\n", (end.tv_sec * 1000000 + end.tv_usec) - (start.tv_sec * 1000000 + start.tv_usec));
 	mm_img_display(tm_get_texture(&cub->id, id_buffer), cub->win, 0, 0);
 	//mm_img_display(tm_get_texture(&cub->id, id_minimap), cub->win, 1000, 300);
 	ft_memswap((cub->id.imgs + id_buffer),
 		(cub->id.imgs + id_display),
 		sizeof(t_img_p));
-	usleep(cub->time);
-	t++;
+	usleep(cub->delay);
+	cub->count++;
 	return (0);
 }
 
@@ -61,19 +60,19 @@ void	update(t_cub_p cub)
 	map_update(&cub->map, &cub->kbe, cub);
 	minimap_update(&cub->minimap, &cub->kbe);
 	if (kb_get_event(&cub->kbe, 'z'))
-		cub->time += 1000;
+		cub->delay += 1000;
 	if (kb_get_event(&cub->kbe, 'x'))
-		cub->time -= 1000;
-	if (cub->time <= 0)
-		cub->time = 1;
+		cub->delay -= 1000;
+	if (cub->delay <= 0)
+		cub->delay = 1;
 }
 
-int	benchmark_1(t_cub_p cub, int t)
+int	benchmark_1(t_cub_p cub)
 {
 	const t_img_p	img_dr = tm_get_texture(&cub->id, id_buffer);
 	const t_img_p	img_di = tm_get_texture(&cub->id, id_display);
 
-	(void) t, (void) img_di;
+	(void) img_di;
 	rcb_wizard(&cub->rcb, &cub->map, &cub->player, &cub->id);
 	cm_set_ground(img_dr, cub->floor);
 	cm_set_sky(img_dr, cub->ceiling);

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 19:11:30 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/22 15:20:38 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/25 16:47:57 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ t_color	cell_get_color(t_cell_type type)
 	[ct_floor] = {.value = ~0xFF000000},
 	[ct_unknow] = {.value = 0xFF646464},
 	[ct_oob] = {.value = 0xFF0000FF},
+	[ct_bwall_start] = {.value = 0x7F000000},
 	};
 
-	if (type > CT_LENGHT)
+	if (type >= ct_bwall_start && type <= ct_bwall_end)
+		type = ct_wall;
+	else if (type > CT_LENGHT)
 		type = ct_unknow;
 	return (tmp[type]);
 }
