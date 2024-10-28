@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:16:24 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/25 16:41:54 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/28 21:18:17 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "num.h"
 #include <stdio.h>
 #include "put.h"
+
 int			is_compatible(t_cell_type ct1, t_cell_type ct2);
 static int	on_error(int i, int j);
 
@@ -47,6 +48,7 @@ int	map_isvalide(t_map_p map)
 
 static int	on_error(int i, int j)
 {
+	ft_putstr_fd(ERR, 2);
 	ft_putstr_fd("parsing: bad character at [", 2);
 	ft_putnbr_fd(i, 2);
 	ft_putstr_fd(", ", 2);

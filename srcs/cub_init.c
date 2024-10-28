@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:51:34 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/28 20:47:42 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/28 21:19:29 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	check_id(t_img_descriptor_p id)
 	{
 		if (id->imgs[i] == NULL)
 		{
-			ft_putstr_fd("cub_init: check_id: bad alloc ", 2);
+			ft_putstr_fd(ERR "cub_init: check_id: bad alloc ", 2);
 			ft_putnbr_fd(i, 2);
 			ft_putendl_fd("", 2);
 		}

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 19:44:50 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/28 20:42:05 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/28 21:15:40 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static int	load_all(t_img_descriptor_p imgd, t_mlx_p mlx)
 	while (i < SPRITE_IMGS)
 	{
 		img = load_one(i, mlx);
+		if (img == NULL)
+			return (1);
 		imgd->imgs[id_sprite_start + i] = img;
 		i++;
 	}
