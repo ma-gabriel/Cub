@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:14 by geymat            #+#    #+#             */
-/*   Updated: 2024/10/25 17:42:41 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/28 15:44:57 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # ifndef O_DIRECTORY
 #  define O_DIRECTORY	020000
 # endif
+
 # define ERR "Error\n"
 # define NL "\n"
 # define NEED_ARG "We need a map as an argument"
@@ -32,10 +33,18 @@ then the map with only authorised characters"
 # define UNCLOSED_MAP "The map is not closed"
 # define WRONG_RGB_VALUES "The rgb values are invalid"
 # define MLX_FAILED "MLX function failed to open XPM file"
-# define INFO_MISSING "There are some infos missing in the cub file, put the 4 textures and 2 colors"
+# define INFO_MISSING "There are some infos missing in the \
+cub file, put the 4 textures and 2 colors"
 # define DOUBLE_RGB "Floor and Ceiling colors should be asked once each"
 
-# define SPRITE_IMGS 3
+# ifndef SPRITE_IMGS
+#  define SPRITE_IMGS -1
+# endif
+
+# if SPRITE_IMGS <= 0
+#  undef SPRITE_IMGS
+#  define SPRITE_IMGS 1
+# endif
 
 # define THICKNESS_RAYS 1
 //  WIN_WIDTH must be divisble with THICKNESS_RAYS

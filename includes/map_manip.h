@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:08:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/25 17:43:26 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/28 15:59:37 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ enum e_cell_flags
 	cf_oob = 0x1 << 4,
 	cf_cast = 0x1 << 5,
 	cf_breakable = 0x1 << 6,
+	cf_breaking = 0x1 << 7,
 };
 
 struct s_map
@@ -71,7 +72,7 @@ struct s_cell_flag
 	int	flags;
 };
 
-#define UPDATE_MAP_DELAY 100
+# define UPDATE_MAP_DELAY 100
 
 int			map_isvalide(t_map_p map);
 int			map_parse(t_map_p map, char **raw_map);

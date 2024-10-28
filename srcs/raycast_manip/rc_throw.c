@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:37:55 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/24 16:41:17 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/28 15:09:05 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static t_vec2	v(t_map_p map, t_rc_sett rcs)
 	if (rcs.angle > M_PI_2 && rcs.angle < M_PI_2 * 3.)
 	{
 		pos.x = floor(rcs.start.x) - 0.0001;
-		pos.y = (ft_get_real(rcs.start.x) + 0.0001) * ntan + rcs.start.y;
+		pos.y = ft_get_real(rcs.start.x) * ntan + rcs.start.y;
 		dp = (t_vec2){.x = -1., .y = ntan};
 	}
 	else if (rcs.angle < M_PI_2 || rcs.angle > M_PI_2 * 3.)
@@ -89,7 +89,7 @@ static t_vec2	h(t_map_p map, t_rc_sett rcs)
 	if (rcs.angle > M_PI && rcs.angle < M_PI * 2.)
 	{
 		pos.y = floor(rcs.start.y) - 0.0001;
-		pos.x = (ft_get_real(rcs.start.y) + 0.0001) * atan + rcs.start.x;
+		pos.x = ft_get_real(rcs.start.y) * atan + rcs.start.x;
 		dp = (t_vec2){.y = -1., .x = atan};
 	}
 	else if (rcs.angle < M_PI && rcs.angle > 0.)

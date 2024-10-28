@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 17:27:16 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/25 17:08:45 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/28 15:21:48 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ int	map_cell_setting(t_cell_type type, int mask)
 	[ct_unknow] = {0},
 	[ct_oob] = {cf_oob | cf_collide | cf_cast},
 	[ct_bwall_start] = {cf_collide | cf_cast | cf_breakable},
+	[ct_bwall_end] = {cf_collide | cf_cast | cf_breaking},
 	};
 
 	if (type > ct_bwall_start && type <= ct_bwall_end)
-		type = ct_bwall_start;
+		type = ct_bwall_end;
 	if (type > CT_LENGHT || type < 0)
-		return (0);
+		type = ct_unknow;
 	return (tmp[type].flags & mask);
 }

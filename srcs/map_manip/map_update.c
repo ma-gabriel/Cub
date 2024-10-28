@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 22:23:12 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/25 17:43:51 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/28 15:30:38 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	update_map(t_map_p map)
 		{
 			if (map_get_cell(map, i, j) == ct_bwall_end)
 				map->data[j * map->width + i] = ct_floor;
-			if (map_get_cell(map, i, j) > ct_bwall_start)
+			if (map_cell_setting(map_get_cell(map, i, j), cf_breaking))
 				map->data[j * map->width + i]++;
 			i++;
 		}
