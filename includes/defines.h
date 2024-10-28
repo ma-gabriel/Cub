@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:14 by geymat            #+#    #+#             */
-/*   Updated: 2024/10/28 15:44:57 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/28 21:13:57 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,22 @@ then the map with only authorised characters"
 cub file, put the 4 textures and 2 colors"
 # define DOUBLE_RGB "Floor and Ceiling colors should be asked once each"
 
+/*                                     sprite define                          */
+
 # ifndef SPRITE_IMGS
-#  define SPRITE_IMGS -1
+#  define SPRITE_IMGS 2
 # endif
 
 # if SPRITE_IMGS <= 0
 #  undef SPRITE_IMGS
 #  define SPRITE_IMGS 1
 # endif
+
+# define SPRITE_DIR "textures/"
+# define SPRITE_PREFIX "sprite_"
+# define SPRITE_POSTFIX ".xpm"
+
+/*                                     ui define                              */
 
 # define THICKNESS_RAYS 1
 //  WIN_WIDTH must be divisble with THICKNESS_RAYS

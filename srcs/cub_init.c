@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:51:34 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/25 17:38:40 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/28 20:47:42 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static int	gen_all_img(t_cub_p cub)
 	tmp = mm_img_new(cub->mlx, MINIMAP_WIDTH, MINIMAP_HEIGHT);
 	err |= tmp == NULL;
 	tm_set_texture(&cub->id, tmp, id_minimap);
+	err |= cl_load_sprite(&cub->id, cub->mlx);
 	return (err);
 }
 

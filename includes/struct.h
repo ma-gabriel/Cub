@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:24 by geymat            #+#    #+#             */
-/*   Updated: 2024/10/17 01:36:09 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/28 20:49:30 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_sprite
 
 typedef struct s_textures
 {
-	t_img_p		images[4 + 2 + SPRITE_IMGS];
+	t_img_p		images[4 + 2 + SPRITE_IMGS - 1];
 	t_img_p		no;
 	t_img_p		so;
 	t_img_p		we;

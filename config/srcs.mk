@@ -52,6 +52,7 @@ SRCS += map_manip/minimap_draw.c
 #---cub_load---
 SRCS += cub_load/check_file.c
 SRCS += cub_load/get_file.c
+SRCS += cub_load/cl_load_sprite.c
 SRCS += cub_load/check_arg.c
 #---player_manip---
 SRCS += player_manip/pl_print.c

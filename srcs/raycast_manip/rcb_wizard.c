@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:01:26 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/24 16:56:11 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/28 21:11:31 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 
 static t_rc_event	explode(t_map_p map,
 						t_player_p player, double angle, t_img_descriptor_p id);
+static void			get_texture(t_img_descriptor_p id,
+						t_rc_event_p rce, int face, t_map_p map);
+
 
 void	rcb_wizard(t_rc_buf_p rcb, t_map_p map,
 			t_player_p player, t_img_descriptor_p id)
@@ -52,8 +55,19 @@ static t_rc_event	explode(t_map_p map,
 	rce.start = player->pos;
 	rce.dist = rc.dist * cos(player->angle - angle);
 	rce.offset = rc.offset;
-	rce.img = tm_get_texture(id, id_texture_e + rc.face);
-	// rce.img = tm_get_texture(id, 0 + rc.face);
-	// rce.img = tm_get_texture(id, id_display);
+	get_texture(id, &rce, rc.face, map);
 	return (rce);
+}
+
+static void	get_texture(t_img_descriptor_p id,
+	t_rc_event_p rce, int face, t_map_p map)
+{
+	const t_cell_type	celltype = map_get_cell_s(map,
+			floor(rce->collision.x), floor(rce->collision.y));
+
+	if (celltype > ct_bwall_start && celltype <= ct_bwall_end)
+		rce->img = tm_get_texture(id, id_sprite_start
+				+ (celltype - ct_bwall_start) - 1);
+	else
+		rce->img = tm_get_texture(id, id_texture_e + face);
 }
