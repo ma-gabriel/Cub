@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:08:31 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/21 22:43:41 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/29 22:12:05 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "mlx.h"
 #include "kb_event.h"
 #include "mem.h"
+#include "put.h"
 
 int	key_pressed(int kc, t_kb_event_p kbe);
 int	key_released(int kc, t_kb_event_p kbe);
@@ -68,12 +69,17 @@ int	key_released(int kc, t_kb_event_p kbe)
 int	mouse_pressed(int mc, int x, int y, t_kb_event_p kbe)
 {
 	(void) (x + y);
+
+	mc -= 1;
+	ft_putnbr_fd(mc, 2);
+	ft_putendl_fd("", 2);
 	kbe->mouse[mc] = 1;
 	return (0);
 }
 
 int	mouse_released(int mc, int x, int y, t_kb_event_p kbe)
 {
+	mc -= 1;
 	(void) (x + y);
 	kbe->mouse[mc] = 0;
 	return (0);

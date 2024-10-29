@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:12:45 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/21 22:42:56 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/29 22:00:39 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ struct s_kb_event
 	char	mouse[3];
 	int		mouse_x;
 	int		mouse_y;
+	int		lmouse_x;
+	int		lmouse_y;
 	int		tab;
 	int		space;
 };

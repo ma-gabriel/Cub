@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 16:22:48 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/29 19:01:45 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/29 23:12:45 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ static int	check_horizontal(t_player_p player, t_map_p map,
 void	pl_collide(t_player_p player, t_map_p map, t_vec2 npos, double angle)
 {
 	if (check_horizontal(player, map, npos, angle))
-	{
-		ft_putendl_fd("horizontal collision", 2);
-	}
+		;
 	if (check_vertical(player, map, npos, angle))
-		ft_putendl_fd("vertical collision", 2);
+		;
 }
 
 static int	check_horizontal(t_player_p player, t_map_p map,
