@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 16:15:48 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/20 18:00:34 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/29 16:13:53 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,28 @@
 #include "math.h"
 #include <stdio.h>
 #include "put.h"
-#include "ft_sound.h"
+#include "libft.h"
 
-void	move_to(t_player_p player, t_vec2 next_pos, t_map_p map);
+void	move_to(t_player_p player, t_vec2 next_pos, t_map_p map, double angle);
 
 void	pl_walk_front(t_player_p player, t_map_p map)
 {
 	t_vec2	next_pos;
 
-	next_pos = (t_vec2){cos(player->angle) * PLAYER_MOVE + player->pos.x,
+	next_pos = (t_vec2){
+		cos(player->angle) * PLAYER_MOVE + player->pos.x,
 		sin(player->angle) * PLAYER_MOVE + player->pos.y};
-	move_to(player, next_pos, map);
+	move_to(player, next_pos, map, ft_norm_angle(player->angle));
 }
 
 void	pl_walk_back(t_player_p player, t_map_p map)
 {
 	t_vec2	next_pos;
 
-	next_pos = (t_vec2){cos(player->angle) * -PLAYER_MOVE + player->pos.x,
-		sin(player->angle) * -PLAYER_MOVE + player->pos.y};
-	move_to(player, next_pos, map);
+	next_pos = (t_vec2){
+		cos(player->angle + M_PI) * PLAYER_MOVE + player->pos.x,
+		sin(player->angle + M_PI) * PLAYER_MOVE + player->pos.y};
+	move_to(player, next_pos, map, ft_norm_angle(player->angle + M_PI));
 }
 
 void	pl_walk_left(t_player_p player, t_map_p map)
@@ -44,9 +46,9 @@ void	pl_walk_left(t_player_p player, t_map_p map)
 	t_vec2	next_pos;
 
 	next_pos = (t_vec2){
-		cos(player->angle + M_PI_2) * -PLAYER_MOVE + player->pos.x,
-		sin(player->angle + M_PI_2) * -PLAYER_MOVE + player->pos.y};
-	move_to(player, next_pos, map);
+		cos(player->angle - M_PI_2) * PLAYER_MOVE + player->pos.x,
+		sin(player->angle - M_PI_2) * PLAYER_MOVE + player->pos.y};
+	move_to(player, next_pos, map, ft_norm_angle(player->angle - M_PI_2));
 }
 
 void	pl_walk_right(t_player_p player, t_map_p map)
@@ -54,22 +56,12 @@ void	pl_walk_right(t_player_p player, t_map_p map)
 	t_vec2	next_pos;
 
 	next_pos = (t_vec2){
-		cos(player->angle - M_PI_2) * -PLAYER_MOVE + player->pos.x,
-		sin(player->angle - M_PI_2) * -PLAYER_MOVE + player->pos.y};
-	move_to(player, next_pos, map);
+		cos(player->angle + M_PI_2) * PLAYER_MOVE + player->pos.x,
+		sin(player->angle + M_PI_2) * PLAYER_MOVE + player->pos.y};
+	move_to(player, next_pos, map, ft_norm_angle(player->angle + M_PI_2));
 }
 
-void	move_to(t_player_p player, t_vec2 next_pos, t_map_p map)
+void	move_to(t_player_p player, t_vec2 next_pos, t_map_p map, double angle)
 {
-	t_cell_type	cell;
-
-	cell = map_get_cell_s(map, floor(next_pos.x), floor(next_pos.y));
-	if (cf_none != map_cell_setting(cell, cf_oob))
-	{
-		player->angle += M_PI;
-	}
-	else if (cf_none == map_cell_setting(cell, cf_collide))							//todo: better collision
-		player->pos = next_pos;
-	else
-		ft_sound(440);
+	pl_collide(player, map, next_pos, angle);
 }

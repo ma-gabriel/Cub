@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 16:11:19 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/20 22:28:19 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/29 18:59:59 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ struct s_player
 	double	angle;
 	double	fov;
 	t_vec2	pos;
+	double	size;
 };
 
 int		pl_init(t_player_p player, t_vec2 pos, double a);
@@ -41,5 +42,6 @@ void	pl_walk_front(t_player_p player, t_map_p map);
 void	pl_walk_back(t_player_p player, t_map_p map);
 void	pl_walk_left(t_player_p player, t_map_p map);
 void	pl_walk_right(t_player_p player, t_map_p map);
+void	pl_collide(t_player_p player, t_map_p map, t_vec2 npos, double angle);
 
 #endif

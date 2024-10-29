@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/25 17:41:09 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/29 19:06:00 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	loop(t_cub_p cub)
 	if (cub->count % 100 == 0)
 		printf("frame time: %ld\n", (end.tv_sec * 1000000 + end.tv_usec) - (start.tv_sec * 1000000 + start.tv_usec));
 	mm_img_display(tm_get_texture(&cub->id, id_buffer), cub->win, 0, 0);
-	//mm_img_display(tm_get_texture(&cub->id, id_minimap), cub->win, 1000, 300);
 	ft_memswap((cub->id.imgs + id_buffer),
 		(cub->id.imgs + id_display),
 		sizeof(t_img_p));
@@ -59,9 +58,9 @@ void	update(t_cub_p cub)
 	pl_update(&cub->player, &cub->kbe, &cub->map);
 	map_update(&cub->map, &cub->kbe, cub);
 	minimap_update(&cub->minimap, &cub->kbe);
-	if (kb_get_event(&cub->kbe, 'z'))
+	if (kb_get_event(&cub->kbe, 'm'))
 		cub->delay += 1000;
-	if (kb_get_event(&cub->kbe, 'x'))
+	if (kb_get_event(&cub->kbe, 'n'))
 		cub->delay -= 1000;
 	if (cub->delay <= 0)
 		cub->delay = 1;
@@ -76,7 +75,6 @@ int	benchmark_1(t_cub_p cub)
 	rcb_wizard(&cub->rcb, &cub->map, &cub->player, &cub->id);
 	cm_set_ground(img_dr, cub->floor);
 	cm_set_sky(img_dr, cub->ceiling);
-	rcb_applie(&cub->rcb, img_dr);
 	if (kb_get_event(&cub->kbe, KB_TAB))
 	{
 		map_draw(&cub->map, img_dr);
@@ -85,6 +83,7 @@ int	benchmark_1(t_cub_p cub)
 	}
 	else
 	{
+		rcb_applie(&cub->rcb, img_dr);
 		draw_cross(img_dr);
 		minimap_draw(&cub->minimap, &cub->map, &cub->player, &cub->rcb);
 		mm_img_to_img(tm_get_texture(&cub->id, id_minimap),

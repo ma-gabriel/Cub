@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:08:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/28 21:09:07 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/29 13:13:56 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ struct s_minimap
 
 struct s_cell_flag
 {
-	int	flags;
+	size_t	flags;
 };
 
 # define UPDATE_MAP_DELAY 100
@@ -80,7 +80,7 @@ void		map_draw(t_map_p map, t_img_p img);
 t_cell_type	map_cell_get_type(char c);
 t_cell_type	map_get_cell(t_map_p map, int x, int y);
 t_cell_type	map_get_cell_s(t_map_p map, int x, int y);
-int			map_cell_setting(t_cell_type type, int mask);
+int			map_cell_setting(t_cell_type type, size_t mask);
 t_color		cell_get_color(t_cell_type type);
 
 void		minimap_draw(t_minimap_p minimap, t_map_p map,

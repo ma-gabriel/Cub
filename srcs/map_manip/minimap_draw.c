@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:52:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/20 17:59:04 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/29 19:01:34 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ void	dr_mp(t_minimap_p minimap, t_map_p map,
 
 void	dr_pl(t_minimap_p minimap, t_player_p player, const t_vec2 ratio)
 {
-	const t_vec2	size = (t_vec2){ratio.x * PLAYER_SIZE,
-		ratio.y * PLAYER_SIZE};
+	const t_vec2	size = (t_vec2){ratio.x * player->size,
+		ratio.y * player->size};
 
 	draw_rect(minimap->img, (t_vec2){
-		.x = ((minimap->width * .5) - (PLAYER_SIZE * .5)) * ratio.x,
-		.y = ((minimap->height * .5) - (PLAYER_SIZE * .5)) * ratio.y},
+		.x = ((minimap->width * .5) - (player->size * .5)) * ratio.x,
+		.y = ((minimap->height * .5) - (player->size * .5)) * ratio.y},
 		size, (t_color){.value = 0x7FFF00FF});
 	draw_line(minimap->img, (t_vec2){
 		.x = minimap->width * .5 * ratio.x - .5,

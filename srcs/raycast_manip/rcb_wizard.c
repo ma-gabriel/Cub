@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:01:26 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/28 21:11:31 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/29 12:58:47 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "texture_manip.h"
 #include "num.h"
 
-static t_rc_event	explode(t_map_p map,
+static t_rc_event	charge(t_map_p map,
 						t_player_p player, double angle, t_img_descriptor_p id);
 static void			get_texture(t_img_descriptor_p id,
 						t_rc_event_p rce, int face, t_map_p map);
@@ -36,12 +36,12 @@ void	rcb_wizard(t_rc_buf_p rcb, t_map_p map,
 	while (i < rcb->size)
 	{
 		a = atan(((double)((ssize_t)(i - (rcb->size >> 1)))) * r) + player->angle;
-		rcb->buf[i] = explode(map, player, a, id);
+		rcb->buf[i] = charge(map, player, a, id);
 		i++;
 	}
 }
 
-static t_rc_event	explode(t_map_p map,
+static t_rc_event	charge(t_map_p map,
 	t_player_p player, double angle, t_img_descriptor_p id)
 {
 	t_raycast	rc;

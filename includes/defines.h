@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:14 by geymat            #+#    #+#             */
-/*   Updated: 2024/10/28 21:21:21 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/29 13:48:21 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ cub file, put the 4 textures and 2 colors"
 /*                                     sprite define                          */
 
 # ifndef SPRITE_IMGS
-#  define SPRITE_IMGS 2
+#  define SPRITE_IMGS 6
 # endif
 
 # if SPRITE_IMGS <= 0
@@ -48,8 +48,8 @@ cub file, put the 4 textures and 2 colors"
 #  define SPRITE_IMGS 1
 # endif
 
-# define SPRITE_DIR "assets/textures/"
-# define SPRITE_PREFIX "sprite_"
+# define SPRITE_DIR "assets/break/"
+# define SPRITE_PREFIX "breakable_wall"
 # define SPRITE_POSTFIX ".xpm"
 
 /*                                     ui define                              */

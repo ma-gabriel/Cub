@@ -6,13 +6,13 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 17:27:16 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/28 15:21:48 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/29 13:13:51 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_manip.h"
 
-int	map_cell_setting(t_cell_type type, int mask)
+int	map_cell_setting(t_cell_type type, size_t mask)
 {
 	static t_cell_flag	tmp[CT_LENGHT] = {
 	[ct_void] = {0},

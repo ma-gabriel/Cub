@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:51:34 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/28 21:19:29 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/29 16:08:15 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	cub_init(t_cub_p cub, char *file)
 	if (rcb_init(&cub->rcb, WIN_WIDTH / THICKNESS_RAYS))
 		return (1);
 	if (minimap_init(&cub->minimap,
-			tm_get_texture(&cub->id, id_minimap), 40, 40))
+			tm_get_texture(&cub->id, id_minimap), 10, 10))
 		return (1);
 	check_id(&cub->id);
 	cub->delay = 1;

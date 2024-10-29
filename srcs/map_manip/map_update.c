@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 22:23:12 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/28 15:30:38 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/29 19:12:02 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	update_door(t_map_p map, t_cub_p cub)
 	rcs = (t_rc_sett){.angle = cub->player.angle, .start = cub->player.pos,
 		.flag = {cf_canclose | cf_canopen | cf_cast}, .max = 1};
 	rc = rc_throw(map, rcs);
-	if (rc.dist > 1.)
+	if (rc.dist > 1. || rc.dist < (cub->player.size / 2.))
 		return ;
 	cf = map_cell_setting(map_get_cell(map, floor(rc.pos.x), floor(rc.pos.y)),
 			cf_canclose | cf_canopen);
