@@ -1,7 +1,7 @@
-NO ./textures/lyon.xpm
-SO ./textures/almond_tree.xpm
-WE ./textures/chateau.xpm
-EA ./textures/Starry_Night_Over_the_Rhone.xpm
+NO ./assets/textures/lyon.xpm
+SO ./assets/textures/almond_tree.xpm
+WE ./assets/textures/chateau.xpm
+EA ./assets/textures/Starry_Night_Over_the_Rhone.xpm
 
 C  0,   0,   255
 F  255, 255, 0

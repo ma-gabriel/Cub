@@ -48,7 +48,7 @@ cub file, put the 4 textures and 2 colors"
 #  define SPRITE_IMGS 1
 # endif
 
-# define SPRITE_DIR "textures/"
+# define SPRITE_DIR "assets/textures/"
 # define SPRITE_PREFIX "sprite_"
 # define SPRITE_POSTFIX ".xpm"
 

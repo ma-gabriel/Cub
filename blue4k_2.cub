@@ -1,7 +1,7 @@
-NO ./textures/lyon.xpm
+NO ./assets/textures/lyon.xpm
 SO /home/androlink/Downloads/wp2529606.xpm
 WE /home/androlink/Downloads/vertopal.com_193853.xpm
-EA ./textures/Starry_Night_Over_the_Rhone.xpm
+EA ./assets/textures/Starry_Night_Over_the_Rhone.xpm
 
 C  0,   0,   255
 F  255, 255, 0
