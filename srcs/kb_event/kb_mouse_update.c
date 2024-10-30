@@ -25,6 +25,7 @@ void	kb_mouse_update(t_window_p win, t_kb_event_p kbe)
 	mlx_get_screen_size(win->mlx_ptr, &width, &height);
 	kbe->lmouse_x = kbe->mouse_x;
 	kbe->lmouse_y = kbe->mouse_y;
+	mlx_mouse_get_pos(win->mlx_ptr, win->win_ptr, &kbe->mouse_x, &kbe->mouse_y);
 	update_posx(win, kbe, width);
 	update_posy(win, kbe, height);
 	mlx_mouse_get_pos(win->mlx_ptr, win->win_ptr, &kbe->mouse_x, &kbe->mouse_y);
