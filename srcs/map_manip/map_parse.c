@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:19:59 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/28 21:18:57 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/30 17:02:43 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	map_parse(t_map_p map, char **raw_map)
 		return (1);
 	if (from_raw(map, raw_map) || get_start(map, raw_map) || !map_isvalide(map))
 	{
-		ft_putstr_fd(ERR"parsing: ???, "
+		ft_putendl_fd(ERR"parsing: ???, "
 			"or invalide char", 2);
 		free(map->data);
 		map->data = NULL;
@@ -47,26 +47,28 @@ static int	get_start(t_map_p map, char **raw_map)
 	char	c;
 	int		i;
 	int		j;
+	int		v;
 
-	j = 0;
-	while (raw_map[j])
+	j = -1;
+	v = 0;
+	while (raw_map[++j])
 	{
-		i = 0;
-		while (raw_map[j][i])
+		i = -1;
+		while (raw_map[j][++i])
 		{
 			c = raw_map[j][i];
-			if (c == 'N' || c == 'W' || c == 'S' || c == 'E')
+			if ((c == 'N' || c == 'W' || c == 'S' || c == 'E') && ++v)
 			{
 				map->start_pos = (t_vec2){.x = i + 0.5, .y = j + 0.5};
 				map->start_orient = get_orient(c);
-				return (0);
 			}
-			i++;
 		}
-		j++;
 	}
-	ft_putstr_fd(ERR NO_START NL, 2);
-	return (1);
+	if (v == 0)
+		ft_putstr_fd(ERR NO_START NL, 2);
+	else if (v > 1)
+		ft_putstr_fd(ERR MULTIPLE_START NL, 2);
+	return (v != 1);
 }
 
 static double	get_orient(char c)

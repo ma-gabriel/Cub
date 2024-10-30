@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/10/22 18:41:26 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/30 17:07:17 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include "player_manip.h"
 #include "texture_manip.h"
 #include "cub.h"
+#include <sys/time.h>
 
 void	gen_frac(t_img_p img, size_t off)
 {
@@ -47,7 +48,10 @@ void	gen_frac(t_img_p img, size_t off)
 int	main(int argc, char **argv)
 {
 	t_cub				cub;
+	struct timeval		start;
+	struct timeval		end;
 
+	gettimeofday(&start, NULL);
 	if (!check_arg(argc, argv[1]))
 		return (1);
 	if (cub_init(&cub, argv[1]))
@@ -55,5 +59,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(cub.mlx, loop, &cub);
 	mlx_loop(cub.mlx);
 	cub_destroy(&cub);
+	gettimeofday(&end, NULL);
+	printf("average fps: %ld\n", cub.count / (end.tv_sec - start.tv_sec));
 	return (0);
 }
