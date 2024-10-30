@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:55:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/29 22:47:41 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/30 14:19:37 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	update_orientation(t_player_p player, t_kb_event_p kbe)
 		pl_turnl(player);
 	if (kb_get_event(kbe, KB_LEFT))
 		pl_turnr(player);
-	if (kbe->mouse[0])
+	if (kb_get_event(kbe, MOUSE_TRIG))
 	{
 		player->angle += ((kbe->mouse_x - kbe->lmouse_x) * 0.0015);
 	}

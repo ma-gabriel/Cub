@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:08:31 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/29 22:12:05 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/30 14:28:19 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ int	key_pressed(int kc, t_kb_event_p kbe)
 		kbe->arrow[kc - KB_LEFT] = 1;
 	else if (kc == KB_SPACE)
 		kbe->space = 1;
+	else if (kc == KB_LCTRL || kc == KB_RCTRL)
+		kbe->ctrl = 1;
+	else if (kc == MOUSE1 || kc == MOUSE2 || kc == MOUSE3)
+		kbe->mouse[-kc - 1] = 1;
 	return (0);
 }
 
@@ -63,6 +67,10 @@ int	key_released(int kc, t_kb_event_p kbe)
 		kbe->arrow[kc - KB_LEFT] = 0;
 	else if (kc == KB_SPACE)
 		kbe->space = 0;
+	else if (kc == KB_LCTRL || kc == KB_RCTRL)
+		kbe->ctrl = 0;
+	else if (kc == MOUSE1 || kc == MOUSE2 || kc == MOUSE3)
+		kbe->mouse[-kc - 1] = 0;
 	return (0);
 }
 
@@ -70,17 +78,13 @@ int	mouse_pressed(int mc, int x, int y, t_kb_event_p kbe)
 {
 	(void) (x + y);
 
-	mc -= 1;
-	ft_putnbr_fd(mc, 2);
-	ft_putendl_fd("", 2);
-	kbe->mouse[mc] = 1;
+	key_pressed(-mc, kbe);
 	return (0);
 }
 
 int	mouse_released(int mc, int x, int y, t_kb_event_p kbe)
 {
-	mc -= 1;
 	(void) (x + y);
-	kbe->mouse[mc] = 0;
+	key_released(-mc, kbe);
 	return (0);
 }
