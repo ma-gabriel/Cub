@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 16:22:48 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/29 23:17:46 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/30 13:59:02 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ static int	check_horizontal(t_player_p player, t_map_p map,
 t_vec2 npos, double angle)
 {
 	const int	mod = ((angle < M_PI && angle > 0) * 2 - 1);
-	t_cell_flag	attr;
+	t_cell_attr	attr;
 
-	attr.flags = map_cell_setting(map_get_cell_s(map,
+	attr.value = map_cell_setting(map_get_cell_s(map,
 				floor(player->pos.x + (player->size / 2.)),
 				floor(npos.y + (player->size / 2.) * mod)), ~0);
-	attr.flags |= map_cell_setting(map_get_cell_s(map,
+	attr.value |= map_cell_setting(map_get_cell_s(map,
 				floor(player->pos.x - (player->size / 2.)),
 				floor(npos.y + (player->size / 2.) * mod)), ~0);
-	if (attr.flags & (cf_oob | cf_collide))
+	if (attr.value & (cf_oob | cf_collide))
 		;
 	else
 	{
@@ -53,15 +53,15 @@ t_vec2 npos, double angle)
 {
 	const int	mod = -((angle > M_PI / 2.
 				&& angle < 3. * M_PI / 2.) * 2 - 1);
-	t_cell_flag	attr;
+	t_cell_attr	attr;
 
-	attr.flags = map_cell_setting(map_get_cell_s(map,
+	attr.value = map_cell_setting(map_get_cell_s(map,
 				floor(npos.x + (player->size / 2.) * mod),
 				floor(player->pos.y + (player->size / 2.))), ~0);
-	attr.flags |= map_cell_setting(map_get_cell_s(map,
+	attr.value |= map_cell_setting(map_get_cell_s(map,
 				floor(npos.x + (player->size / 2.) * mod),
 				floor(player->pos.y - (player->size / 2.))), ~0);
-	if (attr.flags & (cf_oob | cf_collide))
+	if (attr.value & (cf_oob | cf_collide))
 		;
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:37:55 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/28 15:09:05 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/30 13:59:11 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ static t_vec2	a(t_map_p map, t_rc_sett rcs)
 	while (count--)
 	{
 		ct = map_get_cell_s(map, floor(pos.x), floor(pos.y));
-		if (map_cell_setting(ct, rcs.flag.flags) != 0)
+		if (map_cell_setting(ct, rcs.attributes.value) != 0)
 			return (pos);
 		npos = pos;
 		npos.x += rcs.delta.x;

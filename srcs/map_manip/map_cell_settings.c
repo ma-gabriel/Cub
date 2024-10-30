@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 17:27:16 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/29 13:13:51 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/30 13:58:04 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	map_cell_setting(t_cell_type type, size_t mask)
 {
-	static t_cell_flag	tmp[CT_LENGHT] = {
+	static t_cell_attr	tmp[CT_LENGHT] = {
 	[ct_void] = {0},
 	[ct_wall] = {cf_collide | cf_cast},
 	[ct_door_close] = {cf_collide | cf_canopen | cf_cast},
@@ -30,5 +30,5 @@ int	map_cell_setting(t_cell_type type, size_t mask)
 		type = ct_bwall_end;
 	if (type > CT_LENGHT || type < 0)
 		type = ct_unknow;
-	return (tmp[type].flags & mask);
+	return (tmp[type].value & mask);
 }

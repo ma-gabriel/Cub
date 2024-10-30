@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:45:46 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/24 15:41:22 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/30 13:57:34 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ struct s_rc_sett
 	double		max;
 	t_vec2		start;
 	t_vec2		delta;
-	t_cell_flag	flag;
+	t_cell_attr	attributes;
 };
 
 int			rcb_init(t_rc_buf_p rcb, size_t size);

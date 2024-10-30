@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:08:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/29 13:13:56 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/30 13:57:52 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "defines.h"
 
 typedef enum e_cell_type	t_cell_type;
-typedef enum e_cell_flags	t_cell_flags;
+typedef enum e_cell_attribute	t_cell_flags;
 
 enum e_cell_type
 {
@@ -37,7 +37,7 @@ enum e_cell_type
 
 # define CT_LENGHT ct_terminated
 
-enum e_cell_flags
+enum e_cell_attribute
 {
 	cf_none = 0,
 	cf_collide = 0x1 << 0,
@@ -67,9 +67,9 @@ struct s_minimap
 };
 
 
-struct s_cell_flag
+struct s_cell_attr
 {
-	size_t	flags;
+	size_t	value;
 };
 
 # define UPDATE_MAP_DELAY 100

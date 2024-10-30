@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:00:43 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/24 15:24:58 by gcros            ###   ########.fr       */
+/*   Updated: 2024/10/30 13:55:35 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_raycast		*t_raycast_p;
 typedef struct s_rc_sett		t_rc_sett;
 typedef struct s_rc_sett		*t_rc_sett_p;
 
-typedef struct s_cell_flag		t_cell_flag;
+typedef struct s_cell_attr		t_cell_attr;
 
 typedef struct s_map			t_map;
 typedef struct s_map			*t_map_p;
