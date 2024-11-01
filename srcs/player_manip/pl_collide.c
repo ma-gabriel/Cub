@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 16:22:48 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/30 13:59:02 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/01 13:39:13 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ t_vec2 npos, double angle)
 	attr.value |= map_cell_setting(map_get_cell_s(map,
 				floor(player->pos.x - (player->size / 2.)),
 				floor(npos.y + (player->size / 2.) * mod)), ~0);
-	if (attr.value & (cf_oob | cf_collide))
+	if (attr.value & cf_oob)
+		player->angle += M_PI;
+	else if (attr.value &  cf_collide)
 		;
 	else
 	{
@@ -61,7 +63,9 @@ t_vec2 npos, double angle)
 	attr.value |= map_cell_setting(map_get_cell_s(map,
 				floor(npos.x + (player->size / 2.) * mod),
 				floor(player->pos.y - (player->size / 2.))), ~0);
-	if (attr.value & (cf_oob | cf_collide))
+	if (attr.value & cf_oob)
+		player->angle += M_PI;
+	else if (attr.value &  cf_collide)
 		;
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:01:26 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/30 13:59:25 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/01 13:27:11 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static t_rc_event	charge(t_map_p map,
 	t_rc_sett	rcs;
 	t_rc_event	rce;
 
-	rcs = (t_rc_sett){.angle = angle, .attributes = {cf_cast}, .start = player->pos,
+	rcs = (t_rc_sett){.angle = angle, .attributes = {cf_cast},
+		.start = player->pos,
 		.max = ft_max(map->height, map->width) + 1};
 	rc = rc_throw(map, rcs);
 	rce.collision = rc.pos;

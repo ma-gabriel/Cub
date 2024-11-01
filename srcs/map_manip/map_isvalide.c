@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:16:24 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/28 21:18:17 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/01 13:51:16 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "put.h"
 
 int			is_compatible(t_cell_type ct1, t_cell_type ct2);
-static int	on_error(int i, int j);
+static int	on_error(int i, int j, char c);
 
 int	map_isvalide(t_map_p map)
 {
@@ -32,13 +32,13 @@ int	map_isvalide(t_map_p map)
 		{
 			c = map_get_cell(map, i, j);
 			if (!is_compatible(c, map_get_cell_s(map, i + 1, j)))
-				return (on_error(i, j));
+				return (on_error(i, j, map_get_cell_s(map, i + 1, j)));
 			if (!is_compatible(c, map_get_cell_s(map, i, j + 1)))
-					return (on_error(i, j));
+					return (on_error(i, j, map_get_cell_s(map, i, j + 1)));
 			if (!is_compatible(c, map_get_cell_s(map, i - 1, j)))
-				return (on_error(i, j));
+				return (on_error(i, j, map_get_cell_s(map, i - 1, j)));
 			if (!is_compatible(c, map_get_cell_s(map, i, j - 1)))
-				return (on_error(i, j));
+				return (on_error(i, j, map_get_cell_s(map, i, j - 1)));
 			i++;
 		}
 		j++;
@@ -46,7 +46,7 @@ int	map_isvalide(t_map_p map)
 	return (1);
 }
 
-static int	on_error(int i, int j)
+static int	on_error(int i, int j, char c)
 {
 	ft_putstr_fd(ERR, 2);
 	ft_putstr_fd("parsing: bad character at [", 2);
@@ -54,6 +54,9 @@ static int	on_error(int i, int j)
 	ft_putstr_fd(", ", 2);
 	ft_putnbr_fd(j, 2);
 	ft_putstr_fd("]", 2);
+	ft_putstr_fd(": type found `", 2);
+	ft_putnbr_fd(c, 2);
+	ft_putstr_fd("`", 2);
 	ft_putendl_fd("", 2);
 	return (0);
 }

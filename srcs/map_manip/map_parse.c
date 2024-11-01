@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:19:59 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/30 17:02:43 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/01 13:50:52 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	map_parse(t_map_p map, char **raw_map)
 		return (1);
 	if (from_raw(map, raw_map) || get_start(map, raw_map) || !map_isvalide(map))
 	{
-		ft_putendl_fd(ERR"parsing: ???, "
-			"or invalide char", 2);
 		free(map->data);
 		map->data = NULL;
 		return (1);

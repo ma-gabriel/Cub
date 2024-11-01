@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 22:23:12 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/30 13:58:26 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/01 13:34:18 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	break_wall(t_map_p map, t_cub_p cub)
 	t_rc_sett		rcs;
 
 	rcs = (t_rc_sett){.angle = cub->player.angle, .start = cub->player.pos,
-		.attributes = {cf_canclose | cf_canopen | cf_cast}, .max = 1};
+		.attributes = {cf_breakable | cf_cast}, .max = 1};
 	rc = rc_throw(map, rcs);
 	if (rc.dist > 1.)
 		return ;
