@@ -39,7 +39,8 @@ int	mm_img_init(t_img_p img_p, t_mlx_p mlx, int width, int height)
 	img_p->img_ptr = mlx_new_image(mlx, width, height);
 	if (img_p->img_ptr == NULL)
 	{
-		ft_putendl_fd(ERR"mm_img_init: mlx_new_image: NULL pointer returned", 2);
+		ft_putendl_fd(ERR \
+			"mm_img_init: mlx_new_image: NULL pointer returned", 2);
 		return (1);
 	}
 	img_p->addr = (t_color *)mlx_get_data_addr(img_p->img_ptr,
@@ -62,7 +63,8 @@ t_img_p	mm_file_to_img_new(t_mlx_p mlx, char *file)
 	img = malloc(sizeof(*img));
 	if (img == NULL)
 	{
-		ft_putendl_fd(ERR"mm_file_to_img_new: malloc: NULL pointer returned", 2);
+		ft_putendl_fd(ERR \
+			"mm_file_to_img_new: malloc: NULL pointer returned", 2);
 		return (NULL);
 	}
 	if (mm_file_to_img_init(img, mlx, file))

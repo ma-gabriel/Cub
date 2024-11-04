@@ -22,7 +22,6 @@ SRCS += mlx_manip/mm_img_getpixel.c
 SRCS += mlx_manip/mm_image_delete.c
 SRCS += mlx_manip/mm_mlx_delete.c
 #---cub_manip---
-SRCS += cub_manip/bob.c
 SRCS += cub_manip/cm_set_ground.c
 SRCS += cub_manip/cm_put_line.c
 SRCS += cub_manip/cm_set_sky.c
@@ -50,10 +49,13 @@ SRCS += map_manip/map_cell_get_type.c
 SRCS += map_manip/map_parse.c
 SRCS += map_manip/minimap_draw.c
 #---cub_load---
-SRCS += cub_load/check_file.c
-SRCS += cub_load/get_file.c
+SRCS += cub_load/cl_check_map.c
+SRCS += cub_load/cl_file.c
 SRCS += cub_load/cl_load_sprite.c
-SRCS += cub_load/check_arg.c
+SRCS += cub_load/cl_check_arg.c
+SRCS += cub_load/cl_rgb.c
+SRCS += cub_load/cl_struct.c
+SRCS += cub_load/cl_load_map.c
 #---player_manip---
 SRCS += player_manip/pl_print.c
 SRCS += player_manip/pl_move.c
@@ -67,6 +69,7 @@ SRCS += player_manip/pl_turn.c
 SRCS += ft_sup/ft_norm_angle.c
 SRCS += ft_sup/ft_num_real.c
 SRCS += ft_sup/ft_memswap.c
+SRCS += ft_sup/ft_strslen.c
 #---texture_manip---
 SRCS += texture_manip/tm_get_texture.c
 SRCS += texture_manip/tm_set_texture.c

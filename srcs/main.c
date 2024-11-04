@@ -26,6 +26,7 @@
 #include "cub.h"
 #include <sys/time.h>
 
+//line too long, see if we keep gen_frac
 void	gen_frac(t_img_p img, size_t off)
 {
 	int			j;

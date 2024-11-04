@@ -16,21 +16,52 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-bool	check_arg(int argc, char *map)
+static bool	check_nb_arg(int argc)
+{
+	if (argc == 1)
+	{
+		ft_putstr_fd(ERR NEED_ARG NL, 2);
+		return (false);
+	}
+	if (argc > 2)
+	{
+		ft_putstr_fd(ERR ONLY_ONE_ARG NL, 2);
+		return (false);
+	}
+	return (true);
+}
+
+static bool	check_extension(char *map)
+{
+	if (ft_strlen(map) < 5 || ft_strncmp(map + ft_strlen(map) - 4, ".cub", 4))
+	{
+		ft_putstr_fd(ERR WRONG_EXTENSION NL, 2);
+		return (false);
+	}
+	return (true);
+}
+
+static bool	check_not_dir(char *map)
 {
 	int	fd;
 
-	if (argc == 1)
-		return (!write(2, ERR NEED_ARG NL, 36));
-	if (argc > 2)
-		return (!write(2, ERR ONLY_ONE_ARG NL, 33));
-	if (ft_strlen(map) < 5 || ft_strncmp(map + ft_strlen(map) - 4, ".cub", 4))
-		return (!write(2, ERR WRONG_EXTENSION NL, 65));
 	fd = open(map, O_DIRECTORY);
 	if (fd != -1)
 	{
 		close(fd);
-		return (!write(2, ERR ARG_DIRECTORY NL, 43));
+		ft_putstr_fd(ERR ARG_DIRECTORY NL, 2);
+		return (false);
 	}
+	return (true);
+}
+
+bool	check_arg(int argc, char *map)
+{
+	if (!check_nb_arg(argc))
+		return (false);
+	if (!check_extension(map))
+		return (false);
+	if (!check_not_dir(map))
+		return (false);
 	return (true);
 }

@@ -14,7 +14,7 @@
 # define KB_EVENT_H
 
 # include "typedef.h"
-#include <X11/keysym.h>
+# include <X11/keysym.h>
 
 # define KB_LEFT 65361
 # define KB_UP 65362

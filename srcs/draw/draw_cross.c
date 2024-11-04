@@ -20,7 +20,7 @@ void	draw_cross(t_img_p img)
 	const int		size = img->height * 0.02;
 	int				i;
 	const t_color	c = {.value = ((~mm_img_getpixel(img, mid.x, mid.y).value)
-				& 0xffffff) | 0x0f000000};
+			& 0xffffff) | 0x0f000000};
 
 	i = -1;
 	while (i < 2)

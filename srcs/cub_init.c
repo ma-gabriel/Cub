@@ -22,10 +22,11 @@
 #include "stdio.h"
 #include "raycast_manip.h"
 #include "put.h"
+#include "libft.h"
 
 static int	load_file(t_cub_p cub, char *file);
 static int	gen_all_img(t_cub_p cub);
-void		strs_free(char **strs);
+void		ft_strsfree(char **strs);
 static int	check_id(t_img_descriptor_p id);
 
 int	cub_init(t_cub_p cub, char *file)
@@ -107,6 +108,6 @@ static int	load_file(t_cub_p cub, char *file)
 	cub->floor = parse.textures.f;
 	cub->ceiling = parse.textures.c;
 	e |= map_parse(&cub->map, parse.map);
-	strs_free(parse.map);
+	ft_strsfree(parse.map);
 	return (e);
 }

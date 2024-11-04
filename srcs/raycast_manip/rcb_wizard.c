@@ -24,18 +24,19 @@ static t_rc_event	charge(t_map_p map,
 static void			get_texture(t_img_descriptor_p id,
 						t_rc_event_p rce, int face, t_map_p map);
 
-
 void	rcb_wizard(t_rc_buf_p rcb, t_map_p map,
 			t_player_p player, t_img_descriptor_p id)
 {
 	size_t			i;
 	double			a;
-	const double	r = (1. / (double) WIN_WIDTH * THICKNESS_RAYS) * player->fov;
+	const double	r = (1. / (double) WIN_WIDTH * THICKNESS_RAYS) \
+						* player->fov;
 
 	i = 0;
 	while (i < rcb->size)
 	{
-		a = atan(((double)((ssize_t)(i - (rcb->size >> 1)))) * r) + player->angle;
+		a = atan(((double)((ssize_t)(i - (rcb->size >> 1)))) * r) \
+						+ player->angle;
 		rcb->buf[i] = charge(map, player, a, id);
 		i++;
 	}
@@ -69,6 +70,8 @@ static void	get_texture(t_img_descriptor_p id,
 	if (celltype > ct_bwall_start && celltype <= ct_bwall_end)
 		rce->img = tm_get_texture(id, id_sprite_start
 				+ (celltype - ct_bwall_start) - 1);
+	else if (celltype == ct_bwall_start)
+		rce->img = tm_get_texture(id, id_sprite_start);
 	else
 		rce->img = tm_get_texture(id, id_texture_e + face);
 }

@@ -41,7 +41,7 @@ int	loop(t_cub_p cub)
 	update(cub);
 	benchmark_1(cub);
 	gettimeofday(&end, NULL);
-	if (cub->count % 100 == 0)
+	if (cub->count % 100 == 0) // norm error line too long but forbidden function so OK
 		printf("frame time: %ld\n", (end.tv_sec * 1000000 + end.tv_usec) - (start.tv_sec * 1000000 + start.tv_usec));
 	mm_img_display(tm_get_texture(&cub->id, id_buffer), cub->win, 0, 0);
 	ft_memswap((cub->id.imgs + id_buffer),

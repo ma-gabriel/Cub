@@ -18,7 +18,7 @@
 # include "draw.h"
 # include "defines.h"
 
-typedef enum e_cell_type	t_cell_type;
+typedef enum e_cell_type		t_cell_type;
 typedef enum e_cell_attribute	t_cell_flags;
 
 enum e_cell_type
@@ -65,7 +65,6 @@ struct s_minimap
 	int		height;
 	t_img_p	img;
 };
-
 
 struct s_cell_attr
 {

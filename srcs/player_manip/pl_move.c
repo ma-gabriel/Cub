@@ -10,16 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#define M_PI_2 0
-
 #include "player_manip.h"
 #include "map_manip.h"
-#include "math.h"
+#include <math.h>
 #include <stdio.h>
 #include "put.h"
 #include "libft.h"
-
-void	move_to(t_player_p player, t_vec2 next_pos, t_map_p map, double angle);
 
 void	pl_walk_front(t_player_p player, t_map_p map)
 {
@@ -28,7 +24,7 @@ void	pl_walk_front(t_player_p player, t_map_p map)
 	next_pos = (t_vec2){
 		cos(player->angle) * PLAYER_MOVE + player->pos.x,
 		sin(player->angle) * PLAYER_MOVE + player->pos.y};
-	move_to(player, next_pos, map, ft_norm_angle(player->angle));
+	pl_collide(player, map, next_pos, ft_norm_angle(player->angle));
 }
 
 void	pl_walk_back(t_player_p player, t_map_p map)
@@ -38,7 +34,7 @@ void	pl_walk_back(t_player_p player, t_map_p map)
 	next_pos = (t_vec2){
 		cos(player->angle + M_PI) * PLAYER_MOVE + player->pos.x,
 		sin(player->angle + M_PI) * PLAYER_MOVE + player->pos.y};
-	move_to(player, next_pos, map, ft_norm_angle(player->angle + M_PI));
+	pl_collide(player, map, next_pos, ft_norm_angle(player->angle + M_PI));
 }
 
 void	pl_walk_left(t_player_p player, t_map_p map)
@@ -48,7 +44,7 @@ void	pl_walk_left(t_player_p player, t_map_p map)
 	next_pos = (t_vec2){
 		cos(player->angle - M_PI_2) * PLAYER_MOVE + player->pos.x,
 		sin(player->angle - M_PI_2) * PLAYER_MOVE + player->pos.y};
-	move_to(player, next_pos, map, ft_norm_angle(player->angle - M_PI_2));
+	pl_collide(player, map, next_pos, ft_norm_angle(player->angle - M_PI_2));
 }
 
 void	pl_walk_right(t_player_p player, t_map_p map)
@@ -58,10 +54,5 @@ void	pl_walk_right(t_player_p player, t_map_p map)
 	next_pos = (t_vec2){
 		cos(player->angle + M_PI_2) * PLAYER_MOVE + player->pos.x,
 		sin(player->angle + M_PI_2) * PLAYER_MOVE + player->pos.y};
-	move_to(player, next_pos, map, ft_norm_angle(player->angle + M_PI_2));
-}
-
-void	move_to(t_player_p player, t_vec2 next_pos, t_map_p map, double angle)
-{
-	pl_collide(player, map, next_pos, angle);
+	pl_collide(player, map, next_pos, ft_norm_angle(player->angle + M_PI_2));
 }

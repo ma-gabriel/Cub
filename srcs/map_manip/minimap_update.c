@@ -30,7 +30,7 @@ void	minimap_update(t_minimap_p minimap, t_kb_event_p kbe)
 		last_key[0] = 0;
 	if (kb_get_event(kbe, KB_DOWN))
 	{
-		if (last_key[1] == 0)
+		if (last_key[1] == 0 && minimap->width > 1 && minimap->height > 1)
 		{
 			last_key[1] = 1;
 			minimap->width--;

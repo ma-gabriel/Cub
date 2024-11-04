@@ -20,7 +20,7 @@ void	rcb_applie(t_rc_buf_p rcb, t_img_p img)
 {
 	const double	ratio = ((double)img->width / (double)rcb->size);
 	double			i;
-	size_t				j;
+	size_t			j;
 	t_rc_event_p	rc;
 
 	i = 0;

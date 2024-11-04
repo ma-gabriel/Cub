@@ -77,7 +77,6 @@ int	key_released(int kc, t_kb_event_p kbe)
 int	mouse_pressed(int mc, int x, int y, t_kb_event_p kbe)
 {
 	(void) (x + y);
-
 	key_pressed(-mc, kbe);
 	return (0);
 }

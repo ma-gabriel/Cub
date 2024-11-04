@@ -34,7 +34,7 @@ int	map_isvalide(t_map_p map)
 			if (!is_compatible(c, map_get_cell_s(map, i + 1, j)))
 				return (on_error(i, j, map_get_cell_s(map, i + 1, j)));
 			if (!is_compatible(c, map_get_cell_s(map, i, j + 1)))
-					return (on_error(i, j, map_get_cell_s(map, i, j + 1)));
+				return (on_error(i, j, map_get_cell_s(map, i, j + 1)));
 			if (!is_compatible(c, map_get_cell_s(map, i - 1, j)))
 				return (on_error(i, j, map_get_cell_s(map, i - 1, j)));
 			if (!is_compatible(c, map_get_cell_s(map, i, j - 1)))

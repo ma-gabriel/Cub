@@ -28,5 +28,6 @@ void	ft_memswap(void *p1, void *p2, size_t len);
 void	ft_memswapbyte(void *p1, void *p2);
 double	ft_get_real(double n);
 double	ft_norm_angle(double a);
+size_t	ft_strslen(char **strs);
 
 #endif

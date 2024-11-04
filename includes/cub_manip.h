@@ -20,5 +20,4 @@ void		cm_set_sky(t_img_p img, const t_color color);
 void		cm_set_ground(t_img_p img, const t_color color);
 void		cm_put_line(t_img_p img, t_rc_event_p rc, int x);
 
-
 #endif

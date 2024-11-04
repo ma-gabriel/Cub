@@ -16,13 +16,14 @@
 #include "stdio.h"
 #include "draw.h"
 
-
-static void	cm_put_pixels(t_img_p canvas, t_color pixel, int canvas_x, int canvas_y);
+static void	cm_put_pixels(t_img_p canvas, t_color pixel, \
+	int canvas_x, int canvas_y);
 
 void	cm_put_line(t_img_p canvas, t_rc_event_p rc, int canvas_x)
 {
 	const int		layer_x = rc->offset * rc->img->width;
-	const int		beginning = (canvas->height + canvas->height / rc->dist) / 2;
+	const int		beginning = \
+			(canvas->height + canvas->height / rc->dist) / 2;
 	const int		limit = ft_min(canvas->height, beginning);
 	const double	ratio = rc->img->height * rc->dist / canvas->height;
 	int				i;
@@ -31,13 +32,15 @@ void	cm_put_line(t_img_p canvas, t_rc_event_p rc, int canvas_x)
 	while (i < limit)
 	{
 		cm_put_pixels(canvas,
-			rc->img->addr[(int)((i + beginning - canvas->height) * ratio) * rc->img->width + layer_x],
+			rc->img->addr[(int)((i + beginning - canvas->height) * ratio) \
+				*rc->img->width + layer_x],
 			canvas_x, i);
 		i++;
 	}
 }
 
-static void	cm_put_pixels(t_img_p canvas, t_color pixel, int canvas_x, int canvas_y)
+static void	cm_put_pixels(t_img_p canvas, t_color pixel, \
+	int canvas_x, int canvas_y)
 {
 	size_t	i;
 

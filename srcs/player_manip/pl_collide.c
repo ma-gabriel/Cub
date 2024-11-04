@@ -40,7 +40,7 @@ t_vec2 npos, double angle)
 				floor(npos.y + (player->size / 2.) * mod)), ~0);
 	if (attr.value & cf_oob)
 		player->angle += M_PI;
-	else if (attr.value &  cf_collide)
+	else if (attr.value & cf_collide)
 		;
 	else
 	{
@@ -65,7 +65,7 @@ t_vec2 npos, double angle)
 				floor(player->pos.y - (player->size / 2.))), ~0);
 	if (attr.value & cf_oob)
 		player->angle += M_PI;
-	else if (attr.value &  cf_collide)
+	else if (attr.value & cf_collide)
 		;
 	else
 	{

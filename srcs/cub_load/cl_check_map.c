@@ -16,8 +16,6 @@
 #include "defines.h"
 #include "struct.h"
 
-size_t	strs_len(char **strs);
-
 bool	check_only_map(char **file)
 {
 	bool	start;

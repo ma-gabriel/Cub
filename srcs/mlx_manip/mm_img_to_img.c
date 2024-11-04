@@ -27,7 +27,7 @@ void	mm_img_to_img(t_img_p src, t_img_p dest, int x, int y)
 		i = ft_max(0, -x);
 		while (i < w)
 		{
-			draw_pixel_a(dest, x + i ,y + j, mm_img_getpixel(src, i, j));
+			draw_pixel_a(dest, x + i, y + j, mm_img_getpixel(src, i, j));
 			i++;
 		}
 		j++;

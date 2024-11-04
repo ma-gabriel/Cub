@@ -20,9 +20,9 @@
 #include "libft.h"
 #include "map_manip.h"
 
-static t_vec2	h(t_map_p map, t_rc_sett rcs);
-static t_vec2	v(t_map_p map, t_rc_sett rcs);
-static t_vec2	a(t_map_p map, t_rc_sett rcs);
+static t_vec2	horizontals_rays(t_map_p map, t_rc_sett rcs);
+static t_vec2	vertical_rays(t_map_p map, t_rc_sett rcs);
+static t_vec2	len_rays(t_map_p map, t_rc_sett rcs);
 
 t_raycast	rc_throw(t_map_p map, t_rc_sett rcs)
 {
@@ -31,8 +31,8 @@ t_raycast	rc_throw(t_map_p map, t_rc_sett rcs)
 	t_vec2		tmp;
 
 	rcs.angle = ft_norm_angle(rcs.angle);
-	pos = v(map, rcs);
-	tmp = h(map, rcs);
+	pos = vertical_rays(map, rcs);
+	tmp = horizontals_rays(map, rcs);
 	if (hypot(pos.x - rcs.start.x, pos.y - rcs.start.y) \
 		> hypot(tmp.x - rcs.start.x, tmp.y - rcs.start.y))
 	{
@@ -52,7 +52,7 @@ t_raycast	rc_throw(t_map_p map, t_rc_sett rcs)
 	return (rc);
 }
 
-static t_vec2	v(t_map_p map, t_rc_sett rcs)
+static t_vec2	vertical_rays(t_map_p map, t_rc_sett rcs)
 {
 	const double	ntan = -tan(rcs.angle);
 	t_vec2			dp;
@@ -77,10 +77,10 @@ static t_vec2	v(t_map_p map, t_rc_sett rcs)
 	}
 	rcs.start = pos;
 	rcs.delta = dp;
-	return (a(map, rcs));
+	return (len_rays(map, rcs));
 }
 
-static t_vec2	h(t_map_p map, t_rc_sett rcs)
+static t_vec2	horizontals_rays(t_map_p map, t_rc_sett rcs)
 {
 	const double	atan = -1. / tan(rcs.angle);
 	t_vec2			dp;
@@ -105,10 +105,10 @@ static t_vec2	h(t_map_p map, t_rc_sett rcs)
 	}
 	rcs.delta = dp;
 	rcs.start = pos;
-	return (a(map, rcs));
+	return (len_rays(map, rcs));
 }
 
-static t_vec2	a(t_map_p map, t_rc_sett rcs)
+static t_vec2	len_rays(t_map_p map, t_rc_sett rcs)
 {
 	size_t		count;
 	t_vec2		pos;
