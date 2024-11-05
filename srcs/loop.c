@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/29 19:06:00 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/05 16:21:41 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	loop(t_cub_p cub)
 	struct timeval	end;
 
 	gettimeofday(&start, NULL);
-	if (kb_get_event(&cub->kbe, KB_ESC))
+	if (kb_get_event(&cub->kbe, KB_ESC) || cub->count == 10000000)
 		mlx_loop_end(cub->mlx);
 	update(cub);
 	benchmark_1(cub);
@@ -47,7 +47,6 @@ int	loop(t_cub_p cub)
 	ft_memswap((cub->id.imgs + id_buffer),
 		(cub->id.imgs + id_display),
 		sizeof(t_img_p));
-	usleep(cub->delay);
 	cub->count++;
 	return (0);
 }

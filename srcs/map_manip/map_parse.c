@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:19:59 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/01 13:50:52 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/04 18:41:59 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,11 @@ static int	from_raw(t_map_p map, char **raw_map)
 		while (raw_map[i][j])
 		{
 			map->data[i * map->width + j] = map_cell_get_type(raw_map[i][j]);
+			if (map->data[i * map->width + j] == ct_unknow)
+			{
+				ft_putendl_fd("unreconized char", 2);
+				return (1);
+			}
 			j++;
 		}
 		while (j < map->width)

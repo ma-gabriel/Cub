@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 02:05:23 by geymat            #+#    #+#             */
-/*   Updated: 2024/10/30 17:07:17 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/05 14:34:05 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ int	main(int argc, char **argv)
 	struct timeval		start;
 	struct timeval		end;
 
-	gettimeofday(&start, NULL);
 	if (!check_arg(argc, argv[1]))
 		return (1);
 	if (cub_init(&cub, argv[1]))
 		return (cub_destroy(&cub), 1);
 	mlx_loop_hook(cub.mlx, loop, &cub);
+	gettimeofday(&start, NULL);
 	mlx_loop(cub.mlx);
-	cub_destroy(&cub);
 	gettimeofday(&end, NULL);
+	cub_destroy(&cub);
 	printf("average fps: %ld\n", cub.count / (end.tv_sec - start.tv_sec));
 	return (0);
 }

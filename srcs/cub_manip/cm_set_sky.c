@@ -6,13 +6,13 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 15:39:49 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/02 16:48:53 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/05 14:26:03 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_manip.h"
 
-void	cm_set_sky(t_img_p img, const t_color color)
+void	cm_set_sky(restrict t_img_p img, register t_color color)
 {
 	const int	end = (img->width * img->height) >> 1;
 	int			i;
