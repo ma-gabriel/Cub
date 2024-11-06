@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:20:29 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/22 18:37:46 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/06 16:50:58 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	draw_cross(t_img_p img)
 {
-	const t_vec2	mid = {img->width * .5, img->height * .5};
+	const t_vec2	mid = {img->width >> 1, img->height >> 1};
 	const int		size = img->height * 0.02;
 	int				i;
 	const t_color	c = {.value = ((~mm_img_getpixel(img, mid.x, mid.y).value)

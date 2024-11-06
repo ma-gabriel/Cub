@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 20:31:41 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/19 13:52:48 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/06 16:44:50 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	rcb_applie(t_rc_buf_p rcb, t_img_p img)
 	while (j < rcb->size)
 	{
 		rc = &rcb->buf[j];
-		cm_put_line(img, rc, i);
+		if (rc->img != NULL)
+			cm_put_line(img, rc, i);
 		i += ratio;
 		j++;
 	}

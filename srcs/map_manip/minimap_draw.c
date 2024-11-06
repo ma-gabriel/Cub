@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:52:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/29 19:01:34 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/06 16:53:19 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	minimap_draw(t_minimap_p minimap, t_map_p map,
 
 void	dr_rc(t_minimap_p minimap, t_rc_buf_p rcb, t_vec2 ratio, t_vec2 center)
 {
-	const t_vec2	c = {.x = -center.x + minimap->width * .5,
-		.y = -center.y + minimap->height * .5};
+	const t_vec2	c = {.x = -center.x + (minimap->width >> 1),
+		.y = -center.y + (minimap->height >> 1)};
 	size_t			i;
 	t_vec2			e;
 	t_vec2			s;
@@ -77,8 +77,8 @@ void	dr_mp(t_minimap_p minimap, t_map_p map,
 				((j - ft_get_real(center.y)) * ratio.y)},
 				(t_vec2){ratio.x + 1., ratio.y + 1.},
 				cell_get_color(map_get_cell_s(map,
-						floor(i + center.x - (double)w * .5),
-						floor(j + center.y - (double)h * .5))));
+						floor(i + center.x - (double)(w >> 1)),
+						floor(j + center.y - (double)(h >> 1)))));
 			i++;
 		}
 		j++;
@@ -91,14 +91,14 @@ void	dr_pl(t_minimap_p minimap, t_player_p player, const t_vec2 ratio)
 		ratio.y * player->size};
 
 	draw_rect(minimap->img, (t_vec2){
-		.x = ((minimap->width * .5) - (player->size * .5)) * ratio.x,
-		.y = ((minimap->height * .5) - (player->size * .5)) * ratio.y},
+		.x = ((minimap->width >> 1) - (player->size * .5)) * ratio.x,
+		.y = ((minimap->height >> 1) - (player->size * .5)) * ratio.y},
 		size, (t_color){.value = 0x7FFF00FF});
 	draw_line(minimap->img, (t_vec2){
-		.x = minimap->width * .5 * ratio.x - .5,
-		.y = minimap->height * .5 * ratio.y - .5},
+		.x = (minimap->width >> 1) * ratio.x - .5,
+		.y = (minimap->height >> 1) * ratio.y - .5},
 		(t_vec2){
-		.x = cos(player->angle) * ratio.x + minimap->width * .5 * ratio.x,
-		.y = sin(player->angle) * ratio.y + minimap->height * .5 * ratio.y},
+		.x = cos(player->angle) * ratio.x + (minimap->width >> 1) * ratio.x,
+		.y = sin(player->angle) * ratio.y + (minimap->height >> 1) * ratio.y},
 		(t_color){.value = 0x7F0000FF});
 }
