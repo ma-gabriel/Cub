@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:55:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/30 14:19:37 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/06 15:27:16 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static void	update_sett(t_player_p player, t_kb_event_p kbe)
 		player->fov /= 1.01;
 	if (kb_get_event(kbe, 'z'))
 		player->size -= 0.1;
+	if (kb_get_event(kbe, 'f'))
+		player->fov *= -1.;
 	if (kb_get_event(kbe, 'x'))
 		player->size += 0.1;
 	if (player->size > .9)

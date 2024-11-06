@@ -6,11 +6,12 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:19:59 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/04 18:41:59 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/06 13:49:04 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define M_PI 3.14159
+
 #include "map_manip.h"
 #include <stdlib.h>
 #include "str.h"

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 19:33:49 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/05 16:01:01 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/06 14:09:18 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 static void	cm_put_pixels(t_img_p canvas, t_color pixel, \
 	const int canvas_x, const int canvas_y);
 
-void	cm_put_line(t_img_p canvas, t_rc_event_p rc, const int canvas_x)
+void	cm_put_line(t_img_p canvas, restrict t_rc_event_p rc, const int canvas_x)
 {
 	const int		layer_x = rc->offset * rc->img->width;
 	const int		beginning = \
 			(canvas->height + canvas->height / rc->dist) / 2;
 	const int		limit = ft_min(canvas->height, beginning);
 	const double	ratio = rc->img->height * rc->dist / canvas->height;
-	int				i;
+	register int	i;
 
 	i = canvas->height - limit;
 	while (i < limit)

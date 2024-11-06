@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/05 16:21:41 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/06 15:40:40 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 #include <sys/time.h>
 #include "cub.h"
 
-int		benchmark_1(t_cub_p cub);
+int		draw(t_cub_p cub);
 void	gen_frac(t_img_p img, size_t off);
 void	update(t_cub_p cub);
 
@@ -39,7 +39,7 @@ int	loop(t_cub_p cub)
 	if (kb_get_event(&cub->kbe, KB_ESC) || cub->count == 10000000)
 		mlx_loop_end(cub->mlx);
 	update(cub);
-	benchmark_1(cub);
+	draw(cub);
 	gettimeofday(&end, NULL);
 	if (cub->count % 100 == 0) // norm error line too long but forbidden function so OK
 		printf("frame time: %ld\n", (end.tv_sec * 1000000 + end.tv_usec) - (start.tv_sec * 1000000 + start.tv_usec));
@@ -65,7 +65,7 @@ void	update(t_cub_p cub)
 		cub->delay = 1;
 }
 
-int	benchmark_1(t_cub_p cub)
+int	draw(t_cub_p cub)
 {
 	const t_img_p	img_dr = tm_get_texture(&cub->id, id_buffer);
 	const t_img_p	img_di = tm_get_texture(&cub->id, id_display);
