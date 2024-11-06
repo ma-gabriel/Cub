@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 16:22:48 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/01 13:39:13 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/06 16:07:33 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ t_vec2 npos, double angle)
 	t_cell_attr	attr;
 
 	attr.value = map_cell_setting(map_get_cell_s(map,
-				floor(player->pos.x + (player->size / 2.)),
-				floor(npos.y + (player->size / 2.) * mod)), ~0);
+				floor(player->pos.x + (player->size * .5)),
+				floor(npos.y + (player->size * .5) * mod)), ~0);
 	attr.value |= map_cell_setting(map_get_cell_s(map,
-				floor(player->pos.x - (player->size / 2.)),
-				floor(npos.y + (player->size / 2.) * mod)), ~0);
+				floor(player->pos.x - (player->size * .5)),
+				floor(npos.y + (player->size * .5) * mod)), ~0);
 	if (attr.value & cf_oob)
 		player->angle += M_PI;
 	else if (attr.value & cf_collide)
@@ -53,16 +53,16 @@ t_vec2 npos, double angle)
 static int	check_vertical(t_player_p player, t_map_p map,
 t_vec2 npos, double angle)
 {
-	const int	mod = -((angle > M_PI / 2.
-				&& angle < 3. * M_PI / 2.) * 2 - 1);
+	const int	mod = -((angle > M_PI * .5
+				&& angle < 3. * M_PI * .5) * 2 - 1);
 	t_cell_attr	attr;
 
 	attr.value = map_cell_setting(map_get_cell_s(map,
-				floor(npos.x + (player->size / 2.) * mod),
-				floor(player->pos.y + (player->size / 2.))), ~0);
+				floor(npos.x + (player->size * .5) * mod),
+				floor(player->pos.y + (player->size * .5))), ~0);
 	attr.value |= map_cell_setting(map_get_cell_s(map,
-				floor(npos.x + (player->size / 2.) * mod),
-				floor(player->pos.y - (player->size / 2.))), ~0);
+				floor(npos.x + (player->size * .5) * mod),
+				floor(player->pos.y - (player->size * .5))), ~0);
 	if (attr.value & cf_oob)
 		player->angle += M_PI;
 	else if (attr.value & cf_collide)
