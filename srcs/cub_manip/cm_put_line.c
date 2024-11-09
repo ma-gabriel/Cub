@@ -16,10 +16,11 @@
 #include "stdio.h"
 #include "draw.h"
 
-static void	cm_put_pixels(t_img_p canvas, t_color pixel, \
-	const int canvas_x, const int canvas_y);
+static void	cm_put_pixels(t_img_p canvas, t_color pixel,
+				const int canvas_x, const int canvas_y);
 
-void	cm_put_line(t_img_p canvas, restrict t_rc_event_p rc, const int canvas_x)
+void	cm_put_line(t_img_p canvas, restrict t_rc_event_p rc,
+	const int canvas_x)
 {
 	const int		layer_x = rc->offset * rc->img->width;
 	const int		beginning = \
@@ -33,7 +34,7 @@ void	cm_put_line(t_img_p canvas, restrict t_rc_event_p rc, const int canvas_x)
 	{
 		cm_put_pixels(canvas,
 			rc->img->addr[(int)((i + beginning - canvas->height) * ratio)
-				*rc->img->width + layer_x],
+			*rc->img->width + layer_x],
 			canvas_x, i);
 		i++;
 	}
@@ -41,7 +42,7 @@ void	cm_put_line(t_img_p canvas, restrict t_rc_event_p rc, const int canvas_x)
 
 #if THICKNESS_RAYS == 1
 
-static inline void	cm_put_pixels(t_img_p canvas, t_color pixel, \
+static inline void	cm_put_pixels(t_img_p canvas, t_color pixel,
 	const int canvas_x, const int canvas_y)
 {
 	canvas->addr[canvas_y * canvas->width + canvas_x] = pixel;
@@ -49,7 +50,7 @@ static inline void	cm_put_pixels(t_img_p canvas, t_color pixel, \
 
 #else
 
-static inline void	cm_put_pixels(t_img_p canvas, t_color pixel, \
+static inline void	cm_put_pixels(t_img_p canvas, t_color pixel,
 	const int canvas_x, const int canvas_y)
 {
 	size_t	i;

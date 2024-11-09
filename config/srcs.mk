@@ -8,7 +8,6 @@ SRCS += cub_destroy.c
 SRCS += mlx_manip/mm_img_display.c
 SRCS += mlx_manip/mm_img_set_bg.c
 SRCS += mlx_manip/mm_img_clear.c
-SRCS += mlx_manip/mm_image_new.c
 SRCS += mlx_manip/mm_img_new.c
 SRCS += mlx_manip/mm_color_phex.c
 SRCS += mlx_manip/mm_img_putpixel.c
@@ -19,7 +18,6 @@ SRCS += mlx_manip/mm_window_new.c
 SRCS += mlx_manip/mm_window_delete.c
 SRCS += mlx_manip/mm_img_to_img.c
 SRCS += mlx_manip/mm_img_getpixel.c
-SRCS += mlx_manip/mm_image_delete.c
 SRCS += mlx_manip/mm_mlx_delete.c
 #---cub_manip---
 SRCS += cub_manip/cm_set_ground.c
@@ -49,7 +47,6 @@ SRCS += map_manip/map_cell_get_type.c
 SRCS += map_manip/map_parse.c
 SRCS += map_manip/minimap_draw.c
 #---cub_load---
-SRCS += cub_load/cl_check_map.c
 SRCS += cub_load/cl_file.c
 SRCS += cub_load/cl_load_sprite.c
 SRCS += cub_load/cl_check_arg.c

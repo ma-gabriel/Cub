@@ -69,17 +69,6 @@ void		mm_img_destroy(t_img_p img, t_mlx_p mlx);
 void		mm_img_delete(t_img_p img, t_mlx_p mlx);
 void		mm_img_to_img(t_img_p src, t_img_p dest, int x, int y);
 
-struct s_image
-{
-	t_img	img;
-	t_mlx_p	mlx_ptr;
-};
-
-t_image_p	mm_image_new(t_mlx_p mlx, int width, int height);
-int			mm_image_init(t_image_p img, t_mlx_p mlx, int width, int height);
-void		mm_image_destroy(t_image_p img);
-void		mm_image_delete(t_image_p img);
-
 /*                                     window manip                           */
 
 struct s_window
