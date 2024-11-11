@@ -75,9 +75,6 @@ t_img_p	mm_file_to_img_new(t_mlx_p mlx, char *file)
 	return (img);
 }
 
-//note pour plus tard, faudrait pas mettre des bool ?
-//vu que tu veux faire le moins de tranpost d'info possible
-//apres ces fonctions sont utilisees assez rarement
 int	mm_file_to_img_init(t_img_p img_p, t_mlx_p mlx, char *file)
 {
 	img_p->img_ptr = mlx_xpm_file_to_image(mlx, file,
