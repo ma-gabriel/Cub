@@ -10,18 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defines.h"
 #include "cub.h"
-#include "mlx_manip.h"
-#include "texture_manip.h"
+#include "struct.h"
 #include "mem.h"
 #include "kb_event.h"
-#include "struct.h"
 #include "map_checks.h"
-#include "map_manip.h"
-#include "stdio.h"
-#include "raycast_manip.h"
-#include "put.h"
 #include "libft.h"
 
 static int	load_file(t_cub_p cub, char *file);
