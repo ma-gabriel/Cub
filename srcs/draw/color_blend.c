@@ -15,8 +15,13 @@
 
 t_color	color_blend(const t_color c1, const t_color c2)
 {
+<<<<<<< HEAD
 	t_color			o;
 	double			a1;
+=======
+	t_color	o;
+	double	a1;
+>>>>>>> main
 
 	if (c1.a == 0)
 		return (c1);
