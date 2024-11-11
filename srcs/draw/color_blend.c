@@ -32,17 +32,3 @@ t_color	color_blend(const t_color c1, const t_color c2)
 	o.a = 255;
 	return (o);
 }
-
-// t_color	color_blend(t_color c1, t_color c2)
-// {
-// 	t_color			o;
-// 	const double	a2 = (double)c2.a / 255.;
-
-// 	o = (t_color){
-// 		.r = c1.r * (1 - a2) + c2.r * a2,
-// 		.g = c1.g * (1 - a2) + c2.g * a2,
-// 		.b = c1.b * (1 - a2) + c2.b * a2,
-// 		.a = 0,
-// 	};
-// 	return (o);
-// }
