@@ -98,6 +98,18 @@ static bool	fill_texture(t_parse *parse, short id, char *line)
 	return (!!(*aimed));
 }
 
+static void	destroy_image_parsing(t_textures textures, t_mlx_p mlx)
+{
+	if (textures.ea)
+		mm_img_delete(textures.ea, mlx);
+	if (textures.no)
+		mm_img_delete(textures.no, mlx);
+	if (textures.so)
+		mm_img_delete(textures.so, mlx);
+	if (textures.we)
+		mm_img_delete(textures.we, mlx);
+}
+
 int	struct_init(t_mlx_p mlx, t_window_p win, t_parse *parse, char *file_name)
 {
 	int	res;
@@ -105,5 +117,7 @@ int	struct_init(t_mlx_p mlx, t_window_p win, t_parse *parse, char *file_name)
 	parse->window.mlx_ptr = mlx;
 	parse->window.win_ptr = win;
 	res = struct_fill(parse, file_name);
+	if (res)
+		destroy_image_parsing(parse->textures, mlx);
 	return (res);
 }

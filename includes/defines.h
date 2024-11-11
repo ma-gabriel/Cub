@@ -55,7 +55,6 @@ cub file, put the 4 textures and 2 colors"
 /*                                     ui define                              */
 
 # define THICKNESS_RAYS 1
-//  WIN_WIDTH must be divisble with THICKNESS_RAYS
 # define WIN_WIDTH 1500
 # define WIN_HEIGHT 700
 # define WIN_NAME "cub3D"
