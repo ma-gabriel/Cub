@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cl_struct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geymat <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 03:22:34 by geymat            #+#    #+#             */
-/*   Updated: 2024/11/04 03:22:37 by geymat           ###   ########.fr       */
+/*   Updated: 2024/11/13 18:38:57 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static bool	fill_texture(t_parse *parse, short id, char *line)
 	while (*line == ' ' || (*line >= 9 && *line <= 13))
 		line++;
 	if (*aimed)
-		return ((!write(2, error_message, 47)));
+		return ((!write(2, error_message, 45)));
 	*aimed = mm_file_to_img_new(parse->window.mlx_ptr, line);
 	if (*aimed == NULL)
 		ft_putstr_fd(ERR MLX_FAILED NL, 2);
