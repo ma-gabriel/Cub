@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/06 15:40:40 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/13 18:19:04 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ int	draw(t_cub_p cub)
 
 	(void) img_di;
 	rcb_wizard(&cub->rcb, &cub->map, &cub->player, &cub->id);
-	cm_set_ground(img_dr, cub->floor);
-	cm_set_sky(img_dr, cub->ceiling);
 	if (kb_get_event(&cub->kbe, KB_TAB))
 	{
 		map_draw(&cub->map, img_dr);
@@ -82,6 +80,8 @@ int	draw(t_cub_p cub)
 	}
 	else
 	{
+		cm_set_ground(img_dr, cub->floor);
+		cm_set_sky(img_dr, cub->ceiling);
 		rcb_applie(&cub->rcb, img_dr);
 		draw_cross(img_dr);
 		minimap_draw(&cub->minimap, &cub->map, &cub->player, &cub->rcb);
