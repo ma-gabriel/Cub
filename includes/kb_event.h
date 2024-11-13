@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:12:45 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/30 14:30:31 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/13 18:25:16 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define MOUSE3 -3
 
 # define MOUSE_TRIG KB_RCTRL
+# define MAP_TRIG KB_TAB
 
 struct s_kb_event
 {
