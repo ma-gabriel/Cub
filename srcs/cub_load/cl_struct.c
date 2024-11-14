@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 03:22:34 by geymat            #+#    #+#             */
-/*   Updated: 2024/11/13 18:38:57 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/14 15:05:55 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	struct_fill(t_parse *parse, char *file_name)
 
 static bool	fill_texture(t_parse *parse, short id, char *line)
 {
-	char		error_message[47];
+	char		error_message[46];
 	t_img_p		*aimed;
 
 	ft_strcpy(error_message, "Error\nThe texture XX is asked at least twice\n");

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:14 by geymat            #+#    #+#             */
-/*   Updated: 2024/10/29 13:48:21 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/14 16:08:42 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ cub file, put the 4 textures and 2 colors"
 /*                                     ui define                              */
 
 # define THICKNESS_RAYS 1
-# define WIN_WIDTH 1080
-# define WIN_HEIGHT 720
+# define WIN_WIDTH 900
+# define WIN_HEIGHT 500
 # define WIN_NAME "cub3D"
-# define MINIMAP_WIDTH 400
-# define MINIMAP_HEIGHT 400
+# define MINIMAP_WIDTH 200
+# define MINIMAP_HEIGHT 200
 
 #endif

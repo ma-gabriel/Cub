@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 19:33:49 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/06 16:05:41 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/14 15:57:20 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,25 @@ static inline void	cm_put_pixels(t_img_p canvas, t_color pixel,
 	const int canvas_x, const int canvas_y)
 {
 	canvas->addr[canvas_y * canvas->width + canvas_x] = pixel;
+}
+
+#elif THICKNESS_RAYS == 2
+
+static inline void	cm_put_pixels(t_img_p canvas, t_color pixel,
+	const int canvas_x, const int canvas_y)
+{
+	canvas->addr[canvas_y * canvas->width + canvas_x] = pixel;
+	canvas->addr[canvas_y * canvas->width + canvas_x + 1] = pixel;
+}
+
+#elif THICKNESS_RAYS == 3
+
+static inline void	cm_put_pixels(t_img_p canvas, t_color pixel,
+	const int canvas_x, const int canvas_y)
+{
+	canvas->addr[canvas_y * canvas->width + canvas_x] = pixel;
+	canvas->addr[canvas_y * canvas->width + canvas_x + 1] = pixel;
+	canvas->addr[canvas_y * canvas->width + canvas_x + 2] = pixel;
 }
 
 #else
