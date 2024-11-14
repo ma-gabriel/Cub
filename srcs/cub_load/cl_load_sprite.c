@@ -13,6 +13,7 @@
 #include "defines.h"
 #include "texture_manip.h"
 #include "str.h"
+#include "libft.h"
 
 static t_img_p	load_one(unsigned int num, t_mlx_p mlx);
 static int		load_all(t_img_descriptor_p imgd, t_mlx_p mlx);
@@ -52,9 +53,14 @@ static t_img_p	load_one(unsigned int num, t_mlx_p mlx)
 	name = ft_strsjoin((char *[]){SPRITE_DIR SPRITE_PREFIX,
 			midfix, SPRITE_POSTFIX, NULL});
 	if (name == NULL)
+	{
+		ft_putstr_fd(ERR MALLOC_FAIL NL, 2);
 		return (NULL);
+	}
 	img = mm_file_to_img_new(mlx, name);
 	free(name);
+	if (!img)
+		ft_putstr_fd(ERR MLX_FAILED NL, 2);
 	return (img);
 }
 

@@ -71,7 +71,7 @@ struct s_cell_attr
 	size_t	value;
 };
 
-# define UPDATE_MAP_DELAY 100
+# define UPDATE_MAP_DELAY 25
 
 int			map_isvalide(t_map_p map);
 int			map_parse(t_map_p map, char **raw_map);
