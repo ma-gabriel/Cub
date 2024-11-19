@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 17:27:16 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/30 13:58:04 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/19 15:19:50 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	map_cell_setting(t_cell_type type, size_t mask)
 
 	if (type > ct_bwall_start && type <= ct_bwall_end)
 		type = ct_bwall_end;
-	if (type > CT_LENGHT || type < 0)
+	else if (type > CT_LENGHT || type < 0)
 		type = ct_unknow;
 	return (tmp[type].value & mask);
 }
