@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#define _DEFAULT_SOURCE
 #include "mlx_manip.h"
 #include "cub_manip.h"
 #include "raycast_manip.h"
@@ -23,7 +22,6 @@
 #include "draw.h"
 #include "libft.h"
 #include "texture_manip.h"
-#include <sys/time.h>
 #include "cub.h"
 
 int		draw(t_cub_p cub);
@@ -32,17 +30,10 @@ void	update(t_cub_p cub);
 
 int	loop(t_cub_p cub)
 {
-	struct timeval	start;
-	struct timeval	end;
-
-	gettimeofday(&start, NULL);
 	if (kb_get_event(&cub->kbe, KB_ESC) || cub->count == 10000000)
 		mlx_loop_end(cub->mlx);
 	update(cub);
 	draw(cub);
-	gettimeofday(&end, NULL);
-	if (cub->count % 100 == 0) // norm error line too long but forbidden function so OK
-		printf("frame time: %ld\n", (end.tv_sec * 1000000 + end.tv_usec) - (start.tv_sec * 1000000 + start.tv_usec));
 	mm_img_display(tm_get_texture(&cub->id, id_buffer), cub->win, 0, 0);
 	ft_memswap((cub->id.imgs + id_buffer),
 		(cub->id.imgs + id_display),

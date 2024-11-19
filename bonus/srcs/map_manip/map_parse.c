@@ -97,7 +97,7 @@ static int	from_raw(t_map_p map, char **raw_map)
 			map->data[i * map->width + j] = map_cell_get_type(raw_map[i][j]);
 			if (map->data[i * map->width + j] == ct_unknow)
 			{
-				ft_putendl_fd("unreconized char", 2);
+				ft_putstr_fd(ERR UNRECOGNIZED NL, 2);
 				return (1);
 			}
 			j++;
