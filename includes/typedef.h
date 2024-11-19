@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:00:43 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/30 13:55:35 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/19 16:08:33 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ typedef struct s_cell_attr		t_cell_attr;
 
 typedef struct s_map			t_map;
 typedef struct s_map			*t_map_p;
-
-typedef struct s_minimap		t_minimap;
-typedef struct s_minimap		*t_minimap_p;
 
 typedef struct s_window			t_window;
 typedef t_window				*t_window_p;

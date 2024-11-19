@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:24 by geymat            #+#    #+#             */
-/*   Updated: 2024/10/28 20:49:30 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/19 16:08:06 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,16 @@
 # include "defines.h"
 # include <stdlib.h>
 
-typedef struct s_sprite
-{
-	t_img		images[SPRITE_IMGS];
-	size_t		index;
-}		t_sprite;
 
 typedef struct s_textures
 {
-	t_img_p		images[4 + 2 + SPRITE_IMGS - 1];
+	t_img_p		images[4 + 2];
 	t_img_p		no;
 	t_img_p		so;
 	t_img_p		we;
 	t_img_p		ea;
 	t_color		f;
 	t_color		c;
-	t_sprite	sprite;
 }		t_textures;
 
 typedef struct s_parse
@@ -56,7 +50,6 @@ struct s_loop_param
 	t_kb_event_p		kbe;
 	t_player_p			player;
 	t_map_p				map;
-	t_minimap_p			minimap;
 	t_img_descriptor_p	id;
 };
 

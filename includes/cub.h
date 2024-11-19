@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:53:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/25 17:39:42 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/19 16:09:03 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ struct s_cub
 	t_kb_event			kbe;
 	t_player			player;
 	t_map				map;
-	t_minimap			minimap;
 	t_img_descriptor	id;
 	t_rc_buf			rcb;
 	t_color				floor;

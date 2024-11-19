@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:30:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/22 14:38:14 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/19 16:17:44 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void		mm_img_set_bg(t_img_p img, t_color color);
 void		mm_img_display(t_img_p img, t_window_p win, int x, int y);
 void		mm_img_destroy(t_img_p img, t_mlx_p mlx);
 void		mm_img_delete(t_img_p img, t_mlx_p mlx);
-void		mm_img_to_img(t_img_p src, t_img_p dest, int x, int y);
 
 /*                                     window manip                           */
 

@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:51:34 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/29 16:08:15 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/19 16:10:53 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ int	cub_init(t_cub_p cub, char *file)
 	kb_set_event(cub->win, &cub->kbe);
 	pl_init(&cub->player, cub->map.start_pos, cub->map.start_orient);
 	if (rcb_init(&cub->rcb, WIN_WIDTH / THICKNESS_RAYS))
-		return (1);
-	if (minimap_init(&cub->minimap,
-			tm_get_texture(&cub->id, id_minimap), 10, 10))
 		return (1);
 	check_id(&cub->id);
 	cub->delay = 1;
@@ -78,10 +75,6 @@ static int	gen_all_img(t_cub_p cub)
 	tmp = mm_img_new(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
 	err |= tmp == NULL;
 	tm_set_texture(&cub->id, tmp, id_buffer);
-	tmp = mm_img_new(cub->mlx, MINIMAP_WIDTH, MINIMAP_HEIGHT);
-	err |= tmp == NULL;
-	tm_set_texture(&cub->id, tmp, id_minimap);
-	err |= cl_load_sprite(&cub->id, cub->mlx);
 	return (err);
 }
 

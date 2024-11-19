@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:16:24 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/01 13:51:16 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/19 16:19:50 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,10 @@ int	is_compatible(t_cell_type ct1, t_cell_type ct2)
 	[ct_unknow] = {[ct_unknow] = 1},
 	[ct_void] = {[ct_unknow] = 1, [ct_void] = 1},
 	[ct_wall] = {[ct_unknow] = 1, [ct_void] = 1, [ct_wall] = 1},
-	[ct_door_open] = {[ct_unknow] = 0, [ct_void] = 0, [ct_wall] = 1,
-	[ct_door_open] = 1},
-	[ct_door_close] = {[ct_unknow] = 0, [ct_void] = 0, [ct_wall] = 1,
-	[ct_door_open] = 1, [ct_door_close] = 1},
 	[ct_floor] = {[ct_unknow] = 0, [ct_void] = 0, [ct_wall] = 1,
-	[ct_door_close] = 1, [ct_door_open] = 1, [ct_floor] = 1},
+	[ct_floor] = 1},
 	[ct_oob] = {[ct_unknow] = 1, [ct_void] = 1, [ct_wall] = 1,
-	[ct_door_close] = 0, [ct_door_open] = 0, [ct_floor] = 0, [ct_oob] = 1},
-	[ct_bwall_start] = {[ct_wall] = 1, [ct_door_close] = 1, [ct_door_open] = 1,
-	[ct_bwall_start] = 1, [ct_floor] = 1},
+	[ct_floor] = 0, [ct_oob] = 1},
 	};
 
 	return (tmp[ft_max(ct1, ct2)][ft_min(ct1, ct2)]);
