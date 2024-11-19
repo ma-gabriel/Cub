@@ -1,5 +1,5 @@
 
-MLXDIR = mlx
+MLXDIR = ../mlx
 MLXNAME = mlx
 MLXAR = minilibx.a
 MLXPATH = $(MLXDIR)/$(MLXAR)

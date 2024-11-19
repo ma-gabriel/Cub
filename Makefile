@@ -30,11 +30,10 @@ all:
 	@echo "compiling $(NAME):"
 	@$(MAKE) -s $(NAME)
 
-bonus:	all
-
 include config/libft.mk
 include config/libmlx.mk
 include config/srcs.mk
+-include config/bonus.mk
 
 $(NAME) : $(OFILES) | $(LIB_PATH)
 	$(CC) $(CFLAGS) -o $@ $(OFILES) $(LIB_FLAGS)
@@ -92,4 +91,4 @@ norm:
 
 -include config/update.mk
 
-.PHONY: clean re fclean force all norm run valgrind bonus time cachegrind annotate
+.PHONY: clean re fclean force all norm run valgrind time cachegrind annotate

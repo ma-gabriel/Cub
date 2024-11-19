@@ -1,5 +1,5 @@
 
-LIBFTDIR = libft
+LIBFTDIR = ../libft
 LIBFTNAME = ft
 LIBFTAR = libft.a
 LIBFTPATH = $(LIBFTDIR)/$(LIBFTAR)
