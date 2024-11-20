@@ -33,6 +33,7 @@ SRCS += draw/draw_line.c
 SRCS += draw/color_blend.c
 SRCS += draw/draw_pixel_a.c
 SRCS += draw/draw_rect.c
+SRCS += draw/draw_light.c
 SRCS += draw/draw_cross.c
 SRCS += draw/draw_line_a.c
 #---map_manip---
@@ -47,12 +48,12 @@ SRCS += map_manip/map_cell_get_type.c
 SRCS += map_manip/map_parse.c
 SRCS += map_manip/minimap_draw.c
 #---cub_load---
-SRCS += cub_load/cl_file.c
-SRCS += cub_load/cl_load_sprite.c
-SRCS += cub_load/cl_check_arg.c
 SRCS += cub_load/cl_rgb.c
-SRCS += cub_load/cl_struct.c
 SRCS += cub_load/cl_load_map.c
+SRCS += cub_load/cl_struct.c
+SRCS += cub_load/cl_check_arg.c
+SRCS += cub_load/cl_load_sprite.c
+SRCS += cub_load/cl_file.c
 #---player_manip---
 SRCS += player_manip/pl_print.c
 SRCS += player_manip/pl_move.c
@@ -65,8 +66,8 @@ SRCS += player_manip/pl_turn.c
 #---ft_sup---
 SRCS += ft_sup/ft_norm_angle.c
 SRCS += ft_sup/ft_num_real.c
-SRCS += ft_sup/ft_memswap.c
 SRCS += ft_sup/ft_strslen.c
+SRCS += ft_sup/ft_memswap.c
 #---texture_manip---
 SRCS += texture_manip/tm_get_texture.c
 SRCS += texture_manip/tm_set_texture.c

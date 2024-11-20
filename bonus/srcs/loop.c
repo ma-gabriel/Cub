@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/13 18:25:20 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/20 21:06:04 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	draw(t_cub_p cub)
 		cm_set_ground(img_dr, cub->floor);
 		cm_set_sky(img_dr, cub->ceiling);
 		rcb_applie(&cub->rcb, img_dr);
+		draw_light(img_dr, (t_vec2){cub->kbe.lmouse_x, cub->kbe.lmouse_y}, 200);
 		draw_cross(img_dr);
 		minimap_draw(&cub->minimap, &cub->map, &cub->player, &cub->rcb);
 		mm_img_to_img(tm_get_texture(&cub->id, id_minimap),
