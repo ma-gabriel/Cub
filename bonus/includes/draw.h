@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:14:43 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/20 20:35:08 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/21 14:35:00 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ void	draw_pixel_as(t_img_p img, int x, int y, t_color color);
 void	draw_line_a(t_img *img, t_vec2 p1, t_vec2 p2, t_color color);
 void	draw_rect_a(t_img_p img, t_vec2 co, t_vec2 size, t_color color);
 void	draw_cross(t_img_p img);
-void	draw_light(t_img_p img, t_vec2 center, int size);
 
 #endif

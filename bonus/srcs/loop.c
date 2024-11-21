@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/20 21:06:04 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/21 15:58:19 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "libft.h"
 #include "texture_manip.h"
 #include "cub.h"
+#include "flashlight.h"
 
 int		draw(t_cub_p cub);
 void	gen_frac(t_img_p img, size_t off);
@@ -42,6 +43,20 @@ int	loop(t_cub_p cub)
 	return (0);
 }
 
+void	update_flashlight(t_flashlight_p flashlight, size_t count,
+t_kb_event_p kbe)
+{
+	flashlight->center.x = cos(count * .1) * 0.01 + 0.5;
+	flashlight->center.y = sin(count * .045) * 0.01 + 0.5;
+	flashlight->size = ((cos(count * .06) + 1) * .5) * .02 + .3;
+	if (kb_get_event(kbe, 'w')
+		| kb_get_event(kbe, 'a')
+		| kb_get_event(kbe, 's')
+		| kb_get_event(kbe, 'd'))
+	flashlight->center.y += cos(count * .2) * .05;
+	
+}
+
 void	update(t_cub_p cub)
 {
 	kb_mouse_update(cub->win, &cub->kbe);
@@ -54,6 +69,7 @@ void	update(t_cub_p cub)
 		cub->delay -= 1000;
 	if (cub->delay <= 0)
 		cub->delay = 1;
+	update_flashlight(&cub->flashlight, cub->count, &cub->kbe);
 }
 
 int	draw(t_cub_p cub)
@@ -74,7 +90,7 @@ int	draw(t_cub_p cub)
 		cm_set_ground(img_dr, cub->floor);
 		cm_set_sky(img_dr, cub->ceiling);
 		rcb_applie(&cub->rcb, img_dr);
-		draw_light(img_dr, (t_vec2){cub->kbe.lmouse_x, cub->kbe.lmouse_y}, 200);
+		draw_light(cub->flashlight, img_dr);
 		draw_cross(img_dr);
 		minimap_draw(&cub->minimap, &cub->map, &cub->player, &cub->rcb);
 		mm_img_to_img(tm_get_texture(&cub->id, id_minimap),

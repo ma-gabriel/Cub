@@ -29,6 +29,7 @@ SRCS += kb_event/kb_set_event.c
 SRCS += kb_event/kb_mouse_update.c
 #---draw---
 SRCS += draw/draw_rect_a.c
+SRCS += draw/flashlight_init.c
 SRCS += draw/draw_line.c
 SRCS += draw/color_blend.c
 SRCS += draw/draw_pixel_a.c

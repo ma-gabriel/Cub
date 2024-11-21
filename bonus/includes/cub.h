@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:53:01 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/25 17:39:42 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/21 15:15:56 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "player_manip.h"
 # include "map_manip.h"
 # include "raycast_manip.h"
+# include "flashlight.h"
 
 struct s_cub
 {
@@ -34,6 +35,7 @@ struct s_cub
 	t_color				ceiling;
 	int					delay;
 	size_t				count;
+	t_flashlight		flashlight;
 };
 
 int		cub_init(t_cub_p cub, char *file);

@@ -6,26 +6,29 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 19:57:54 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/20 21:04:36 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/21 15:30:58 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "typedef.h"
 #include "mlx_manip.h"
 #include "struct.h"
 #include "draw.h"
 #include <math.h>
 #include "libft.h"
+#include "flashlight.h"
 
 static inline double	dist(t_vec2 v1, t_vec2 v2)
 {
 	return (hypot(v2.x - v1.x, v2.y - v1.y));
 }
 
-void	draw_light(t_img_p img, t_vec2 center, int size)
+void	draw_light(t_flashlight flashlight, t_img_p img)
 {
-	const unsigned char	min_color = 20;
 	int					i;
 	int					j;
+	const t_vec2		r_center = (t_vec2){flashlight.center.x * img->width, flashlight.center.y * img->height};
+	const double		r_size = flashlight.size * img->width;
 	t_color				color;
 
 	j = 0;
@@ -35,10 +38,10 @@ void	draw_light(t_img_p img, t_vec2 center, int size)
 		i = 0;
 		while (i < img->width)
 		{
-			if (dist(center, (t_vec2){i, j}) <= size)
-				color.a = (1 - dist(center, (t_vec2){i, j}) / (double)size) * (255 - min_color) + min_color;
+			if (dist(r_center, (t_vec2){i, j}) <= r_size)
+				color.a = (1 - dist(r_center, (t_vec2){i, j}) / r_size) * (255 - flashlight.max_a) + flashlight.max_a;
 			else
-				color.a = min_color;
+				color.a = flashlight.max_a;
 			draw_pixel_a(img, i, j, color);
 			i++;
 		}

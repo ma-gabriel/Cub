@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:00:43 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/30 13:55:35 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/21 14:34:06 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 typedef struct s_cub			t_cub;
 typedef struct s_cub			*t_cub_p;
+
+typedef struct s_flashlight		t_flashlight;
+typedef struct s_flashlight		*t_flashlight_p;
 
 typedef struct s_kb_event		t_kb_event;
 typedef t_kb_event				*t_kb_event_p;

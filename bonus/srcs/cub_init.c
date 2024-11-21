@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:51:34 by gcros             #+#    #+#             */
-/*   Updated: 2024/10/29 16:08:15 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/21 15:19:55 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "kb_event.h"
 #include "map_checks.h"
 #include "libft.h"
+#include "flashlight.h"
 
 static int	load_file(t_cub_p cub, char *file);
 static int	gen_all_img(t_cub_p cub);
@@ -32,6 +33,7 @@ int	cub_init(t_cub_p cub, char *file)
 	if (cub->win == NULL)
 		return (1);
 	tm_init(&cub->id);
+	flashlight_init(&cub->flashlight);
 	if (load_file(cub, file))
 		return (1);
 	if (gen_all_img(cub))
