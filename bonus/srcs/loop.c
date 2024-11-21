@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/20 14:22:02 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/21 16:11:26 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	loop(t_cub_p cub)
 	update(cub);
 	draw(cub);
 	if (cub->count & 1)
-		color = (t_color){.r = 255, .a = 200};
+		color = (t_color){.r = 255, .a = 150};
 	else
-		color = (t_color){.b = 255, .a = 200};
+		color = (t_color){.b = 255, .a = 150};
 	draw_rect_a(tm_get_texture(&cub->id, id_buffer), (t_vec2){0, 0},
 		(t_vec2){tm_get_texture(&cub->id, id_buffer)->width,
 			tm_get_texture(&cub->id, id_buffer)->height} , color);
