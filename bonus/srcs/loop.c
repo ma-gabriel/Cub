@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/21 15:58:19 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/21 18:21:46 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,14 @@ t_kb_event_p kbe)
 {
 	flashlight->center.x = cos(count * .1) * 0.01 + 0.5;
 	flashlight->center.y = sin(count * .045) * 0.01 + 0.5;
-	flashlight->size = ((cos(count * .06) + 1) * .5) * .02 + .3;
+	flashlight->size = ((cos(count * .06) + 1) * .5) * .02 + .2;
 	if (kb_get_event(kbe, 'w')
 		| kb_get_event(kbe, 'a')
 		| kb_get_event(kbe, 's')
 		| kb_get_event(kbe, 'd'))
-	flashlight->center.y += cos(count * .2) * .05;
-	
+		flashlight->center.y += cos(count * .25) * .03;
+	if (!(((int)(sin(count) * 100) + ((size_t)&count & 0XFF)) & 15))
+		flashlight->size = 0;
 }
 
 void	update(t_cub_p cub)
