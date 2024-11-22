@@ -53,7 +53,8 @@ static bool	check_rgb(char **split)
 		}
 		free(*split);
 		*split = temp;
-		if (!ft_strisnumber(*split) || (unsigned long) ft_atol(*split) > 255)
+		if (!temp[0] || !ft_strisnumber(temp)
+			|| (unsigned) ft_atoi(temp) > 255 || ft_strchr(temp, '-'))
 			return (wrong_rgb());
 		split++;
 	}
