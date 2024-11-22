@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:01:26 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/19 16:22:34 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/22 15:09:17 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,5 @@ static t_rc_event	charge(t_map_p map,
 static void	get_texture(t_img_descriptor_p id,
 	t_rc_event_p rce, int face)
 {
-		rce->img = tm_get_texture(id, id_texture_e + face);
+	rce->img = tm_get_texture(id, id_texture_e + face);
 }
