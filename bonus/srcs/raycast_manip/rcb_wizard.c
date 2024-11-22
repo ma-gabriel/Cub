@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 21:01:26 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/20 14:22:15 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/22 15:07:30 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ static t_rc_event	charge(t_map_p map,
 	rcs = (t_rc_sett){.angle = angle, .attributes = {cf_cast},
 		.start = player->pos,
 		.max = ft_max(map->height, map->width) + 1};
-	rcs.start = (t_vec2){.x = rcs.start.x + cos(player->angle + M_PI_2) * 0.05 * ((c & 1) * 2 - 1),
-	.y = rcs.start.y + sin(player->angle + M_PI_2) * 0.05 * ((c & 1) * 2 - 1)};
+	rcs.start = (t_vec2){.x = rcs.start.x
+		+ cos(player->angle + M_PI_2) * 0.05 * ((c & 1) * 2 - 1),
+		.y = rcs.start.y
+		+ sin(player->angle + M_PI_2) * 0.05 * ((c & 1) * 2 - 1)};
 	rc = rc_throw(map, rcs);
 	rce.collision = rc.pos;
 	rce.start = player->pos;
@@ -70,7 +72,7 @@ static void	get_texture(t_img_descriptor_p id,
 {
 	const t_cell_type	celltype = map_get_cell_s(map,
 			floor(rce->collision.x), floor(rce->collision.y));
-	static int	c;
+	static int			c;
 
 	if (celltype >= ct_bwall_start && celltype < ct_bwall_end)
 		rce->img = tm_get_texture(id, id_sprite_start

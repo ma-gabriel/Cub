@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/21 16:11:26 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/22 15:08:43 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	update(t_cub_p cub);
 
 int	loop(t_cub_p cub)
 {
-	t_color color;
+	t_color	color;
 
 	if (kb_get_event(&cub->kbe, KB_ESC) || cub->count == 10000000)
 		mlx_loop_end(cub->mlx);
@@ -42,7 +42,7 @@ int	loop(t_cub_p cub)
 		color = (t_color){.b = 255, .a = 150};
 	draw_rect_a(tm_get_texture(&cub->id, id_buffer), (t_vec2){0, 0},
 		(t_vec2){tm_get_texture(&cub->id, id_buffer)->width,
-			tm_get_texture(&cub->id, id_buffer)->height} , color);
+		tm_get_texture(&cub->id, id_buffer)->height}, color);
 	mm_img_display(tm_get_texture(&cub->id, id_buffer), cub->win, 0, 0);
 	ft_memswap((cub->id.imgs + id_buffer),
 		(cub->id.imgs + id_display),
