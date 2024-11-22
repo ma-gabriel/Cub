@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cl_rgb.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geymat <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 03:14:27 by geymat            #+#    #+#             */
-/*   Updated: 2024/11/04 03:14:31 by geymat           ###   ########.fr       */
+/*   Updated: 2024/11/22 19:59:49 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ bool	fill_color(t_parse *parse, short id, char *line)
 		ft_putstr_fd(ERR DOUBLE_RGB NL, 2);
 		return (false);
 	}
-	if (ft_strnstr(line, ",,", ft_strlen(line)))
+	if (ft_strnstr(line, ",,", ft_strlen(line)) || !ft_strrchr(line, ',')[1])
 		return (wrong_rgb());
 	memory[id - 5] = true;
 	temp = ft_split(line + 1, ',');

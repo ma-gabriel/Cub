@@ -4,7 +4,7 @@ WE ./assets/textures/wall_3.xpm
 EA ./assets/textures/wall_4.xpm
 
 F 24, 27, 24
-C 0, 0, 0,
+C 0, 0, 0
 
 1111    1111111111111111111111111                          
 1  1    1000000000110000000000001
