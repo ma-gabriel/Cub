@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/21 18:21:46 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/22 14:38:08 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ t_kb_event_p kbe)
 		| kb_get_event(kbe, 's')
 		| kb_get_event(kbe, 'd'))
 		flashlight->center.y += cos(count * .25) * .03;
-	if (!(((int)(sin(count) * 100) + ((size_t)&count & 0XFF)) & 15))
+	if ((sin(count * 0.0336) * 0.8)
+		* sin(count + (size_t) & count * 0.1)
+		* sin((count + 0XFFFFF) * 0.0029) > 0.6)
 		flashlight->size = 0;
 }
 
