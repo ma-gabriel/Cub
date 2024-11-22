@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 06:02:24 by geymat            #+#    #+#             */
-/*   Updated: 2024/11/19 16:08:06 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/22 19:36:35 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "mlx_manip.h"
 # include "defines.h"
 # include <stdlib.h>
-
 
 typedef struct s_textures
 {
