@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 03:22:34 by geymat            #+#    #+#             */
-/*   Updated: 2024/11/14 15:05:55 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/25 15:53:37 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static short	redirect(char *line)
 	return (0);
 }
 
-// if exec go 0, it means that
-// something went wrong, like bad malloc or bad input
 static int	struct_fill(t_parse *parse, char *file_name)
 {
 	void *const	save = read_file(file_name);

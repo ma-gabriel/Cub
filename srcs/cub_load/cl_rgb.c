@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 03:14:27 by geymat            #+#    #+#             */
-/*   Updated: 2024/11/22 19:50:43 by gcros            ###   ########.fr       */
+/*   Updated: 2024/11/25 15:52:46 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ static bool	wrong_rgb(void)
 	return (false);
 }
 
-// Check que les valeurs soient >= 0 et <= 255. 
-// Enlève les espaces en debut et fin de nombre
-// Verifie que le nombre ne soit bien qu'un nombre
 static bool	check_rgb(char **split)
 {
 	size_t	len;
@@ -61,8 +58,6 @@ static bool	check_rgb(char **split)
 	return (true);
 }
 
-//return 0 for error, 1 for working succesfully
-//memory[2] is to check if we already have the colors
 bool	fill_color(t_parse *parse, short id, char *line)
 {
 	char		**temp;
