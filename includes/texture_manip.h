@@ -21,9 +21,9 @@ enum e_img_descriptor
 	id_display,
 	id_buffer,
 	id_texture_e,
+	id_texture_w,
 	id_texture_s,
 	id_texture_n,
-	id_texture_w,
 	id_lenght,
 };
 
