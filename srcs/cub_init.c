@@ -85,7 +85,7 @@ static int	load_file(t_cub_p cub, char *file)
 
 	e = 0;
 	ft_bzero(&parse, sizeof(parse));
-	if (struct_init(cub->mlx, cub->win, &parse, file))
+	if (parsing_init(cub->mlx, cub->win, &parse, file))
 		return (1);
 	tm_set_texture(&cub->id, parse.textures.no, id_texture_n);
 	tm_set_texture(&cub->id, parse.textures.we, id_texture_w);

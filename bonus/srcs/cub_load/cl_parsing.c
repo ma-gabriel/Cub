@@ -41,29 +41,29 @@ static short	redirect(char *line)
 	return (0);
 }
 
-static int	struct_fill(t_parse *parse, char *file_name)
+// bitmap is used to know if every of the 6 inputs are in the map
+// hub is used to redirect what the line in the file is
+static int	parsing_fill(t_parse *parse, char *file_name)
 {
 	void *const	save = read_file(file_name);
+	char		bitmask;
 	char		**file;
 	short		hub;
-	bool		exec;
-	char		check;
 
 	if (!save)
 		return (1);
 	file = save;
-	check = 0;
-	exec = 1;
-	while (*file && exec)
+	bitmask = 0;
+	while (*file && hub != -1)
 	{
 		hub = redirect(*file);
-		if (hub == -1)
-			return (check_and_get_map(file, save, parse, check));
-		check |= 1 << hub;
-		if (hub >= 1 && hub <= 4)
-			exec = fill_texture(parse, hub, *file);
-		if (hub >= 5)
-			exec = fill_color(parse, hub, *file);
+		if (hub == -1 && has_all_infos(bitmask))
+			return (get_map(file, save, parse));
+		bitmask |= 1 << hub;
+		if (hub >= 1 && hub <= 4 && !fill_texture(parse, hub, *file))
+				break;
+		if (hub >= 5 && !fill_color(parse, hub, *file))
+				break;
 		file++;
 	}
 	ft_strsfree(save);
@@ -108,13 +108,13 @@ static void	destroy_image_parsing(t_textures textures, t_mlx_p mlx)
 		mm_img_delete(textures.we, mlx);
 }
 
-int	struct_init(t_mlx_p mlx, t_window_p win, t_parse *parse, char *file_name)
+int	parsing_init(t_mlx_p mlx, t_window_p win, t_parse *parse, char *file_name)
 {
 	int	res;
 
 	parse->window.mlx_ptr = mlx;
 	parse->window.win_ptr = win;
-	res = struct_fill(parse, file_name);
+	res = parsing_fill(parse, file_name);
 	if (res)
 		destroy_image_parsing(parse->textures, mlx);
 	return (res);

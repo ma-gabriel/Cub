@@ -18,15 +18,12 @@
 # define NEED_ARG "We need a map as an argument"
 # define ONLY_ONE_ARG "We only take one argument"
 # define WRONG_EXTENSION "The map doesn't have a valid extension (must be .cub)"
-# define ARG_DIRECTORY "Did you really give a directory ???"
 # define OPEN_FAIL "The file didn't open"
 # define MALLOC_FAIL "A malloc failed"
 # define MULTIPLE_START "Multiple starts have been found in the map"
 # define NO_START "You forgot the start in the map"
 # define WRONG_RGB_VALUES "The rgb values are invalid"
 # define MLX_FAILED "MLX function failed to open XPM file"
-# define INFO_MISSING "There are some infos missing in the \
-cub file, put the 4 textures and 2 colors"
 # define DOUBLE_RGB "Floor and Ceiling colors should be asked once each"
 # define UNRECOGNIZED "Unreconized char"
 

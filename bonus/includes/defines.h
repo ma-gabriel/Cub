@@ -25,7 +25,6 @@
 # define NO_START "You forgot the start in the map"
 # define WRONG_RGB_VALUES "The rgb values are invalid"
 # define MLX_FAILED "MLX function failed to open XPM file"
-# define INFO_MISSING "Infos are missing in the .cub (need 4 xpm and 2 rgb)"
 # define DOUBLE_RGB "Floor and Ceiling colors should be asked once each"
 # define UNRECOGNIZED "Unreconized char"
 

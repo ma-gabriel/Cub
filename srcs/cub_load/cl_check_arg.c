@@ -33,23 +33,14 @@ static bool	check_nb_arg(int argc)
 
 static bool	check_extension(char *map)
 {
-	if (ft_strlen(map) < 5 || ft_strncmp(map + ft_strlen(map) - 4, ".cub", 4))
+	if (ft_strlen(map) < 5)
 	{
 		ft_putstr_fd(ERR WRONG_EXTENSION NL, 2);
 		return (false);
 	}
-	return (true);
-}
-
-static bool	check_not_dir(char *map)
-{
-	int	fd;
-
-	fd = open(map, O_DIRECTORY);
-	if (fd != -1)
+	if (ft_strncmp(map + ft_strlen(map) - 4, ".cub", 4))
 	{
-		close(fd);
-		ft_putstr_fd(ERR ARG_DIRECTORY NL, 2);
+		ft_putstr_fd(ERR WRONG_EXTENSION NL, 2);
 		return (false);
 	}
 	return (true);
@@ -60,8 +51,6 @@ bool	check_arg(int argc, char *map)
 	if (!check_nb_arg(argc))
 		return (false);
 	if (!check_extension(map))
-		return (false);
-	if (!check_not_dir(map))
 		return (false);
 	return (true);
 }

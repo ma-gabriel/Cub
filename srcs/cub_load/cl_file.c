@@ -21,34 +21,40 @@
 #include "mlx.h"
 #include "mlx_manip.h"
 
-static int	is_file_empty(char **file);
+static bool	is_file_empty(char **file);
 
-int	read_fd(int fd, char ***file)
+// read the file line by line
+// the buffer contain all that is read
+//   and if the buffer has the file correctly read
+//   file will point to buffer
+// if a malloc suddently fail, *file is all free
+//   meaning the previous buffer
+static bool	read_fd(int fd, char ***file)
 {
-	char	**temp;
-	size_t	i;
+	char	**buffer;
+	size_t	line;
 
-	i = 0;
+	line = 0;
 	*file = NULL;
-	while (!i || (*file)[i - 1])
+	while (!line || (*file)[line - 1])
 	{
-		temp = malloc((i + 1) * sizeof(char *));
-		if (!temp)
+		buffer = malloc((line + 1) * sizeof(char *));
+		if (!buffer)
 		{
 			if (*file)
 				ft_strsfree(*file);
-			return (!!(*file = NULL));
+			return ((bool)(*file = NULL));
 		}
-		ft_memcpy(temp, *file, i * sizeof(char *));
-		temp[i] = get_next_line(fd);
-		if (temp[i] && temp[i][ft_strlen(temp[i]) - 1] == '\n')
-			temp[i][ft_strlen(temp[i]) - 1] = 0;
-		if (i)
+		ft_memcpy(buffer, *file, line * sizeof(char *));
+		buffer[line] = get_next_line(fd);
+		if (buffer[line] && buffer[line][ft_strlen(buffer[line]) - 1] == '\n')
+			buffer[line][ft_strlen(buffer[line]) - 1] = 0;
+		if (line)
 			free(*file);
-		*file = temp;
-		i++;
+		*file = buffer;
+		line++;
 	}
-	return (1);
+	return (true);
 }
 
 char	**read_file(char *file)
@@ -71,7 +77,7 @@ char	**read_file(char *file)
 	}
 	if (is_file_empty(res))
 	{
-		ft_putstr_fd(ERR "empty file" NL, 2);
+		ft_putstr_fd(ERR "empty file, or could open but not read" NL, 2);
 		ft_strsfree(res);
 		res = NULL;
 	}
@@ -79,7 +85,7 @@ char	**read_file(char *file)
 	return (res);
 }
 
-static int	is_file_empty(char **file)
+static bool	is_file_empty(char **file)
 {
 	size_t	i;
 	size_t	j;
@@ -90,11 +96,11 @@ static int	is_file_empty(char **file)
 		i = 0;
 		while (file[j][i])
 		{
-			if (!(file[j][i] == ' ' || (file[j][i] >= 9 && file[j][i] <= 13)))
-				return (0);
+			if (file[j][i] != ' ' && !(file[j][i] >= 9 && file[j][i] <= 13))
+				return (false);
 			i++;
 		}
 		j++;
 	}
-	return (1);
+	return (true);
 }

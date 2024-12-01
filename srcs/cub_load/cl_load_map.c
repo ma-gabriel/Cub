@@ -12,8 +12,9 @@
 
 #include "libft.h"
 #include "struct.h"
+#include <stdbool.h>
 
-static int	get_map(char **file, char **cpy, t_parse *parse)
+int	get_map(char **file, char **cpy, t_parse *parse)
 {
 	size_t	i;
 
@@ -36,13 +37,24 @@ static int	get_map(char **file, char **cpy, t_parse *parse)
 	return (0);
 }
 
-int	check_and_get_map(char **file, char **cpy, t_parse *parse, char check)
+bool	has_all_infos(char bitmask)
 {
-	if (check != 0b01111110 && check != 0b01111111)
+	const char *infos_missings[] = {"NO", "SO", "WE", "EA", "F", "C"};
+	bool	res;
+	short	i;
+
+	res = true;
+	i = 1;
+	while (i < 7)
 	{
-		ft_putstr_fd(ERR INFO_MISSING NL, 2);
-		ft_strsfree(cpy);
-		return (1);
+		if ((bitmask & (1 << i)) == 0)
+		{
+			ft_putstr_fd(ERR "The info with the token ", 2);
+			ft_putstr_fd((char *) infos_missings[i - 1], 2);
+			ft_putstr_fd(" is missing." NL, 2);
+			res = false;
+		}
+		i++;
 	}
-	return (get_map(file, cpy, parse));
+	return (res);
 }

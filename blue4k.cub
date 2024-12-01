@@ -3,8 +3,8 @@ SO ./assets/textures/almond_tree.xpm
 WE ./assets/textures/chateau.xpm
 EA ./assets/textures/Starry_Night_Over_the_Rhone.xpm
 
-C  0,   0,   255
 F  255, 255, 0
+C  0,   0,   255
 
 
 111111111111111111111111111111111111

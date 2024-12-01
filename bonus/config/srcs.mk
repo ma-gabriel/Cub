@@ -51,7 +51,7 @@ SRCS += cub_load/cl_file.c
 SRCS += cub_load/cl_load_sprite.c
 SRCS += cub_load/cl_check_arg.c
 SRCS += cub_load/cl_rgb.c
-SRCS += cub_load/cl_struct.c
+SRCS += cub_load/cl_parsing.c
 SRCS += cub_load/cl_load_map.c
 #---player_manip---
 SRCS += player_manip/pl_print.c
