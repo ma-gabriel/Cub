@@ -16,7 +16,7 @@
 
 double	ft_norm_angle(double a)
 {
-	while (a > 2. * M_PI)
+	while (a >= 2. * M_PI)
 		a -= 2. * M_PI;
 	while (a < 0.)
 		a += 2. * M_PI;

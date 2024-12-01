@@ -85,7 +85,7 @@ static t_vec2	horizontals_rays(t_map_p map, t_rc_sett rcs)
 	const double	atan = -1. / tan(rcs.angle);
 	t_vec2			dp;
 	t_vec2			pos;
-
+	
 	if (rcs.angle > M_PI && rcs.angle < M_PI * 2.)
 	{
 		pos.y = floor(rcs.start.y) - 0.0001;
