@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:19:44 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/19 16:08:21 by gcros            ###   ########.fr       */
+/*   Updated: 2024/12/02 11:04:11 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ enum e_img_descriptor
 	id_buffer,
 	id_texture_e,
 	id_texture_w,
-	id_texture_s,
 	id_texture_n,
+	id_texture_s,
 	id_lenght,
 };
 

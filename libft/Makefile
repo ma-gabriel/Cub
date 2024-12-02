@@ -1,7 +1,7 @@
 NAME	=	libft.a
 
 CC		=	cc
-AR		=	ar -rcs
+AR		=	ar -rc
 RMF		=	rm -f
 RMD		=	rm -d
 
@@ -137,7 +137,7 @@ DEPS		= $(SFILES:%.c=$(DEPSDIR)/%.d)
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJS)
-	$(AR) $(NAME) $?
+	$(AR) $(NAME) $^
 
 -include $(DEPS)
 
