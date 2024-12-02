@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:13:28 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/19 16:10:09 by gcros            ###   ########.fr       */
+/*   Updated: 2024/12/02 12:05:39 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	update(t_cub_p cub);
 
 int	loop(t_cub_p cub)
 {
-	if (kb_get_event(&cub->kbe, KB_ESC) || cub->count == 10000000)
+	if (kb_get_event(&cub->kbe, KB_ESC))
 		mlx_loop_end(cub->mlx);
 	update(cub);
 	draw(cub);
