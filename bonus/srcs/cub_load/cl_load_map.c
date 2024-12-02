@@ -39,9 +39,9 @@ int	get_map(char **file, char **cpy, t_parse *parse)
 
 bool	has_all_infos(char bitmask)
 {
-	const char *infos_missings[] = {"NO", "SO", "WE", "EA", "F", "C"};
-	bool	res;
-	short	i;
+	const char	*infos_missings[] = {"NO", "SO", "WE", "EA", "F", "C"};
+	bool		res;
+	short		i;
 
 	res = true;
 	i = 1;

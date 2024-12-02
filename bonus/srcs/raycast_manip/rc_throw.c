@@ -73,6 +73,7 @@ static t_vec2	vertical_rays(t_map_p map, t_rc_sett rcs)
 	else
 	{
 		pos = rcs.start;
+		pos.y += ft_get_real(rcs.start.x) * ntan;
 		dp = (t_vec2){.x = 0, .y = (rcs.angle == M_PI_2) * 2 - 1};
 	}
 	rcs.start = pos;
@@ -101,6 +102,7 @@ static t_vec2	horizontals_rays(t_map_p map, t_rc_sett rcs)
 	else
 	{
 		pos = rcs.start;
+		pos.x += ft_get_real(rcs.start.y) * atan;
 		dp = (t_vec2){.x = (rcs.angle == 0.) * 2 - 1, .y = 0};
 	}
 	rcs.delta = dp;

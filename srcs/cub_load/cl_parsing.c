@@ -61,9 +61,9 @@ static int	parsing_fill(t_parse *parse, char *file_name)
 			return (get_map(file, save, parse));
 		bitmask |= 1 << hub;
 		if (hub >= 1 && hub <= 4 && !fill_texture(parse, hub, *file))
-				break;
+			break ;
 		if (hub >= 5 && !fill_color(parse, hub, *file))
-				break;
+			break ;
 		file++;
 	}
 	ft_strsfree(save);
