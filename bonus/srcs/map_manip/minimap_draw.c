@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:52:07 by gcros             #+#    #+#             */
-/*   Updated: 2024/11/07 13:26:34 by gcros            ###   ########.fr       */
+/*   Updated: 2024/12/03 15:59:47 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 #include "draw.h"
 #include "raycast_manip.h"
 
-void	dr_pl(t_minimap_p minimap, t_player_p player, const t_vec2 ratio);
-void	dr_mp(t_minimap_p minimap, t_map_p map,
-			t_vec2 center, const t_vec2 ratio);
-void	dr_rc(t_minimap_p minimap, t_rc_buf_p rcb, t_vec2 ratio, t_vec2 p);
+static void	draw_pl(t_minimap_p minimap, t_player_p player, const t_vec2 ratio);
+static void	draw_mp(t_minimap_p minimap, t_map_p map,
+				t_vec2 center, const t_vec2 ratio);
+static void	draw_rc(t_minimap_p minimap,
+				t_rc_buf_p rcb, t_vec2 ratio, t_vec2 p);
 
 void	minimap_draw(t_minimap_p minimap, t_map_p map,
 		t_player_p player, t_rc_buf_p rcb)
@@ -31,12 +32,13 @@ void	minimap_draw(t_minimap_p minimap, t_map_p map,
 		(double)minimap->img->height / (double)(minimap->height)};
 
 	mm_img_set_bg(minimap->img, cell_get_color(ct_unknow));
-	dr_mp(minimap, map, player->pos, ratio);
-	dr_rc(minimap, rcb, ratio, player->pos);
-	dr_pl(minimap, player, ratio);
+	draw_mp(minimap, map, player->pos, ratio);
+	draw_rc(minimap, rcb, ratio, player->pos);
+	draw_pl(minimap, player, ratio);
 }
 
-void	dr_rc(t_minimap_p minimap, t_rc_buf_p rcb, t_vec2 ratio, t_vec2 center)
+static void	draw_rc(t_minimap_p minimap,
+t_rc_buf_p rcb, t_vec2 ratio, t_vec2 center)
 {
 	const t_vec2	c = {.x = -center.x + (minimap->width * .5),
 		.y = -center.y + (minimap->height * .5)};
@@ -58,7 +60,7 @@ void	dr_rc(t_minimap_p minimap, t_rc_buf_p rcb, t_vec2 ratio, t_vec2 center)
 	}
 }
 
-void	dr_mp(t_minimap_p minimap, t_map_p map,
+static void	draw_mp(t_minimap_p minimap, t_map_p map,
 			const t_vec2 center, const t_vec2 ratio)
 {
 	double		i;
@@ -85,7 +87,7 @@ void	dr_mp(t_minimap_p minimap, t_map_p map,
 	}
 }
 
-void	dr_pl(t_minimap_p minimap, t_player_p player, const t_vec2 ratio)
+static void	draw_pl(t_minimap_p minimap, t_player_p player, const t_vec2 ratio)
 {
 	const t_vec2	size = (t_vec2){ratio.x * player->size,
 		ratio.y * player->size};
